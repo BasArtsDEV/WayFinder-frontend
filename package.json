@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prepare": "husky",
-    "fix": "eslint . --fix"
+    "fix": "eslint . --fix",
+    "lint:css": "stylelint \"public/css/**/*.css\"",
+    "fix:css": "stylelint \"public/css/**/*.css\" --fix"
   },
   "dependencies": {
     "eslint-plugin-prettier": "^5.5.6",
@@ -33,6 +35,10 @@
     "eslint-plugin-sort": "^4.0.0",
     "globals": "^17.12.0",
     "husky": "^9.1.7",
+    "stylelint": "^17.15.0",
+    "stylelint-config-clean-order": "^10.0.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-order": "^8.1.1",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.69.0",
     "vite": "^8.3.0"
