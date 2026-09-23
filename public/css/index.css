@@ -1,0 +1,18 @@
+:root {
+    --header-bg: #ffffff;
+    --header-text: #151515;
+
+    --default-bg: #ffffff;
+    --default-text: #151515;
+
+    --box-bg: #f6f6f6;
+    --box-border: #d8d8d8;
+    --box-input-bg: #fff;
+    --box-input-border: #d8d8d8;
+    --box-input-text: #000000;
+    --box-button-bg: #131313;
+    --box-button-text: #ffffff;
+
+    --footer-bg: #ffffff;
+    --footer-text: #151515;
+}
