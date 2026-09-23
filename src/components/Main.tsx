@@ -6,10 +6,11 @@ import Router from "../components/Router";
  */
 function Main({ children }: { children?: React.ReactNode }) {
   return (
-      <main>
-        <Router />
-        {children}
-      </main>);
+    <main>
+      <Router />
+      {children}
+    </main>
+  );
 }
 
 export default Main;
