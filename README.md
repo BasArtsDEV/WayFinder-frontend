@@ -35,6 +35,15 @@ npm run dev
 
 ## Scripts NPM
 
-- ``npm run dev`` : démarrer le projet
+Voici la liste des commandes disponibles pour le développement et la maintenance du projet :
+
+- **`npm run dev`** : Lance le serveur de développement local avec Vite.
+- **`npm run build`** : Vérifie les types TypeScript (`tsc -b`) puis compile l'application pour la production dans le dossier `dist`.
+- **`npm run lint`** : Analyse le code JavaScript/TypeScript avec ESLint pour détecter les erreurs.
+- **`npm run fix`** : Corrige automatiquement les erreurs de code JavaScript/TypeScript identifiables par ESLint.
+- **`npm run lint:css`** : Analyse les fichiers CSS situés dans `public/css/` avec Stylelint pour repérer les erreurs de style.
+- **`npm run fix:css`** : Corrige et réorganise automatiquement le code CSS dans `public/css/` selon les règles Stylelint.
+- **`npm run preview`** : Lance un serveur local pour prévisualiser le build de production généré dans `dist`.
+- **`npm run prepare`** : Initialise le dossier et la configuration Husky pour l'intégration des hooks Git (s'exécute automatiquement lors du `npm install`).
 
 
