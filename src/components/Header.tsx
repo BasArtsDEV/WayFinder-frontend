@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
  */
 function Header({ children }: { children: ReactNode }) {
   return (
-    <header className="main-header">
+    <header className="header">
       <div className="header-layout">
         <a className="header-element">
           <a className="header-button">
