@@ -1,20 +1,24 @@
 @font-face {
     font-family: Lexend-Bold;
+
     src: url(../fonts/Lexend-Bold.ttf);
 }
 
 @font-face {
     font-family: Lexend-Light;
+
     src: url(../fonts/Lexend-Light.ttf);
 }
 
 @font-face {
     font-family: Lexend-Medium;
+
     src: url(../fonts/Lexend-Medium.ttf);
 }
 
 @font-face {
     font-family: Lexend-Regular;
+
     src: url(../fonts/Lexend-Regular.ttf);
 }
 
@@ -33,12 +37,15 @@
     /* general app */
 
     --app-main-background: #f0d6a4;
+    --bs-body-bg: #f0d6a4 !important;
     --app-text: #000000;
 
     --app-button-background: #57a841;
+    --app-button-background-hover: #468e33;
     --app-button-text: #ffffff;
 
     --app-button-secondary-background: #ffffff;
+    --app-button-secondary-background-hover: #ececec;
     --app-button-secondary-text: #000000;
 
     --app-button-decline-background: #ff3c3c;
@@ -50,14 +57,32 @@
     --app-box-background: #f0dfbb;
 }
 
+html, body {
+    background-color: var(--app-main-background);
+}
+
+a {
+    text-decoration: none !important;
+}
+
+h1 {
+    font-family: Lexend-Medium, serif;
+}
+
+p {
+    font-family: Lexend-Light, serif;
+}
+
 .header-layout {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+
     padding: 0.5rem;
 
     text-align: center;
+
     background-color: var(--app-header-background);
 }
 
@@ -66,15 +91,17 @@
 }
 
 .header-button {
-    background-color: var(--app-header-button-background);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border: 1px solid var(--app-header-button-border);
     border-radius: 100%;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: var(--app-header-button-background);
 
-    cursor: pointer;
     transition: background-color 0.4s;
 }
 
@@ -84,14 +111,12 @@
 
 .header-button-icon {
     display: flex;
-
-    height: 1.6rem;
     width: auto;
-
+    height: 1.6rem;
     margin: 0.95rem;
 }
 
 .title-text-app {
-    color: white;
     font-family: Lexend-Medium, serif;
+    color: white;
 }
