@@ -1,14 +1,13 @@
 # WayFinder
 ## sae5-01-front
 
-## Présentation du projet
+## Project Overview
 
 ### Introduction
 
-WayFinder est une application de création de chasse au trésor complètement en ligne qui vous permet de créer simplement des énigmes intéractives avec plusieurs collaborateurs. Les chasses aux trésors peuvent ensuite être joué par plusieurs joueurs en même temps !
+WayFinder is a fully online treasure hunt creation application that allows you to easily design interactive puzzles with multiple collaborators. The treasure hunts can then be played by several players simultaneously!
 
-
-## Auteurs du projet
+## Authors
 
 - Tony Hadj Sadoun ``hadj0030``
 - Sandjy Gaudin ``gaud0055``
@@ -24,26 +23,22 @@ WayFinder est une application de création de chasse au trésor complètement en
 ```
 git clone https://iut-info.univ-reims.fr/gitlab/sore0012/sae5-01-front
 ```
-
 ```
 npm install
 ```
-
 ```
 npm run dev
 ```
 
-## Scripts NPM
+## NPM Scripts
 
-Voici la liste des commandes disponibles pour le développement et la maintenance du projet :
+Here is the list of available commands for project development and maintenance:
 
-- **`npm run dev`** : Lance le serveur de développement local avec Vite.
-- **`npm run build`** : Vérifie les types TypeScript (`tsc -b`) puis compile l'application pour la production dans le dossier `dist`.
-- **`npm run lint`** : Analyse le code JavaScript/TypeScript avec ESLint pour détecter les erreurs.
-- **`npm run fix`** : Corrige automatiquement les erreurs de code JavaScript/TypeScript identifiables par ESLint.
-- **`npm run lint:css`** : Analyse les fichiers CSS situés dans `public/css/` avec Stylelint pour repérer les erreurs de style.
-- **`npm run fix:css`** : Corrige et réorganise automatiquement le code CSS dans `public/css/` selon les règles Stylelint.
-- **`npm run preview`** : Lance un serveur local pour prévisualiser le build de production généré dans `dist`.
-- **`npm run prepare`** : Initialise le dossier et la configuration Husky pour l'intégration des hooks Git (s'exécute automatiquement lors du `npm install`).
-
-
+- ``npm run dev``: Starts the local development server using Vite.
+- ``npm run build``: Runs TypeScript type checking (tsc -b), then compiles the application for production in the dist folder.
+- ``npm run lint``: Lints JavaScript/TypeScript code using ESLint to detect errors.
+- ``npm run fix``: Automatically fixes identifiable JavaScript/TypeScript code errors via ESLint. 
+- ``npm run lint:css``: Lints CSS files located in public/css/ using Stylelint to detect style errors. 
+- ``npm run fix:css``: Automatically fixes and formats CSS code in public/css/ according to Stylelint rules. 
+- ``npm run preview``: Starts a local server to preview the production build generated in dist.
+- ``npm run prepare``: Initializes the Husky directory and configuration for Git hooks (runs automatically during npm install).
