@@ -1,13 +1,33 @@
 import type { ReactNode } from "react";
 
 /**
- * Composant d'en-tête de l'application
+ * Application header component
  */
 function Header({ children }: { children: ReactNode }) {
   return (
-    <header className="main-header">
+    <header className="header">
       <div className="header-layout">
-        <h1>{children}</h1>
+        <a className="header-element">
+          <a className="header-button">
+            <img
+              className="header-button-icon"
+              src="/icons/user.png"
+              alt="Compte"
+            />
+          </a>
+        </a>
+        <div className="header-element">
+          <h1 className="m-0 title-text-app">{children}</h1>
+        </div>
+        <a className="header-element">
+          <a className="header-button">
+            <img
+              className="header-button-icon"
+              src="/icons/settings.png"
+              alt="Paramètres"
+            />
+          </a>
+        </a>
       </div>
     </header>
   );

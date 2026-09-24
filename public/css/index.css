@@ -1,18 +1,122 @@
+@font-face {
+    font-family: Lexend-Bold;
+
+    src: url(../fonts/Lexend-Bold.ttf);
+}
+
+@font-face {
+    font-family: Lexend-Light;
+
+    src: url(../fonts/Lexend-Light.ttf);
+}
+
+@font-face {
+    font-family: Lexend-Medium;
+
+    src: url(../fonts/Lexend-Medium.ttf);
+}
+
+@font-face {
+    font-family: Lexend-Regular;
+
+    src: url(../fonts/Lexend-Regular.ttf);
+}
+
 :root {
-    --header-bg: #ffffff;
-    --header-text: #151515;
+    /* header */
+    --app-header-background: #57a841;
 
-    --default-bg: #ffffff;
-    --default-text: #151515;
+    --app-header-button-border: #67bf4c;
+    --app-header-button-background: #4b9538;
+    --app-header-button-background-hover: #376e29;
+    --app-header-button-text: #ffffff;
 
-    --box-bg: #f6f6f6;
-    --box-border: #d8d8d8;
-    --box-input-bg: #fff;
-    --box-input-border: #d8d8d8;
-    --box-input-text: #000000;
-    --box-button-bg: #131313;
-    --box-button-text: #ffffff;
+    --app-header-button-leave-background: #ffd3d3;
+    --app-header-button-leave-text: #ff5a5a;
 
-    --footer-bg: #ffffff;
-    --footer-text: #151515;
+    /* general app */
+
+    --app-main-background: #f0d6a4;
+    --bs-body-bg: #f0d6a4 !important;
+    --app-text: #000000;
+
+    --app-button-background: #57a841;
+    --app-button-background-hover: #468e33;
+    --app-button-text: #ffffff;
+
+    --app-button-secondary-background: #ffffff;
+    --app-button-secondary-background-hover: #ececec;
+    --app-button-secondary-text: #000000;
+
+    --app-button-decline-background: #ff3c3c;
+    --app-button-decline-text: #ffffff;
+
+    --app-small-info-box-background: #ffffff;
+    --app-small-info-box-text: #000000;
+
+    --app-box-background: #f0dfbb;
+}
+
+html, body {
+    background-color: var(--app-main-background);
+}
+
+a {
+    text-decoration: none !important;
+}
+
+h1 {
+    font-family: Lexend-Medium, serif;
+}
+
+p {
+    font-family: Lexend-Light, serif;
+}
+
+.header-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0.5rem;
+
+    text-align: center;
+
+    background-color: var(--app-header-background);
+}
+
+.header-element {
+    display: flex;
+}
+
+.header-button {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--app-header-button-border);
+    border-radius: 100%;
+
+    background-color: var(--app-header-button-background);
+
+    transition: background-color 0.4s;
+}
+
+.header-button:hover {
+    background-color: var(--app-header-button-background-hover);
+}
+
+.header-button-icon {
+    display: flex;
+    width: auto;
+    height: 1.6rem;
+    margin: 0.95rem;
+}
+
+.title-text-app {
+    font-family: Lexend-Medium, serif;
+    color: white;
 }

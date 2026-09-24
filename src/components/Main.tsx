@@ -2,11 +2,11 @@ import React from "react";
 import Router from "../components/Router";
 
 /**
- * Composant main de l'application
+ * Main component of the application
  */
 function Main({ children }: { children?: React.ReactNode }) {
   return (
-    <main>
+    <main className="app-main flex-grow-1">
       <Router />
       {children}
     </main>

@@ -1,0 +1,136 @@
+.homepageview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 8rem;
+    padding: 1rem;
+}
+
+.welcome-container-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8rem;
+}
+
+.welcome-container-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-container-text > h1 {
+    font-family: Lexend-Bold, serif;
+}
+
+.welcome-container-text > p {
+    text-align: center;
+}
+
+.home-divider {
+    width: 70%;
+    margin-bottom: 2rem;
+    border: none;
+    border-top: 2px solid #d8c398;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn-login {
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+
+    padding: 0.6rem 1rem !important;
+    border: none !important;
+    border-radius: 50px !important;
+
+    font-family: 'Lexend-Medium', sans-serif !important;
+    font-size: 1.1rem !important;
+    color: var(--app-button-text) !important;
+    text-align: center;
+
+    background-color: var(--app-button-background) !important;
+
+    transition: background-color, 0.4s;
+}
+
+.btn-login:hover {
+    background-color: var(--app-header-button-background-hover) !important;
+}
+
+.btn-register {
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+
+    padding: 0.6rem 1rem !important;
+    border: none !important;
+    border-radius: 50px !important;
+
+    font-family: 'Lexend-Bold', sans-serif !important;
+    font-size: 1.1rem !important;
+    color: var(--app-button-secondary-text) !important;
+    text-align: center;
+
+    background-color: var(--app-button-secondary-background) !important;
+
+    transition: background-color, 0.4s;
+}
+
+.btn-register:hover {
+    background-color: var(--app-button-secondary-background-hover) !important;
+}
+
+.btn-register-icon, .btn-login-icon {
+    width: 2rem;
+}
+
+
+.btn-login > span:not(.btn-icon-wrapper),
+.btn-register > span:not(.btn-icon-wrapper) {
+    flex: 1;
+    text-align: center;
+}
+
+.btn-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+
+    background-color: transparent;
+}
+
+.btn-register .btn-icon-wrapper {
+    background-color: transparent;
+}
+
+.btn-action-icon {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
