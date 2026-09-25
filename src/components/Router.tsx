@@ -3,7 +3,7 @@ import HomePageView from "../views/HomePageView.tsx";
 import NotFoundView from "../views/NotFoundView.tsx";
 
 /**
- * Composant gérant la navigation de l'application
+ * Application component that manage navigation
  */
 function Router() {
   return (

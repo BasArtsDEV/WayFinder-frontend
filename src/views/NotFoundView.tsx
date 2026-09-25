@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 
 /**
- * Vue affichée en cas de route inexistante (Erreur 404)
+ * Displayed view if used route doesn't exist (Erreur 404)
  */
 function NotFoundView() {
   return (

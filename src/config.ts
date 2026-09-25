@@ -1,3 +1,3 @@
 export const CONFIG = {
-  BASE_URL: "< futur url de l'api du back-end à mettre ici >",
+  BASE_URL: "http://localhost:800s0/api/",
 } as const;
