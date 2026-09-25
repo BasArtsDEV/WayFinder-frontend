@@ -1,0 +1,79 @@
+.loginview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 400px;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.login-container > h1 {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+}
+
+.form-mail {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-password {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-mail > label, .form-password > label  {
+    font-family: Lexend-Light, serif;
+    font-size: 1.2rem;
+}
+
+.form-mail > input, .form-password > input {
+    padding: 1rem;
+    border: 2px solid var(--app-input-border);
+    border-radius: 50px;
+    background-color: var(--app-input-background);
+}
+
+.form-mail > input::placeholder, .form-password > input::placeholder {
+    font-family: Lexend-Light, serif;
+}
+
+.form-submit {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    margin-top: 10rem;
+}
+
+.form-submit > .btn-app-primary {
+    display: flex;
+    flex: 1;
+}
+
+.btn-icon-wrapper.bg-white .btn-action-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.form-mail > input::placeholder,
+.form-password > input::placeholder {
+    font-family: Lexend-Light, serif !important;
+}

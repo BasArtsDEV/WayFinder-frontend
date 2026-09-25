@@ -1,6 +1,8 @@
-function HomePageView() {
+import { Link } from "wouter";
+
+function WelcomePageView() {
   return (
-    <div className="homepageview">
+    <div className="welcomepageview">
       <div className="welcome-container">
         <div className="welcome-container-icon">
           <img
@@ -21,7 +23,7 @@ function HomePageView() {
         <div className="home-divider"></div>
 
         <div className="button-container">
-          <a className="btn-login">
+          <Link href="/login" className="btn-app-primary">
             <div className="btn-icon-wrapper">
               <img
                 className="btn-action-icon"
@@ -30,9 +32,9 @@ function HomePageView() {
               />
             </div>
             <span>Connexion</span>
-          </a>
+          </Link>
 
-          <a className="btn-register">
+          <Link href="/register" className="btn-app-secondary">
             <div className="btn-icon-wrapper">
               <img
                 className="btn-action-icon"
@@ -41,11 +43,11 @@ function HomePageView() {
               />
             </div>
             <span>Créer mon compte</span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
   );
 }
 
-export default HomePageView;
+export default WelcomePageView;
