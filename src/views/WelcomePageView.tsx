@@ -21,7 +21,7 @@ function WelcomePageView() {
         <div className="home-divider"></div>
 
         <div className="button-container">
-          <a className="btn-login">
+          <a className="btn-app-primary">
             <div className="btn-icon-wrapper">
               <img
                 className="btn-action-icon"
@@ -32,7 +32,7 @@ function WelcomePageView() {
             <span>Connexion</span>
           </a>
 
-          <a className="btn-register">
+          <a className="btn-app-secondary">
             <div className="btn-icon-wrapper">
               <img
                 className="btn-action-icon"

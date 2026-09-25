@@ -50,7 +50,7 @@
     gap: 1rem;
 }
 
-.btn-login {
+.btn-app-primary {
     cursor: pointer;
 
     display: flex;
@@ -72,11 +72,11 @@
     transition: background-color, 0.4s;
 }
 
-.btn-login:hover {
+.btn-app-primary:hover {
     background-color: var(--app-header-button-background-hover) !important;
 }
 
-.btn-register {
+.btn-app-secondary {
     cursor: pointer;
 
     display: flex;
@@ -98,7 +98,7 @@
     transition: background-color, 0.4s;
 }
 
-.btn-register:hover {
+.btn-app-secondary:hover {
     background-color: var(--app-button-secondary-background-hover) !important;
 }
 
@@ -107,8 +107,8 @@
 }
 
 
-.btn-login > span:not(.btn-icon-wrapper),
-.btn-register > span:not(.btn-icon-wrapper) {
+.btn-app-primary > span:not(.btn-icon-wrapper),
+.btn-app-secondary > span:not(.btn-icon-wrapper) {
     flex: 1;
     text-align: center;
 }
@@ -125,7 +125,7 @@
     background-color: transparent;
 }
 
-.btn-register .btn-icon-wrapper {
+.btn-app-secondary .btn-icon-wrapper {
     background-color: transparent;
 }
 

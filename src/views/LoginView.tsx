@@ -26,7 +26,7 @@ function LoginView() {
             <p className="mt-4">Vous n'avez pas de compte ? Inscrivez-vous.</p>
           </div>
           <div className="form-submit">
-            <button type="submit" className="btn-login">
+            <button type="submit" className="btn-app-primary">
               <span className="btn-icon-wrapper">
                 <img
                   src="/icons/check.png"
@@ -37,7 +37,7 @@ function LoginView() {
               <span>Valider</span>
             </button>
           </div>
-          <a className="btn-register">
+          <a className="btn-app-secondary">
             <div className="btn-icon-wrapper">
               <img
                 className="btn-action-icon"

@@ -62,7 +62,7 @@
     margin-top: 10rem;
 }
 
-.form-submit > .btn-login {
+.form-submit > .btn-app-primary {
     display: flex;
     flex: 1;
 }
