@@ -1,5 +1,5 @@
 import { Route, Switch } from "wouter";
-import HomePageView from "../views/HomePageView.tsx";
+import WelcomePageView from "../views/WelcomePageView.tsx";
 import NotFoundView from "../views/NotFoundView.tsx";
 
 /**
@@ -8,7 +8,7 @@ import NotFoundView from "../views/NotFoundView.tsx";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={HomePageView} />
+      <Route path="/" component={WelcomePageView} />
 
       <Route component={NotFoundView} />
     </Switch>

@@ -1,4 +1,4 @@
-function HomePageView() {
+function WelcomePageView() {
   return (
     <div className="homepageview">
       <div className="welcome-container">
@@ -48,4 +48,4 @@ function HomePageView() {
   );
 }
 
-export default HomePageView;
+export default WelcomePageView;
