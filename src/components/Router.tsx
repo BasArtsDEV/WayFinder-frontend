@@ -1,6 +1,6 @@
 import { Route, Switch } from "wouter";
-import WelcomePageView from "../views/WelcomePageView.tsx";
 import NotFoundView from "../views/NotFoundView.tsx";
+import WelcomePageView from "../views/WelcomePageView.tsx";
 
 /**
  * Application component that manage navigation
