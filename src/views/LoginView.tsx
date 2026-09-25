@@ -25,7 +25,13 @@ function LoginView() {
               placeholder="Entrez votre mot de passe ..."
               required
             />
-            <p className="mt-4">Vous n'avez pas de compte ? <Link href="/register" className="btn-app-hypertext">Inscrivez-vous</Link>.</p>
+            <p className="mt-4">
+              Vous n'avez pas de compte ?{" "}
+              <Link href="/register" className="btn-app-hypertext">
+                Inscrivez-vous
+              </Link>
+              .
+            </p>
           </div>
           <div className="form-submit">
             <button type="submit" className="btn-app-primary">
