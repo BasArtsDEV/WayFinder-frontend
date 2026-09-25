@@ -1,6 +1,6 @@
 function WelcomePageView() {
   return (
-    <div className="homepageview">
+    <div className="welcomepageview">
       <div className="welcome-container">
         <div className="welcome-container-icon">
           <img
