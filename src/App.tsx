@@ -9,9 +9,7 @@ function App() {
 
       <Main />
 
-      <Footer>
-        <p>Pied de page</p>
-      </Footer>
+      <Footer></Footer>
     </div>
   );
 }
