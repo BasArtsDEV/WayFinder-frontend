@@ -1,3 +1,5 @@
+import { Link } from "wouter";
+
 function LoginView() {
   return (
     <div className="loginview">
@@ -23,7 +25,7 @@ function LoginView() {
               placeholder="Entrez votre mot de passe ..."
               required
             />
-            <p className="mt-4">Vous n'avez pas de compte ? Inscrivez-vous.</p>
+            <p className="mt-4">Vous n'avez pas de compte ? <Link href="/register" className="btn-app-hypertext">Inscrivez-vous</Link>.</p>
           </div>
           <div className="form-submit">
             <button type="submit" className="btn-app-primary">
@@ -37,7 +39,7 @@ function LoginView() {
               <span>Valider</span>
             </button>
           </div>
-          <a className="btn-app-secondary">
+          <Link href="/" className="btn-app-secondary">
             <div className="btn-icon-wrapper">
               <img
                 className="btn-action-icon"
@@ -46,7 +48,7 @@ function LoginView() {
               />
             </div>
             <span>Retourner à l'accueil</span>
-          </a>
+          </Link>
         </form>
       </div>
     </div>

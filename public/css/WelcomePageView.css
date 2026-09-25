@@ -50,6 +50,16 @@
     gap: 1rem;
 }
 
+.btn-app-hypertext {
+    color: var(--app-button-background);
+    transition: background-color 0.4s;
+}
+
+.btn-app-hypertext:hover {
+    color: var(--app-button-background-hover);
+    text-decoration: underline !important;
+}
+
 .btn-app-primary {
     cursor: pointer;
 

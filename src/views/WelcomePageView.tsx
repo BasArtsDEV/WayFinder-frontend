@@ -1,3 +1,5 @@
+import { Link } from "wouter";
+
 function WelcomePageView() {
   return (
     <div className="welcomepageview">
@@ -21,7 +23,7 @@ function WelcomePageView() {
         <div className="home-divider"></div>
 
         <div className="button-container">
-          <a className="btn-app-primary">
+          <Link href="/login" className="btn-app-primary">
             <div className="btn-icon-wrapper">
               <img
                 className="btn-action-icon"
@@ -30,9 +32,9 @@ function WelcomePageView() {
               />
             </div>
             <span>Connexion</span>
-          </a>
+          </Link>
 
-          <a className="btn-app-secondary">
+          <Link href="/register" className="btn-app-secondary">
             <div className="btn-icon-wrapper">
               <img
                 className="btn-action-icon"
@@ -41,7 +43,7 @@ function WelcomePageView() {
               />
             </div>
             <span>Créer mon compte</span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
