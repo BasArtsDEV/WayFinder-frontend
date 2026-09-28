@@ -30,7 +30,8 @@
 }
 
 .welcome-container-text > h1 {
-    font-family: Lexend-Bold, serif;
+    font-family: 'Lexend', serif;
+    font-weight: 700;
 }
 
 .welcome-container-text > p {
@@ -72,7 +73,8 @@
     border: none !important;
     border-radius: 50px !important;
 
-    font-family: 'Lexend-Medium', sans-serif !important;
+    font-family: 'Lexend', sans-serif !important;
+    font-weight: 500 !important;
     font-size: 1.1rem !important;
     color: var(--app-button-text) !important;
     text-align: center;
@@ -98,7 +100,8 @@
     border: none !important;
     border-radius: 50px !important;
 
-    font-family: 'Lexend-Bold', sans-serif !important;
+    font-family: 'Lexend', sans-serif !important;
+    font-weight: 700 !important;
     font-size: 1.1rem !important;
     color: var(--app-button-secondary-text) !important;
     text-align: center;

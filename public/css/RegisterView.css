@@ -35,7 +35,8 @@
 }
 
 .form-field>label {
-    font-family: Lexend-Light, serif;
+    font-family: 'Lexend', serif;
+    font-weight: 300;
     font-size: 1.2rem;
 }
 
@@ -47,7 +48,8 @@
 }
 
 .form-field>input::placeholder {
-    font-family: Lexend-Light, serif;
+    font-family: 'Lexend', serif;
+    font-weight: 300;
 }
 
 .form-field-row {
