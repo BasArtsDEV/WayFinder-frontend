@@ -62,6 +62,26 @@
 
 html, body {
     background-color: var(--app-main-background);
+    height: 100%;
+    margin: 0;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.app-main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 a {

@@ -1,0 +1,73 @@
+.registerview {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    max-width: 400px;
+    margin-top: 0;
+    padding: 1rem;
+}
+
+.register-container>h1 {
+    margin-bottom: 0.8rem;
+    text-align: center;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field>label {
+    font-family: Lexend-Light, serif;
+    font-size: 1.2rem;
+}
+
+.form-field>input {
+    padding: 1rem;
+    border: 2px solid var(--app-input-border);
+    border-radius: 50px;
+    background-color: var(--app-input-background);
+}
+
+.form-field>input::placeholder {
+    font-family: Lexend-Light, serif;
+}
+
+.form-field-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.form-field-row > .form-field {
+    flex: 1;
+    min-width: 0;
+}
+
+.register-form .form-submit {
+    display: flex;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.register-form .form-submit>.btn-app-primary {
+    display: flex;
+    flex: 1;
+}
