@@ -1,25 +1,33 @@
 @font-face {
-    font-family: Lexend-Bold;
-
-    src: url(../fonts/Lexend-Bold.ttf);
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-    font-family: Lexend-Light;
-
-    src: url(../fonts/Lexend-Light.ttf);
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-    font-family: Lexend-Medium;
-
-    src: url(../fonts/Lexend-Medium.ttf);
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-    font-family: Lexend-Regular;
-
-    src: url(../fonts/Lexend-Regular.ttf);
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
 }
 
 :root {
@@ -60,7 +68,8 @@
     --app-box-background: #f0dfbb;
 }
 
-html, body {
+html,
+body {
     background-color: var(--app-main-background);
     height: 100%;
     margin: 0;
@@ -89,11 +98,13 @@ a {
 }
 
 h1 {
-    font-family: Lexend-Medium, serif;
+    font-family: 'Lexend', serif;
+    font-weight: 500;
 }
 
 p {
-    font-family: Lexend-Light, serif;
+    font-family: 'Lexend', serif;
+    font-weight: 300;
 }
 
 .header-layout {
@@ -140,6 +151,7 @@ p {
 }
 
 .title-text-app {
-    font-family: Lexend-Medium, serif;
+    font-family: 'Lexend', serif;
+    font-weight: 500;
     color: white;
 }
