@@ -5,15 +5,19 @@ interface FormFieldProps {
   id: string;
   placeholder: string;
   required?: boolean;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 function FormField({
   id,
   label,
   name,
+  onChange,
   placeholder,
   required = true,
   type,
+  value,
 }: FormFieldProps) {
   return (
     <div className="form-field">
@@ -24,6 +28,8 @@ function FormField({
         id={id}
         placeholder={placeholder}
         required={required}
+        value={value}
+        onChange={onChange}
       />
     </div>
   );

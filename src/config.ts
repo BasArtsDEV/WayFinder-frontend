@@ -1,3 +1,3 @@
 export const CONFIG = {
-  BASE_URL: "http://localhost:800s0/api/",
+  BASE_URL: "https://localhost:8000/api/",
 } as const;
