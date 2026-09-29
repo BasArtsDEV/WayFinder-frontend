@@ -21,10 +21,11 @@ export async function login(email: string, password: string): Promise<string> {
     method: "POST",
   });
 
+  if (response.status === 401) {
+    throw new Error("Identifiants incorrects. Veuillez réessayer.");
+  }
+
   if (!response.ok) {
-    if (response.status === 401) {
-      throw new Error("Identifiants incorrects. Veuillez réessayer.");
-    }
     throw new Error("Une erreur est survenue. Veuillez réessayer plus tard.");
   }
 
