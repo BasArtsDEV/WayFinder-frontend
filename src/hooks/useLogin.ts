@@ -1,5 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useLocation } from "wouter";
+import { ROUTES } from "../config.ts";
 import { login } from "../services/authService.ts";
 
 /**
@@ -20,7 +21,7 @@ export function useLogin() {
     login(email, password).then(
       () => {
         setIsLoading(false);
-        setLocation("/");
+        setLocation(ROUTES.HOME);
       },
       (err: unknown) => {
         setIsLoading(false);

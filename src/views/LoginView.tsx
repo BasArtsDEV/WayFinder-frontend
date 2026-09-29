@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import FormField from "../components/FormField.tsx";
+import { ROUTES } from "../config.ts";
 import { useLogin } from "../hooks/useLogin.ts";
 
 function LoginView() {
@@ -47,7 +48,7 @@ function LoginView() {
           />
           <p className="mt-4">
             Vous n'avez pas de compte ?{" "}
-            <Link href="/register" className="btn-app-hypertext">
+            <Link href={ROUTES.REGISTER} className="btn-app-hypertext">
               Inscrivez-vous
             </Link>
             .
@@ -68,7 +69,7 @@ function LoginView() {
               <span>{isLoading ? "Connexion..." : "Valider"}</span>
             </button>
           </div>
-          <Link href="/" className="btn-app-secondary">
+          <Link href={ROUTES.HOME} className="btn-app-secondary">
             <div className="btn-icon-wrapper">
               <img
                 className="btn-action-icon"
