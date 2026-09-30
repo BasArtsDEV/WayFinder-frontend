@@ -1,3 +1,5 @@
+import { CONFIG } from "../config.ts";
+
 export interface User {
   "@context": string;
   "@id": string;
@@ -8,4 +10,29 @@ export interface User {
   firstName: string;
   lastName: string;
   createdAt: string;
+}
+
+/**
+ * Returns an instance of the authenticated User
+ */
+export async function getMe(): Promise<User> {
+  const token = localStorage.getItem("token"),
+    headers: HeadersInit = { "Content-Type": "application/ld+json" };
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  // eslint-disable-next-line one-var
+  const response = await fetch(CONFIG.ME, { headers });
+
+  if (response.status === 401) {
+    throw new Error("Identifiants incorrects. Veuillez réessayer.");
+  }
+
+  if (!response.ok) {
+    throw new Error("Une erreur est survenue. Veuillez réessayer plus tard.");
+  }
+
+  return (await response.json()) as User;
 }
