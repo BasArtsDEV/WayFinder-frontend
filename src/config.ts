@@ -5,4 +5,5 @@ export const CONFIG = {
     HOME: "/",
     LOGIN: "/login",
     REGISTER: "/register",
+    USER_VIEW: "/user/me",
   } as const;
