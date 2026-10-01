@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { ROUTES } from "../config.ts";
-import type { User } from "../services/user.ts";
+import { getUserAvatar, type User } from "../services/user.ts";
 
 interface UserProfileProps {
   user: User;
@@ -10,7 +10,13 @@ export default function UserProfile({ user }: UserProfileProps) {
   return (
     <div className="user-container">
       <div className="avatar-section">
-        <div className="avatar-circle"></div>
+        <div className="avatar-circle">
+          <img
+            src={getUserAvatar(user.id.toString())}
+            alt={`Avatar de ${user.username}`}
+            className="field-icon"
+          />
+        </div>
         <h1>@{user.username}</h1>
       </div>
 
