@@ -1,6 +1,9 @@
 import { Link } from "wouter";
+import { useAuth } from "../contexts/AuthContext.ts";
 
 function WelcomePageView() {
+  const { user } = useAuth();
+
   return (
     <div className="welcomepageview">
       <div className="welcome-container">
@@ -22,29 +25,31 @@ function WelcomePageView() {
 
         <div className="home-divider"></div>
 
-        <div className="button-container">
-          <Link href="/login" className="btn-app-primary">
-            <div className="btn-icon-wrapper">
-              <img
-                className="btn-action-icon"
-                src="/icons/enter.png"
-                alt="Connexion"
-              />
-            </div>
-            <span>Connexion</span>
-          </Link>
+        {!user && (
+          <div className="button-container">
+            <Link href="/login" className="btn-app-primary">
+              <div className="btn-icon-wrapper">
+                <img
+                  className="btn-action-icon"
+                  src="/icons/enter.png"
+                  alt="Connexion"
+                />
+              </div>
+              <span>Connexion</span>
+            </Link>
 
-          <Link href="/register" className="btn-app-secondary">
-            <div className="btn-icon-wrapper">
-              <img
-                className="btn-action-icon"
-                src="/icons/add-user.png"
-                alt="Inscription"
-              />
-            </div>
-            <span>Créer mon compte</span>
-          </Link>
-        </div>
+            <Link href="/register" className="btn-app-secondary">
+              <div className="btn-icon-wrapper">
+                <img
+                  className="btn-action-icon"
+                  src="/icons/add-user.png"
+                  alt="Inscription"
+                />
+              </div>
+              <span>Créer mon compte</span>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
