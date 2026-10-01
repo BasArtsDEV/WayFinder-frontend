@@ -22,6 +22,10 @@ interface ConstraintViolationResponse {
   detail?: string;
 }
 
+interface VerifyEmailResponse {
+  message?: string;
+}
+
 function storeToken({ token }: LoginResponse): string {
   localStorage.setItem("token", token);
   return token;
@@ -71,4 +75,30 @@ export async function register(data: RegisterData): Promise<void> {
   if (!response.ok) {
     throw new Error("Une erreur est survenue. Veuillez réessayer plus tard.");
   }
+}
+
+export async function verifyEmail(queryString: string): Promise<string> {
+  const response = await fetch(
+    `${CONFIG.BASE_URL}verify-email?${queryString}`,
+    {
+      headers: {
+        Accept: "application/json",
+      },
+      method: "GET",
+    },
+  );
+
+  if (!response.ok) {
+    const errorData = (await response
+      .json()
+      .catch(() => ({}))) as VerifyEmailResponse;
+    throw new Error(
+      errorData.message ?? "La vérification de l'email a échoué.",
+    );
+  }
+
+  return (
+    ((await response.json()) as VerifyEmailResponse).message ??
+    "Compte activé avec succès."
+  );
 }
