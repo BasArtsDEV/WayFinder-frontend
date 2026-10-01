@@ -2,6 +2,7 @@ import { Route, Switch } from "wouter";
 import LoginView from "../views/LoginView.tsx";
 import NotFoundView from "../views/NotFoundView.tsx";
 import RegisterView from "../views/RegisterView.tsx";
+import VerifyEmailView from "../views/VerifyEmailView.tsx";
 import WelcomePageView from "../views/WelcomePageView.tsx";
 
 /**
@@ -13,6 +14,7 @@ function Router() {
       <Route path="/" component={WelcomePageView} />
       <Route path="/login" component={LoginView} />
       <Route path="/register" component={RegisterView} />
+      <Route path="/verify-email" component={VerifyEmailView} />
 
       <Route component={NotFoundView} />
     </Switch>
