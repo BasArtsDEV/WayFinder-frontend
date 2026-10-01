@@ -1,18 +1,23 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import FormField from "../components/FormField.tsx";
 import { ROUTES } from "../config.ts";
+import { useAuth } from "../contexts/AuthContext.ts";
 import { useLogin } from "../hooks/useLogin.ts";
 
 function LoginView() {
   const {
-    email,
-    error,
-    handleSubmit,
-    isLoading,
-    password,
-    setEmail,
-    setPassword,
-  } = useLogin();
+      email,
+      error,
+      handleSubmit,
+      isLoading,
+      password,
+      setEmail,
+      setPassword,
+    } = useLogin(),
+    { user } = useAuth(),
+    [, setLocation] = useLocation();
+
+  if (user) setLocation(ROUTES.USER_VIEW);
 
   return (
     <div className="loginview">
