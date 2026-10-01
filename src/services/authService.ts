@@ -102,3 +102,7 @@ export async function verifyEmail(queryString: string): Promise<string> {
     "Compte activé avec succès."
   );
 }
+
+export function logout() {
+  localStorage.removeItem("token");
+}
