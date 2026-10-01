@@ -1,11 +1,20 @@
 import { type PropsWithChildren, useEffect, useState } from "react";
+import { useLocation } from "wouter";
+import { ROUTES } from "../../config.ts";
 import { logout } from "../../services/authService.ts";
 import { getMe, type User } from "../../services/user.ts";
 import { AuthContext } from "../AuthContext.ts";
 
 export default function AuthContextProvider({ children }: PropsWithChildren) {
   const [user, setUser] = useState<User | null>(null),
-    [isLoading, setIsLoading] = useState(true);
+    [error, setError] = useState<string | null>(null),
+    [isLoading, setIsLoading] = useState<boolean>(true),
+    [, setLocation] = useLocation(),
+    logoutUser = (): void => {
+      logout();
+      setUser(null);
+      setLocation(ROUTES.LOGIN);
+    };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -17,19 +26,21 @@ export default function AuthContextProvider({ children }: PropsWithChildren) {
 
     getMe()
       .then((data: User) => {
+        setIsLoading(true);
         setUser(data);
       })
       .catch(() => {
-        logout();
-        setUser(null);
+        setError("Vous n'êtes pas authentifié !");
+        logoutUser();
       })
       .finally(() => {
         setIsLoading(false);
+        setError(null);
       });
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoading, user }}>
+    <AuthContext.Provider value={{ error, isLoading, user }}>
       {children}
     </AuthContext.Provider>
   );
