@@ -2,12 +2,12 @@ import { createContext, useContext } from "react";
 import type { User } from "../services/user.ts";
 
 interface UserAuthProps {
-  loading: boolean;
+  isLoading: boolean;
   user?: User | null;
 }
 
-const AuthContext = createContext<UserAuthProps>({
-  loading: false,
+export const AuthContext = createContext<UserAuthProps>({
+  isLoading: false,
   user: null,
 });
 
