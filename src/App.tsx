@@ -1,13 +1,16 @@
 import Footer from "./components/Footer.tsx";
 import Header from "./components/Header.tsx";
 import Main from "./components/Main.tsx";
+import AuthContextProvider from "./contexts/providers/AuthProvider.tsx";
 
 function App() {
   return (
     <div className="app-container">
-      <Header>WayFinder</Header>
+      <AuthContextProvider>
+        <Header>WayFinder</Header>
 
-      <Main />
+        <Main />
+      </AuthContextProvider>
 
       <Footer></Footer>
     </div>

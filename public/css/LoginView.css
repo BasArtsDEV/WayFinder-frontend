@@ -24,9 +24,10 @@
 
 .login-form {
     display: flex;
-    flex-direction: column;
     flex: 1;
+    flex-direction: column;
     gap: 0.8rem;
+
     width: 100%;
 }
 

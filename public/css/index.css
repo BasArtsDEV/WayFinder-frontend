@@ -1,33 +1,37 @@
 @font-face {
     font-family: 'Lexend';
-    src: url('../fonts/Lexend-Light.woff2') format('woff2');
     font-weight: 300;
     font-style: normal;
+
     font-display: swap;
+    src: url('../fonts/Lexend-Light.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Lexend';
-    src: url('../fonts/Lexend-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
+
     font-display: swap;
+    src: url('../fonts/Lexend-Regular.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Lexend';
-    src: url('../fonts/Lexend-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
+
     font-display: swap;
+    src: url('../fonts/Lexend-Medium.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Lexend';
-    src: url('../fonts/Lexend-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
+
     font-display: swap;
+    src: url('../fonts/Lexend-Bold.woff2') format('woff2');
 }
 
 :root {
@@ -70,9 +74,9 @@
 
 html,
 body {
-    background-color: var(--app-main-background);
     height: 100%;
     margin: 0;
+    background-color: var(--app-main-background);
 }
 
 #root {
@@ -83,14 +87,14 @@ body {
 
 .app-container {
     display: flex;
-    flex-direction: column;
     flex: 1;
+    flex-direction: column;
 }
 
 .app-main {
     display: flex;
-    flex-direction: column;
     flex: 1;
+    flex-direction: column;
 }
 
 a {
