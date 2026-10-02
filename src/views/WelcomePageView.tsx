@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { ROUTES } from "../config.ts";
 import { useAuth } from "../contexts/AuthContext.ts";
 
 function WelcomePageView() {
@@ -27,7 +28,7 @@ function WelcomePageView() {
 
         {!user && (
           <div className="button-container">
-            <Link href="/login" className="btn-app-primary">
+            <Link href={ROUTES.LOGIN} className="btn-app-primary">
               <div className="btn-icon-wrapper">
                 <img
                   className="btn-action-icon"
@@ -38,7 +39,7 @@ function WelcomePageView() {
               <span>Connexion</span>
             </Link>
 
-            <Link href="/register" className="btn-app-secondary">
+            <Link href={ROUTES.REGISTER} className="btn-app-secondary">
               <div className="btn-icon-wrapper">
                 <img
                   className="btn-action-icon"
