@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import { useLocation } from "wouter";
 import { ROUTES } from "../config.ts";
-import { register } from "../services/authService.ts";
-
-function isPasswordValid(password: string): boolean {
-  return (
-    password.length >= 8 &&
-    /[A-Z]/u.test(password) &&
-    /[0-9]/u.test(password) &&
-    /[^A-Za-z0-9]/u.test(password)
-  );
-}
+import { useAuth } from "../contexts/AuthContext.ts";
+import { login, register } from "../services/authService.ts";
+import { getMe } from "../services/user.ts";
 
 export function useRegister() {
   const [username, setUsername] = useState(""),
@@ -22,12 +15,12 @@ export function useRegister() {
     [error, setError] = useState<string | null>(null),
     [passwordError, setPasswordError] = useState<string | null>(null),
     [isLoading, setIsLoading] = useState(false),
-    [, setLocation] = useLocation();
-
-  function resetErrors() {
-    setError(null);
-    setPasswordError(null);
-  }
+    { setUser } = useAuth(),
+    [, setLocation] = useLocation(),
+    resetErrors = () => {
+      setError(null);
+      setPasswordError(null);
+    };
 
   function handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -38,29 +31,27 @@ export function useRegister() {
       return;
     }
 
-    if (!isPasswordValid(password)) {
-      setPasswordError(
-        "Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.",
-      );
-      return;
-    }
-
     setIsLoading(true);
 
-    register({ email, firstName, lastName, password, username }).then(
-      () => {
-        setIsLoading(false);
-        setLocation(ROUTES.LOGIN);
-      },
-      (err: unknown) => {
-        setIsLoading(false);
+    register({ email, firstName, lastName, password, username })
+      .then(async () => {
+        await login(email, password);
+
+        const userData = await getMe();
+        setUser(userData);
+        setLocation(ROUTES.USER_VIEW);
+      })
+      .catch((err: unknown) => {
         setError(
           err instanceof Error
             ? err.message
             : "Une erreur est survenue. Veuillez réessayer plus tard.",
         );
-      },
-    );
+      })
+      .finally(() => {
+        setError(null);
+        setIsLoading(false);
+      });
   }
 
   return {
