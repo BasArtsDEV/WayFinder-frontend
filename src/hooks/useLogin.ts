@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useLocation } from "wouter";
 import { ROUTES } from "../config.ts";
+import { useAuth } from "../contexts/AuthContext.ts";
 import { login } from "../services/authService.ts";
+import { getMe } from "../services/user.ts";
 
 /**
  * Hook that encapsulates login form state and submission logic.
@@ -11,7 +13,8 @@ export function useLogin() {
     [password, setPassword] = useState(""),
     [error, setError] = useState<string | null>(null),
     [isLoading, setIsLoading] = useState(false),
-    [, setLocation] = useLocation();
+    [, setLocation] = useLocation(),
+    { setUser } = useAuth();
 
   function handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -19,9 +22,11 @@ export function useLogin() {
     setIsLoading(true);
 
     login(email, password).then(
-      () => {
+      async () => {
         setIsLoading(false);
-        setLocation(ROUTES.HOME);
+        const userData = await getMe();
+        setUser(userData);
+        setLocation(ROUTES.USER_VIEW);
       },
       (err: unknown) => {
         setIsLoading(false);

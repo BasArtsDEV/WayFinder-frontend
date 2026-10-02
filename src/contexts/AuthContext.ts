@@ -5,11 +5,15 @@ interface UserAuthProps {
   isLoading: boolean;
   error?: string | null;
   user?: User | null;
+  setUser: (user: User | null) => void;
 }
 
 export const AuthContext = createContext<UserAuthProps>({
   error: null,
   isLoading: false,
+  setUser: () => {
+    /* empty */
+  },
   user: null,
 });
 

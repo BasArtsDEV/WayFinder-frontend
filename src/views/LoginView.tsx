@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import FormField from "../components/FormField.tsx";
 import { ROUTES } from "../config.ts";
@@ -17,7 +18,11 @@ function LoginView() {
     { user } = useAuth(),
     [, setLocation] = useLocation();
 
-  if (user) setLocation(ROUTES.USER_VIEW);
+  useEffect(() => {
+    if (user) {
+      setLocation(ROUTES.USER_VIEW);
+    }
+  }, [user]);
 
   return (
     <div className="loginview">
@@ -52,7 +57,7 @@ function LoginView() {
             }}
           />
           <p className="mt-4">
-            Vous n'avez pas de compte ?{" "}
+            Vous n&apos;avez pas de compte ?{" "}
             <Link href={ROUTES.REGISTER} className="btn-app-hypertext">
               Inscrivez-vous
             </Link>
@@ -68,7 +73,7 @@ function LoginView() {
                 <img
                   src="/icons/check.png"
                   className="btn-action-icon"
-                  alt=""
+                  alt="Icône de validation de l'inscription"
                 />
               </span>
               <span>{isLoading ? "Connexion..." : "Valider"}</span>
@@ -79,10 +84,10 @@ function LoginView() {
               <img
                 className="btn-action-icon"
                 src="/icons/home.png"
-                alt="Retour"
+                alt="Retour à l'accueil"
               />
             </div>
-            <span>Retourner à l'accueil</span>
+            <span>Retourner à l&apos;accueil</span>
           </Link>
         </form>
       </div>

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
+import { ROUTES } from "../config.ts";
 import { verifyEmail } from "../services/authService";
 
 function VerifyEmailView() {
@@ -64,7 +65,7 @@ function VerifyEmailView() {
                   <p>{message}</p>
                   <hr />
                   <div className="d-flex justify-content-end">
-                    <Link href="/login" className="btn btn-success">
+                    <Link href={ROUTES.LOGIN} className="btn btn-success">
                       Se connecter
                     </Link>
                   </div>
@@ -77,7 +78,7 @@ function VerifyEmailView() {
                   <p>{message}</p>
                   <hr />
                   <div className="d-flex justify-content-end">
-                    <Link href="/" className="btn btn-outline-danger">
+                    <Link href={ROUTES.HOME} className="btn btn-outline-danger">
                       Retour à l'accueil
                     </Link>
                   </div>

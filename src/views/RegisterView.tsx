@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation } from "wouter";
 import RegisterForm from "../components/RegisterForm.tsx";
 import { ROUTES } from "../config.ts";
@@ -9,7 +10,11 @@ function RegisterView() {
     { user } = useAuth(),
     [, setLocation] = useLocation();
 
-  if (user) setLocation(ROUTES.USER_VIEW);
+  useEffect(() => {
+    if (user) {
+      setLocation(ROUTES.USER_VIEW);
+    }
+  }, [user]);
 
   return (
     <div className="registerview">
