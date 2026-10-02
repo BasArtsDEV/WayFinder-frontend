@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { ROUTES } from "../config.ts";
 
 /**
  * Displayed view if used route doesn't exist (Erreur 404)
@@ -9,8 +10,9 @@ function NotFoundView() {
       <div style={{ padding: "2rem", textAlign: "center" }}>
         <h2>Erreur 404 : Page non trouvée</h2>
       </div>
-      <Link href="/">
-        <a className="link_btn">Retourner à l'accueil</a>
+
+      <Link className="link_btn" href={ROUTES.HOME}>
+        Retourner à l&apos;accueil
       </Link>
     </div>
   );
