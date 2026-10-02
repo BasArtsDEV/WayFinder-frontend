@@ -9,6 +9,7 @@ interface RegisterFormFieldsProps {
   firstName: string;
   lastName: string;
   password: string;
+  passwordError: string | null;
   setConfirmPassword: (value: string) => void;
   setEmail: (value: string) => void;
   setFirstName: (value: string) => void;
@@ -24,6 +25,7 @@ function RegisterFormFields({
   firstName,
   lastName,
   password,
+  passwordError,
   setConfirmPassword,
   setEmail,
   setFirstName,
@@ -91,6 +93,7 @@ function RegisterFormFields({
           setPassword(event.target.value);
         }}
       />
+      {passwordError && <p className="field-error">{passwordError}</p>}
       <FormField
         label="Confirmer le mot de passe"
         type="password"
