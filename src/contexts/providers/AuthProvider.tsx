@@ -40,7 +40,7 @@ export default function AuthContextProvider({ children }: PropsWithChildren) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ error, isLoading, user }}>
+    <AuthContext.Provider value={{ error, isLoading, setUser, user }}>
       {children}
     </AuthContext.Provider>
   );
