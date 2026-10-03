@@ -27,16 +27,18 @@ function Header({ children }: { children: ReactNode }) {
           <h1 className="m-0 title-text-app">{children}</h1>
         </div>
 
+        <Link to={ROUTES.HUNTS}>Chasses publiques</Link>
+
         {user ? (
-          <div className="avatar-section">
+          <Link to={ROUTES.USER_VIEW} className="avatar-section">
             <div className="header-avatar-circle">
               <img
                 src={getUserAvatar(user.id.toString())}
                 alt={`Avatar de ${user.username}`}
-                className="field-icon"
+                className="avatar-field-icon"
               />
             </div>
-          </div>
+          </Link>
         ) : (
           <Link to={ROUTES.LOGIN}>
             <div className="header-element">
