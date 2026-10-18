@@ -19,15 +19,19 @@ const formatDate = (date: string): string => {
   });
 };
 
+type HuntsViewModes = "list" | "grid";
+
 export default function HuntsList() {
   const [isLoading, setIsLoading] = useState<boolean>(true),
     [error, setError] = useState<string | null>(null),
-    [publicHunts, setPublicHunts] = useState<TreasureHunt[] | null>(null);
+    [publicHunts, setPublicHunts] = useState<TreasureHunt[] | null>(null),
+    [viewMode, setViewMode] = useState<HuntsViewModes>("list");
 
   useEffect(() => {
     getTreasureHunts()
       .then((data: TreasureHuntsCollection) => {
         setIsLoading(true);
+
         setPublicHunts(
           data.member
             .filter((hunt: TreasureHunt) => hunt.published)
@@ -48,7 +52,6 @@ export default function HuntsList() {
       })
       .finally(() => {
         setIsLoading(false);
-        setError(null);
       });
   }, []);
 
@@ -69,16 +72,37 @@ export default function HuntsList() {
   }
 
   return (
-    <div>
-      <h1>Chasses au trésor publiques :</h1>
+    <div className="hunts-container">
+      <div className="header-actions">
+        <div className="view-toggle-buttons">
+          <button
+            className={viewMode === "list" ? "active" : ""}
+            onClick={() => {
+              setViewMode("list");
+            }}
+          >
+            Liste
+          </button>
+          <button
+            className={viewMode === "grid" ? "active" : ""}
+            onClick={() => {
+              setViewMode("grid");
+            }}
+          >
+            Grille
+          </button>
+        </div>
+      </div>
 
-      <ul>
+      <ul
+        className={`hunts-list ${viewMode === "grid" ? "view-grid" : "view-list"}`}
+      >
         {publicHunts.map((item: TreasureHunt) => (
-          <li key={item.id}>
-            <Link to="#">
+          <li key={item.id} className="hunt-item">
+            <Link to={`/hunts/${item.id.toString()}`}>
               [{item.id}] {item.title}
             </Link>{" "}
-            {formatDate(item.creationDate)}
+            <span className="hunt-date">{formatDate(item.creationDate)}</span>
           </li>
         ))}
       </ul>
