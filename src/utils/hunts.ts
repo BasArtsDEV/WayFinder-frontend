@@ -3,8 +3,8 @@ import { CONFIG } from "../config.ts";
 
 export default async function getAverageRatings(
   enrollmentsEndpoints: string[],
-): Promise<number> {
-  if (!enrollmentsEndpoints.length) return 0.0;
+): Promise<{ averageRating: number; status: string }> {
+  if (!enrollmentsEndpoints.length) return { averageRating: 0, status: "" };
 
   const token = localStorage.getItem("token"),
     headers: HeadersInit = { "Content-Type": "application/ld+json" };
@@ -33,5 +33,8 @@ export default async function getAverageRatings(
       0,
     );
 
-  return totalStars / enrollments.length;
+  return {
+    averageRating: totalStars / enrollments.length,
+    status: enrollments[0].status,
+  };
 }
