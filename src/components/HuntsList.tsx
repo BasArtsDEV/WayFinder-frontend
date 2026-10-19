@@ -10,19 +10,6 @@ import { getTreasureHunts } from "../services/treasure-hunts.ts";
 import getAverageRatings from "../utils/hunts.ts";
 import EnrollmentStars from "./EnrollmentStars.tsx";
 
-/**
- * Function to format the Hunt's creation date without writing this entire logic inside the component.
- * @param date string
- * @return string
- */
-const formatDate = (date: string): string => {
-  return new Date(date).toLocaleString("default", {
-    day: "numeric",
-    month: "numeric",
-    year: "numeric",
-  });
-};
-
 type HuntsViewModes = "list" | "grid";
 
 export default function HuntsList() {
@@ -72,7 +59,7 @@ export default function HuntsList() {
   }, []);
 
   if (isLoading) {
-    return <div>Chargement de la requête......</div>;
+    return <div>Chargement des chasses aux trésors</div>;
   }
 
   if (error) {
