@@ -1,5 +1,4 @@
 import type {ApiResourceBase} from "./Api";
-import type {Enrollment} from "./Enrollment";
 
 /*
   We will give 'Riddle' fields their corresponding type in a future types implementation.
@@ -11,7 +10,7 @@ export type TreasureHunt = ApiResourceBase & {
     published: boolean;
     creationDate: string;
     team: string;
-    enrollments: Enrollment[];
+    enrollments: string[];
     riddles: never;
     invitationCode: string;
 };
