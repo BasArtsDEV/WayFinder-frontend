@@ -15,6 +15,10 @@ export type TreasureHunt = ApiResourceBase & {
     invitationCode: string;
 };
 
+export type TreasureHuntWithRating = TreasureHunt & {
+    averageRating: number;
+};
+
 export type TreasureHuntsCollection = ApiResourceBase & {
     totalItems: number;
     member: TreasureHunt[];
