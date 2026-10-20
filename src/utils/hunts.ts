@@ -1,10 +1,14 @@
 import type { Enrollment } from "../../types/Enrollment.ts";
 import { CONFIG } from "../config.ts";
 
+interface TreasureHuntExtended {
+  averageRating: number;
+}
+
 export default async function getAverageRatings(
   enrollmentsEndpoints: string[],
-): Promise<{ averageRating: number; status: string }> {
-  if (!enrollmentsEndpoints.length) return { averageRating: 0, status: "" };
+): Promise<TreasureHuntExtended> {
+  if (!enrollmentsEndpoints.length) return { averageRating: 0 };
 
   const token = localStorage.getItem("token"),
     headers: HeadersInit = { "Content-Type": "application/ld+json" };
@@ -35,6 +39,5 @@ export default async function getAverageRatings(
 
   return {
     averageRating: totalStars / enrollments.length,
-    status: enrollments[0].status,
   };
 }

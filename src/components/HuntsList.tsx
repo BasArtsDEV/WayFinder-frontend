@@ -26,14 +26,13 @@ export default function HuntsList() {
             ),
           huntsWithRatings: TreasureHuntExtended[] = await Promise.all(
             publicHunts.map(async (hunt: TreasureHunt) => {
-              const { averageRating, status } = await getAverageRatings(
+              const { averageRating } = await getAverageRatings(
                 hunt.enrollments,
               );
 
               return {
                 ...hunt,
                 averageRating,
-                status,
               };
             }),
           );

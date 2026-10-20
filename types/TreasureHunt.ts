@@ -11,13 +11,12 @@ export type TreasureHunt = ApiResourceBase & {
     creationDate: string;
     team: string;
     enrollments: string[];
-    riddles: never;
+    riddles: Array<object>;
     invitationCode: string;
 };
 
 export type TreasureHuntExtended = TreasureHunt & {
     averageRating: number;
-    status: string;
 };
 
 export type TreasureHuntsCollection = ApiResourceBase & {
