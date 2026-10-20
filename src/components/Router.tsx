@@ -1,4 +1,5 @@
 import { Route, Switch } from "wouter";
+import HuntDetailView from "../views/HuntDetailView.tsx";
 import LoginView from "../views/LoginView.tsx";
 import NotFoundView from "../views/NotFoundView.tsx";
 import RegisterView from "../views/RegisterView.tsx";
@@ -15,6 +16,7 @@ function Router() {
     <Switch>
       <Route path="/" component={WelcomePageView} />
       <Route path="/hunts" component={TreasureHuntsView} />
+      <Route path="/hunts/:id" component={HuntDetailView} />
 
       <Route path="/login" component={LoginView} />
       <Route path="/register" component={RegisterView} />
