@@ -1,4 +1,12 @@
 /**
+ * Function to copy the invitation into the clipboard
+ * @return Promise<void>
+ */
+export async function copyToClipboard(code: string): Promise<void> {
+  await navigator.clipboard.writeText(code);
+}
+
+/**
  * Function to format a date as (e.g: 12/12/2000) without writing this entire logic inside the component.
  * @param date string
  * @return string

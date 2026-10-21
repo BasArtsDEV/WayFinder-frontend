@@ -6,7 +6,7 @@ import {
   getTeamByTreasureHunt,
   getTreasureHuntById,
 } from "../services/treasure-hunts.ts";
-import formatDate from "../utils/global.ts";
+import formatDate, { copyToClipboard } from "../utils/global.ts";
 
 export default function HuntDetail() {
   const [isLoading, setIsLoading] = useState<boolean>(true),
@@ -80,19 +80,22 @@ export default function HuntDetail() {
           Créée par l&apos;équipe <strong>{team?.name}</strong>
         </p>
 
-        <dl className="hunt-detail__meta">
+        <div className="hunt-detail__meta">
           <div className="hunt-detail__meta-item">
-            <dt>Création</dt>
-            <dd>{formatDate(hunt.creationDate)}</dd>
+            <span>Création</span>
+            <p>le {formatDate(hunt.creationDate)}</p>
           </div>
 
           <div className="hunt-detail__meta-item">
-            <dt>Code d&apos;invitation</dt>
-            <dd>
-              <span className="hunt-detail__code">{hunt.invitationCode}</span>
-            </dd>
+            <span>Code d&apos;invitation</span>
+            <p
+              onClick={() => copyToClipboard(hunt?.invitationCode)}
+              className="hunt-detail__code"
+            >
+              {hunt.invitationCode}
+            </p>
           </div>
-        </dl>
+        </div>
       </div>
     </article>
   );
