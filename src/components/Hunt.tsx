@@ -1,10 +1,10 @@
 import { Link } from "wouter";
-import type { TreasureHuntExtended } from "../../types/TreasureHunt.ts";
+import type { TreasureHunt } from "../../types/TreasureHunt.ts";
 import { ROUTES } from "../config.ts";
 import EnrollmentStars from "./EnrollmentStars.tsx";
 
 interface HuntProps {
-  hunt: TreasureHuntExtended;
+  hunt: TreasureHunt;
 }
 
 export default function Hunt({ hunt }: HuntProps) {
@@ -23,11 +23,14 @@ export default function Hunt({ hunt }: HuntProps) {
 
         <div className="hunt-card-footer">
           <div className="rating-container">
-            <div className="stars">{hunt.averageRating.toFixed(1) || 0}</div>
-
-            <span className="rating-score">
-              <EnrollmentStars averageRating={hunt.averageRating} />
-            </span>
+            {hunt.averageStars && (
+              <>
+                <div className="stars">{hunt.averageStars.toFixed(1)}</div>
+                <span className="rating-score">
+                  <EnrollmentStars averageRating={hunt.averageStars} />
+                </span>
+              </>
+            )}
           </div>
         </div>
       </li>

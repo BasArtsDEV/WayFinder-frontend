@@ -1,43 +1,29 @@
 import { useEffect, useState } from "react";
 import type {
   TreasureHunt,
-  TreasureHuntExtended,
   TreasureHuntsCollection,
 } from "../../types/TreasureHunt.ts";
 import { getTreasureHunts } from "../services/treasure-hunts.ts";
-import getAverageRatings from "../utils/hunts.ts";
 import Hunt from "./Hunt.tsx";
 
 export default function HuntsList() {
   const [isLoading, setIsLoading] = useState<boolean>(true),
     [error, setError] = useState<string | null>(null),
-    [hunts, setHunts] = useState<TreasureHuntExtended[] | null>(null);
+    [hunts, setHunts] = useState<TreasureHunt[] | null>(null);
 
   useEffect(() => {
     getTreasureHunts()
-      .then(async (data: TreasureHuntsCollection) => {
+      .then((data: TreasureHuntsCollection) => {
         setIsLoading(true);
-        const publicHunts = data.member
+        setHunts(
+          data.member
             .filter((hunt: TreasureHunt) => hunt.published)
             .sort(
               (hunt1: TreasureHunt, hunt2: TreasureHunt) =>
                 Number(new Date(hunt2.creationDate)) -
                 Number(new Date(hunt1.creationDate)),
             ),
-          huntsWithRatings: TreasureHuntExtended[] = await Promise.all(
-            publicHunts.map(async (hunt: TreasureHunt) => {
-              const { averageRating } = await getAverageRatings(
-                hunt.enrollments,
-              );
-
-              return {
-                ...hunt,
-                averageRating,
-              };
-            }),
-          );
-
-        setHunts(huntsWithRatings);
+        );
       })
       .catch((err: unknown) => {
         setHunts(null);
@@ -75,7 +61,7 @@ export default function HuntsList() {
       </div>
 
       <ul className={`hunts-list`}>
-        {hunts.map((item: TreasureHuntExtended, index: number) => (
+        {hunts.map((item: TreasureHunt, index: number) => (
           <Hunt hunt={item} key={index} />
         ))}
       </ul>
