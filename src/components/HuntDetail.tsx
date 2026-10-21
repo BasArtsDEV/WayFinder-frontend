@@ -63,23 +63,37 @@ export default function HuntDetail() {
   const enrollmentsCount: number = hunt.enrollments.length;
 
   return (
-    <div className="hunt-detail-container">
-      <div className="hunt-detail-badges">
-        <span>{hunt.published ? "PUBLIE" : "NON-PUBLIE"}</span>
-        <span>{enrollmentsCount}</span>
+    <article className="hunt-detail">
+      <div className="hunt-detail__main">
+        <div className="hunt-detail__badges">
+          <span className="hunt-detail__badge hunt-detail__badge--count">
+            {enrollmentsCount} {enrollmentsCount > 1 ? "énigmes" : "énigme"}
+          </span>
+        </div>
+
+        <h2 className="hunt-detail__title">{hunt.title}</h2>
+        <p className="hunt-detail__description">{hunt.description}</p>
       </div>
 
-      <div className="hunt-detail-texts">
-        <h2>{hunt.title}</h2>
-        <p>{hunt.description}</p>
-      </div>
+      <div className="hunt-detail__footer">
+        <p className="hunt-detail__team">
+          Créée par l&apos;équipe <strong>{team?.name}</strong>
+        </p>
 
-      <div className="hunt-detail-footer">
-        <span>Créee par l&apos;équipe {team?.name}</span>
-        <span>Création {formatDate(hunt.creationDate)}</span>
-        <span>Code d&apos;invitation {hunt.invitationCode}</span>
-        <button>Dépublier</button>
+        <dl className="hunt-detail__meta">
+          <div className="hunt-detail__meta-item">
+            <dt>Création</dt>
+            <dd>{formatDate(hunt.creationDate)}</dd>
+          </div>
+
+          <div className="hunt-detail__meta-item">
+            <dt>Code d&apos;invitation</dt>
+            <dd>
+              <span className="hunt-detail__code">{hunt.invitationCode}</span>
+            </dd>
+          </div>
+        </dl>
       </div>
-    </div>
+    </article>
   );
 }
