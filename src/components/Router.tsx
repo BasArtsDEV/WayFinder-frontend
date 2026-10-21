@@ -15,8 +15,10 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={WelcomePageView} />
-      <Route path="/hunts" component={TreasureHuntsView} />
-      <Route path="/hunts/:id" component={HuntDetailView} />
+      <Route path="/hunts" nest>
+        <Route path="/:id" component={HuntDetailView} />
+        <Route path="/" component={TreasureHuntsView} />
+      </Route>
 
       <Route path="/login" component={LoginView} />
       <Route path="/register" component={RegisterView} />

@@ -7,7 +7,7 @@ export const CONFIG = {
   } as const,
   ROUTES = {
     HOME: "/",
-    HUNTS: "/hunts",
+    HUNTS: "~/hunts",
     LOGIN: "/login",
     REGISTER: "/register",
     USER_VIEW: "/user/me",
