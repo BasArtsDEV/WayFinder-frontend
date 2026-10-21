@@ -1,6 +1,6 @@
 import {ApiResourceBase} from "./Api";
 
-export type Team = ApiResourceBase & {
+export type CreatorTeam = ApiResourceBase & {
     id: number;
     name: string;
     leader: string;
