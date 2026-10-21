@@ -48,7 +48,7 @@
     line-height: 1.4;
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 
     background: var(--hd-green);
 }
@@ -118,7 +118,8 @@
 
 
 .hunt-detail__code {
-    display: inline-block;
+    display: flex;
+    gap: 1rem;
 
     min-width: 8.5rem;
     padding: 0.3rem 1rem;

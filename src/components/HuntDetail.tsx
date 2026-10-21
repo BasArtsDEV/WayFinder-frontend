@@ -68,6 +68,7 @@ export default function HuntDetail() {
         <div className="hunt-detail__main">
           <div className="hunt-detail__badges">
             <span className="hunt-detail__badge hunt-detail__badge--count">
+              <i className="bi bi-bar-chart-steps text-success"></i>
               {enrollmentsCount} {enrollmentsCount > 1 ? "énigmes" : "énigme"}
             </span>
           </div>
@@ -94,6 +95,7 @@ export default function HuntDetail() {
                 className="hunt-detail__code"
               >
                 {hunt.invitationCode}
+                <i className="bi bi-clipboard text-success"></i>
               </p>
             </div>
           </div>
