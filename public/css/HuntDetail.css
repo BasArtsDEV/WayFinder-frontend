@@ -1,3 +1,7 @@
+.hunt-detail-container {
+    margin: 3rem auto 0 auto;
+}
+
 .hunt-detail {
     --hd-text: #212529;
     --hd-muted: #6c757d;
@@ -7,7 +11,11 @@
     --hd-link: #0d6efd;
 
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 
+    width: 1200px;
     border-radius: 12px;
 
     font-family: "Lexend", system-ui, sans-serif;
@@ -17,7 +25,7 @@
 }
 
 .hunt-detail__main {
-    padding: 3rem 3rem 2.25rem;
+    padding: 2rem 2rem 0 2rem;
 }
 
 .hunt-detail__badges {
@@ -25,6 +33,31 @@
     flex-wrap: wrap;
     gap: 0.75rem;
     margin-bottom: 1.25rem;
+}
+
+.hunt-detail__badge {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+
+    padding: 0.35rem 1rem;
+    border-radius: 50rem;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    background: var(--hd-green);
+}
+
+.hunt-detail__badge--count {
+    border: 1px solid var(--hd-border);
+    color: var(--hd-text);
+    text-transform: lowercase;
+    background: var(--hd-footer-bg);
 }
 
 .hunt-detail__title {
@@ -44,11 +77,10 @@
 .hunt-detail__footer {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem 2rem;
     align-items: center;
     justify-content: space-between;
 
-    padding: 1.25rem 2.25rem;
+    padding: 0 2rem;
 
     background: var(--hd-footer-bg);
 }
@@ -67,9 +99,7 @@
 .hunt-detail__meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem 2rem;
-    align-items: flex-end;
-
+    gap: 1rem;
     margin: 0;
 }
 
@@ -79,17 +109,13 @@
     gap: 0.2rem;
 }
 
-.hunt-detail__meta-item dt {
-    font-size: 0.7rem;
+.hunt-detail__meta-item span {
+    font-size: 0.75rem;
     color: var(--hd-muted);
     text-transform: uppercase;
     letter-spacing: 0.03em;
 }
 
-.hunt-detail__meta-item dd {
-    margin: 0;
-    font-size: 0.9rem;
-}
 
 .hunt-detail__code {
     display: inline-block;
@@ -104,6 +130,11 @@
     font-weight: 700;
 
     background: #fff;
+}
+
+.hunt-detail__code:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 @media (max-width: 640px) {

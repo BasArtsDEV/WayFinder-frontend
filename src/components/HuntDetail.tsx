@@ -63,40 +63,42 @@ export default function HuntDetail() {
   const enrollmentsCount: number = hunt.enrollments.length;
 
   return (
-    <article className="hunt-detail">
-      <div className="hunt-detail__main">
-        <div className="hunt-detail__badges">
-          <span className="hunt-detail__badge hunt-detail__badge--count">
-            {enrollmentsCount} {enrollmentsCount > 1 ? "énigmes" : "énigme"}
-          </span>
-        </div>
-
-        <h2 className="hunt-detail__title">{hunt.title}</h2>
-        <p className="hunt-detail__description">{hunt.description}</p>
-      </div>
-
-      <div className="hunt-detail__footer">
-        <p className="hunt-detail__team">
-          Créée par l&apos;équipe <strong>{team?.name}</strong>
-        </p>
-
-        <div className="hunt-detail__meta">
-          <div className="hunt-detail__meta-item">
-            <span>Création</span>
-            <p>le {formatDate(hunt.creationDate)}</p>
+    <div className="hunt-detail-container">
+      <article className="hunt-detail">
+        <div className="hunt-detail__main">
+          <div className="hunt-detail__badges">
+            <span className="hunt-detail__badge hunt-detail__badge--count">
+              {enrollmentsCount} {enrollmentsCount > 1 ? "énigmes" : "énigme"}
+            </span>
           </div>
 
-          <div className="hunt-detail__meta-item">
-            <span>Code d&apos;invitation</span>
-            <p
-              onClick={() => copyToClipboard(hunt?.invitationCode)}
-              className="hunt-detail__code"
-            >
-              {hunt.invitationCode}
-            </p>
+          <h2 className="hunt-detail__title">{hunt.title}</h2>
+          <p className="hunt-detail__description">{hunt.description}</p>
+        </div>
+
+        <div className="hunt-detail__footer">
+          <p className="hunt-detail__team">
+            Créée par l&apos;équipe <strong>{team?.name}</strong>
+          </p>
+
+          <div className="hunt-detail__meta">
+            <div className="hunt-detail__meta-item">
+              <span>Création</span>
+              <p>le {formatDate(hunt.creationDate)}</p>
+            </div>
+
+            <div className="hunt-detail__meta-item">
+              <span>Code d&apos;invitation</span>
+              <p
+                onClick={() => copyToClipboard(hunt?.invitationCode)}
+                className="hunt-detail__code"
+              >
+                {hunt.invitationCode}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </div>
   );
 }
