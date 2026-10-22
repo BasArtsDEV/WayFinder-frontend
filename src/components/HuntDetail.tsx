@@ -3,6 +3,7 @@ import { useParams } from "wouter";
 import type { TreasureHunt } from "../../types/TreasureHunt.ts";
 import { getTreasureHuntById } from "../services/treasure-hunts.ts";
 import formatDate, { copyToClipboard } from "../utils/global.ts";
+import FeedbacksList from "./FeedbacksList.tsx";
 
 export default function HuntDetail() {
     const [isLoading, setIsLoading] = useState<boolean>(true),
@@ -92,6 +93,9 @@ export default function HuntDetail() {
           </div>
         </div>
       </article>
+
+      <p>{hunt.enrollments.length} avis</p>
+      <FeedbacksList enrollments={hunt.enrollments} />
     </div>
   );
 }
