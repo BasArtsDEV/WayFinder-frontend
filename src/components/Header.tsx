@@ -14,7 +14,7 @@ function Header({ children }: { children: ReactNode }) {
     <header className="header">
       <div className="header-layout">
         <Link to={ROUTES.HOME} className="header-element">
-          <i className="bi bi-house-door-fill text-dark home__icon"></i>
+          <i className="bi bi-house-door-fill home__icon"></i>
         </Link>
 
         <div className="header-element">
