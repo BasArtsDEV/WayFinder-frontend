@@ -1,7 +1,9 @@
 import { Route, Switch } from "wouter";
+import HuntDetailView from "../views/HuntDetailView.tsx";
 import LoginView from "../views/LoginView.tsx";
 import NotFoundView from "../views/NotFoundView.tsx";
 import RegisterView from "../views/RegisterView.tsx";
+import TreasureHuntsView from "../views/TreasureHuntsView.tsx";
 import UserProfileView from "../views/UserProfileView.tsx";
 import VerifyEmailView from "../views/VerifyEmailView.tsx";
 import WelcomePageView from "../views/WelcomePageView.tsx";
@@ -13,6 +15,11 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={WelcomePageView} />
+      <Route path="/hunts" nest>
+        <Route path="/:id" component={HuntDetailView} />
+        <Route path="/" component={TreasureHuntsView} />
+      </Route>
+
       <Route path="/login" component={LoginView} />
       <Route path="/register" component={RegisterView} />
       <Route path="/verify-email" component={VerifyEmailView} />

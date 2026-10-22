@@ -26,9 +26,29 @@ function WelcomePageView() {
 
         <div className="home-divider"></div>
 
-        {!user && (
+        {user ? (
           <div className="button-container">
-            <Link href={ROUTES.LOGIN} className="btn-app-primary">
+            <input
+              id="code"
+              name="code"
+              type="text"
+              placeholder="Entrez un code"
+              className="input"
+            />
+
+            <button className="btn-app-primary">
+              <i className="bi bi-arrow-right-circle"></i>
+              <span>Rejoindre</span>
+            </button>
+
+            <Link to={ROUTES.HUNTS} className="btn-app-secondary">
+              <i className="bi bi-map text-success"></i>
+              <span>Voir les chasses</span>
+            </Link>
+          </div>
+        ) : (
+          <div className="button-container">
+            <Link to={ROUTES.LOGIN} className="btn-app-primary">
               <div className="btn-icon-wrapper">
                 <img
                   className="btn-action-icon"
@@ -39,7 +59,7 @@ function WelcomePageView() {
               <span>Connexion</span>
             </Link>
 
-            <Link href={ROUTES.REGISTER} className="btn-app-secondary">
+            <Link to={ROUTES.REGISTER} className="btn-app-secondary">
               <div className="btn-icon-wrapper">
                 <img
                   className="btn-action-icon"
