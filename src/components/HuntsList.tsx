@@ -62,7 +62,7 @@ export default function HuntsList() {
 
       <ul className={`hunts-list`}>
         {hunts.map((item: TreasureHunt, index: number) => (
-          <Hunt hunt={item} key={index} />
+          <Hunt key={index} hunt={item} />
         ))}
       </ul>
     </div>
