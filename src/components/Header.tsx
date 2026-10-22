@@ -13,21 +13,13 @@ function Header({ children }: { children: ReactNode }) {
   return (
     <header className="header">
       <div className="header-layout">
-        <div className="header-element">
-          <div className="header-button">
-            <img
-              className="header-button-icon"
-              src="/icons/settings.png"
-              alt="Paramètres"
-            />
-          </div>
-        </div>
+        <Link to={ROUTES.HOME} className="header-element">
+          <i className="bi bi-house-door-fill text-dark home__icon"></i>
+        </Link>
 
         <div className="header-element">
           <h1 className="m-0 title-text-app">{children}</h1>
         </div>
-
-        <Link to={ROUTES.HUNTS}>Chasses publiques</Link>
 
         {user ? (
           <Link to={ROUTES.USER_VIEW} className="avatar-section">

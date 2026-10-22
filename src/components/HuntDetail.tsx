@@ -60,7 +60,7 @@ export default function HuntDetail() {
   }
 
   // eslint-disable-next-line one-var
-  const enrollmentsCount: number = hunt.enrollments.length;
+  const riddlesCount: number = hunt.riddles.length;
 
   return (
     <div className="hunt-detail-container">
@@ -68,8 +68,13 @@ export default function HuntDetail() {
         <div className="hunt-detail__main">
           <div className="hunt-detail__badges">
             <span className="hunt-detail__badge hunt-detail__badge--count">
-              <i className="bi bi-bar-chart-steps text-success"></i>
-              {enrollmentsCount} {enrollmentsCount > 1 ? "énigmes" : "énigme"}
+              <i className="bi bi-layers-fill text-primary"></i>
+              {riddlesCount} {riddlesCount > 1 ? "énigmes" : "énigme"}
+            </span>
+
+            <span className="hunt-detail__badge hunt-detail__badge--count">
+              <i className="bi bi-star-fill text-warning"></i>
+              {hunt.averageStars?.toFixed(1)}
             </span>
           </div>
 
