@@ -9,13 +9,20 @@ import { CONFIG } from "../config";
 export default async function getEnrollmentsByTreasureHunt(
   huntId: number,
 ): Promise<FeedbacksCollection> {
-  const headers: HeadersInit = { "Content-Type": "application/ld+json" },
-    response = await fetch(
-      `${CONFIG.TREASURE_HUNTS}/${huntId.toString()}/enrollments?page=1&hasFeedback=true`,
-      {
-        headers,
-      },
-    );
+  const token = localStorage.getItem("token"),
+    headers: HeadersInit = { "Content-Type": "application/ld+json" };
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  // eslint-disable-next-line one-var
+  const response = await fetch(
+    `${CONFIG.TREASURE_HUNTS}/${huntId.toString()}/enrollments?page=1&hasFeedback=true`,
+    {
+      headers,
+    },
+  );
 
   if (response.status === 404) {
     throw new Error("La chasse fournie n'existe pas");
