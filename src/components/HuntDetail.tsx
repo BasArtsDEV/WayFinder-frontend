@@ -6,31 +6,31 @@ import formatDate, { copyToClipboard } from "../utils/global.ts";
 import FeedbacksList from "./FeedbacksList.tsx";
 
 export default function HuntDetail() {
-    const [isLoading, setIsLoading] = useState<boolean>(true),
-        [error, setError] = useState<string | null>(null),
-        [hunt, setHunt] = useState<TreasureHunt | null>(null),
-        { id: huntIdParam } = useParams();
+  const [isLoading, setIsLoading] = useState<boolean>(true),
+    [error, setError] = useState<string | null>(null),
+    [hunt, setHunt] = useState<TreasureHunt | null>(null),
+    { id: huntIdParam } = useParams();
 
-    useEffect(() => {
-        if (!huntIdParam) return;
+  useEffect(() => {
+    if (!huntIdParam) return;
 
-        getTreasureHuntById(Number(huntIdParam))
-            .then((data: TreasureHunt) => {
-                setIsLoading(true);
-                setHunt(data);
-            })
-            .catch((err: unknown) => {
-                setHunt(null);
-                setError(
-                    err instanceof Error
-                        ? err.message
-                        : "Une erreur est survenue. Veuillez réessayer plus tard.",
-                );
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
-    }, [huntIdParam]);
+    getTreasureHuntById(Number(huntIdParam))
+      .then((data: TreasureHunt) => {
+        setIsLoading(true);
+        setHunt(data);
+      })
+      .catch((err: unknown) => {
+        setHunt(null);
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Une erreur est survenue. Veuillez réessayer plus tard.",
+        );
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [huntIdParam]);
 
   if (isLoading) {
     return <div>Chargement de la chasse au trésor...</div>;
@@ -95,6 +95,7 @@ export default function HuntDetail() {
       </article>
 
       <p>{hunt.enrollments.length} avis</p>
+
       <FeedbacksList enrollments={hunt.enrollments} />
     </div>
   );
