@@ -8,12 +8,11 @@ import {
 } from "../services/treasure-hunts.ts";
 import formatDate, { copyToClipboard } from "../utils/global.ts";
 
-export default function HuntDetail() {
+function useHuntDetail(huntIdParam: string | undefined) {
   const [isLoading, setIsLoading] = useState<boolean>(true),
     [error, setError] = useState<string | null>(null),
     [hunt, setHunt] = useState<TreasureHunt | null>(null),
-    [team, setTeam] = useState<CreatorTeam | null>(null),
-    { id: huntIdParam } = useParams();
+    [team, setTeam] = useState<CreatorTeam | null>(null);
 
   useEffect(() => {
     if (!huntIdParam) return;
@@ -46,6 +45,13 @@ export default function HuntDetail() {
         setIsLoading(false);
       });
   }, [huntIdParam]);
+
+  return { error, hunt, isLoading, team };
+}
+
+export default function HuntDetail() {
+  const { id: huntIdParam } = useParams(),
+    { error, hunt, isLoading, team } = useHuntDetail(huntIdParam);
 
   if (isLoading) {
     return <div>Chargement de la chasse au trésor...</div>;
@@ -96,7 +102,9 @@ export default function HuntDetail() {
             <div className="hunt-detail__meta-item">
               <span>Code d&apos;invitation</span>
               <p
-                onClick={() => copyToClipboard(hunt?.invitationCode)}
+                onClick={() => {
+                  copyToClipboard(hunt.invitationCode);
+                }}
                 className="hunt-detail__code"
               >
                 {hunt.invitationCode}
