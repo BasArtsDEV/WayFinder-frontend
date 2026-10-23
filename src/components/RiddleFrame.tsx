@@ -70,20 +70,15 @@ function RiddleFrame({
         <h2 className="riddle-card__title">{title}</h2>
         <p className="riddle-card__description">{description}</p>
 
-        <div className="riddle-card__media">
-          {imageUrl ? (
+        {imageUrl && (
+          <div className="riddle-card__media">
             <img
               className="riddle-card__image"
               src={imageUrl}
               alt={`Illustration de l'énigme : ${title}`}
             />
-          ) : (
-            <i
-              className="bi bi-image-fill riddle-card__placeholder"
-              aria-hidden="true"
-            ></i>
-          )}
-        </div>
+          </div>
+        )}
 
         {question && <p className="riddle-card__question">{question}</p>}
       </article>

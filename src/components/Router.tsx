@@ -37,6 +37,9 @@ function Router() {
           <RiddleTextView
             title={"Ceci est un titre"}
             description={"Ceci est une description de test"}
+            imageUrl={
+              "https://venstone.xyz/assets/images/2023-08-08-15.23.14.webp"
+            }
             question={"Est-ce une question ?"}
             rank={1}
             remainingMinutes={1}
@@ -51,6 +54,9 @@ function Router() {
           <RiddleQCMView
             title={"Ceci est un titre"}
             description={"Ceci est une description de test"}
+            imageUrl={
+              "https://carnet-dhistoire.fr/wp-content/uploads/2025/06/histoire-drapea-francais.webp"
+            }
             question={"Quelle est la capitale de la France ?"}
             choices={[
               { id: "1", text: "Londres" },

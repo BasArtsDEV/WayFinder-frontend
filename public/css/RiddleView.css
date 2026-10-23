@@ -111,12 +111,6 @@
     object-fit: cover;
 }
 
-.riddle-card__placeholder {
-    font-size: 3.5rem;
-    line-height: 1;
-    color: var(--riddle-media-icon);
-}
-
 .riddle-card__question {
     margin: 0.4rem 0 0.2rem;
     font-size: 1.3rem;
