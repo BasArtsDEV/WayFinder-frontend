@@ -58,6 +58,7 @@ function Router() {
               { id: "3", text: "Berlin" },
               { id: "4", text: "Madrid" },
             ]}
+            answersCount={2}
             rank={1}
             remainingMinutes={1}
             score={1}
