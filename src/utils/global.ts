@@ -1,9 +1,11 @@
 /**
  * Function to copy the invitation into the clipboard
- * @return Promise<void>
+ * @param code string
  */
-export async function copyToClipboard(code: string): Promise<void> {
-  await navigator.clipboard.writeText(code);
+export function copyToClipboard(code: string): void {
+  navigator.clipboard.writeText(code).catch(() => {
+    // Copie impossible (permission refusée ou contexte non sécurisé)
+  });
 }
 
 /**

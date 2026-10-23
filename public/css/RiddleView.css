@@ -1,0 +1,276 @@
+.riddle-view {
+    --riddle-card-background: #c8ae7a;
+    --riddle-media-background: #d8c8aa;
+    --riddle-media-icon: #b4b4b4;
+
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 1rem;
+
+    font-family: 'Lexend', sans-serif;
+    color: var(--app-text);
+}
+
+.riddle-step {
+    margin: 0;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Time, score and rank */
+.riddle-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+}
+
+.riddle-stat {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+
+    min-width: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+
+    color: var(--app-small-info-box-text);
+
+    background-color: var(--app-small-info-box-background);
+}
+
+.riddle-stat--wide {
+    grid-column: 1 / -1;
+}
+
+.riddle-stat__icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.riddle-stat__label,
+.riddle-stat__value {
+    display: block;
+    line-height: 1.2;
+}
+
+.riddle-stat__label {
+    font-weight: 700;
+}
+
+.riddle-stat__value {
+    font-weight: 300;
+}
+
+/* Riddle card */
+.riddle-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    padding: 1rem 1.2rem;
+    border-radius: 2rem;
+
+    background-color: var(--riddle-card-background);
+}
+
+.riddle-card__title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.riddle-card__description {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.riddle-card__media {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 5.5rem;
+    border-radius: 1rem;
+
+    background-color: var(--riddle-media-background);
+}
+
+.riddle-card__image {
+    width: 100%;
+    max-height: 14rem;
+    object-fit: cover;
+}
+
+.riddle-card__question {
+    margin: 0.4rem 0 0.2rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Area below the card (answer field, instructions, validation button) */
+.riddle-actions {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    min-width: 0;
+    margin: 0;
+}
+
+.riddle-actions__submit {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.riddle-actions__submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.riddle-actions__submit .bi {
+    font-size: 1.9rem;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .riddle-actions__submit {
+        margin-top: auto;
+    }
+}
+
+/* Text riddle */
+.riddle-input {
+    width: 100%;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 300;
+}
+
+.riddle-input:focus-visible {
+    outline: 3px solid var(--app-button-background);
+    outline-offset: 2px;
+}
+
+/* QCM riddle */
+.riddle-choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.riddle-choice {
+    cursor: pointer;
+
+    position: relative;
+
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+
+    min-width: 0;
+    padding: 0.5rem 0.8rem;
+    border-radius: 50px;
+
+    color: var(--app-small-info-box-text);
+
+    background-color: var(--app-small-info-box-background);
+
+    transition: background-color 0.2s;
+}
+
+.riddle-choice:hover {
+    background-color: var(--app-button-secondary-background-hover);
+}
+
+.riddle-choice:has(.riddle-choice__input:checked) {
+    outline: 3px solid var(--app-button-background);
+}
+
+.riddle-choice:has(.riddle-choice__input:focus-visible) {
+    outline: 3px solid var(--app-text);
+    outline-offset: 2px;
+}
+
+/* The native radio stays in the DOM (keyboard + screen readers) but is drawn by .riddle-choice__radio */
+.riddle-choice__input {
+    pointer-events: none;
+    position: absolute;
+    opacity: 0;
+}
+
+.riddle-choice__radio {
+    flex: none;
+
+    box-sizing: border-box;
+    width: 2.1rem;
+    height: 2.1rem;
+    border: 4px solid var(--app-text);
+    border-radius: 50%;
+}
+
+.riddle-choice__input:checked + .riddle-choice__radio {
+    background-color: var(--app-text);
+    box-shadow: inset 0 0 0 4px var(--app-small-info-box-background);
+}
+
+.riddle-choice__content {
+    min-width: 0;
+}
+
+.riddle-choice__label,
+.riddle-choice__text {
+    display: block;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.riddle-choice__label {
+    font-weight: 700;
+}
+
+.riddle-choice__text {
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+/* QR code and GPS riddles */
+.riddle-instruction {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    align-items: center;
+
+    text-align: center;
+}
+
+.riddle-instruction__icon {
+    font-size: 4rem;
+    line-height: 1.1;
+}
+
+.riddle-instruction__title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.riddle-instruction__text {
+    margin: 0;
+    line-height: 1.3;
+}
