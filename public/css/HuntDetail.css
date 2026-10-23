@@ -21,7 +21,7 @@
     font-family: "Lexend", system-ui, sans-serif;
     color: var(--hd-text);
 
-    background: #fff;
+    background: rgba(253, 250, 245, 0.92);;
 }
 
 .hunt-detail__main {

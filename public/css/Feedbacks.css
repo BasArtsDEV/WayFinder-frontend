@@ -1,0 +1,40 @@
+.feedbacks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    width: 50%;
+    padding: 1rem;
+
+    background-color: #fff4f4;
+}
+
+.feedback-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.feedback-data {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.feedback-user {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.rounded-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.feedback__username {
+    font-weight: 400;
+    color: #000;
+}
