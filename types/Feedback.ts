@@ -1,4 +1,4 @@
-import { ApiResourceBase } from "./Api";
+import type { ApiResourceBase } from "./Api";
 
 export interface FeedbackUser {
   "@id": string;

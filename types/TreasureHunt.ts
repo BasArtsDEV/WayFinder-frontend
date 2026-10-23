@@ -1,5 +1,5 @@
 import type { ApiResourceBase } from "./Api";
-import { CreatorTeam } from "./Team";
+import type { CreatorTeam } from "./Team";
 
 /*
   We will give 'Riddle' fields their corresponding type in a future types implementation.
