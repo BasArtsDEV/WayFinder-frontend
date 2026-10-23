@@ -27,7 +27,7 @@ export default function FeedbackCard({ enrollment }: FeedbackCardProps) {
         </div>
       </div>
 
-      <p>{enrollment.feedback}</p>
+      <p className="feedback__content">{enrollment.feedback}</p>
     </li>
   );
 }
