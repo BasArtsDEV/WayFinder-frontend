@@ -8,7 +8,6 @@ export interface FeedbackUser {
 
 export type Feedback = ApiResourceBase & {
   id: number;
-  registrationDate: string;
   user: FeedbackUser;
   nbStars: number;
   feedback: string;
