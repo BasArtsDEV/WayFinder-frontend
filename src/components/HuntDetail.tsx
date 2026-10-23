@@ -92,11 +92,9 @@ export default function HuntDetail() {
             </div>
           </div>
         </div>
+
+        <FeedbacksList huntId={hunt.id} />
       </article>
-
-      <p>{hunt.enrollments.length} avis</p>
-
-      <FeedbacksList huntId={hunt.id} />
     </div>
   );
 }

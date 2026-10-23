@@ -35,10 +35,14 @@ export default function FeedbacksList({ huntId }: FeedbacksListProps) {
   }
 
   return (
-    <ul className={`feedbacks-list`}>
-      {feedbacks.map((item: Feedback, index: number) => (
-        <FeedbackCard key={index} enrollment={item} />
-      ))}
-    </ul>
+    <>
+      <p className="feedback__count">{feedbacks.length} avis</p>
+
+      <ul className={`feedbacks-list`}>
+        {feedbacks.map((item: Feedback, index: number) => (
+          <FeedbackCard key={index} enrollment={item} />
+        ))}
+      </ul>
+    </>
   );
 }
