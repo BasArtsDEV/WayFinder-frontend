@@ -13,7 +13,7 @@ function Header({ children }: { children: ReactNode }) {
   return (
     <header className="header">
       <div className="header-layout">
-        <Link to={ROUTES.HOME} className="header-element">
+        <Link to={ROUTES.HOME} className="header-element header-button">
           <i className="bi bi-house-door-fill home__icon"></i>
         </Link>
 
