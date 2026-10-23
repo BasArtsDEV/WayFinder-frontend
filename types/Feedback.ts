@@ -13,3 +13,8 @@ export type Feedback = ApiResourceBase & {
   nbStars: number;
   feedback: string;
 };
+
+export type FeedbacksCollection = ApiResourceBase & {
+  totalItems: number;
+  member: Feedback[];
+};
