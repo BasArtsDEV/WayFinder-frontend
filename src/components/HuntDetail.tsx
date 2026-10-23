@@ -96,7 +96,7 @@ export default function HuntDetail() {
 
       <p>{hunt.enrollments.length} avis</p>
 
-      <FeedbacksList enrollments={hunt.enrollments} />
+      <FeedbacksList huntId={hunt.id} />
     </div>
   );
 }

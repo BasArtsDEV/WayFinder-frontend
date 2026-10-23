@@ -1,9 +1,44 @@
+import { useEffect, useState } from "react";
+import type { Feedback, FeedbacksCollection } from "../../types/Feedback.ts";
+import getEnrollmentsByTreasureHunt from "../services/enrollments.ts";
 import FeedbackCard from "./FeedbackCard.tsx";
 
 interface FeedbacksListProps {
-  enrollments: object[];
+  huntId: number;
 }
 
-export default function FeedbacksList({ enrollments }: FeedbacksListProps) {
-  return <FeedbackCard />;
+export default function FeedbacksList({ huntId }: FeedbacksListProps) {
+  const [feedbacks, setFeedbacks] = useState<Feedback[] | null>(null),
+    [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    getEnrollmentsByTreasureHunt(huntId)
+      .then((data: FeedbacksCollection) => {
+        setFeedbacks(data.member);
+      })
+      .catch((err: unknown) => {
+        setFeedbacks(null);
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Une erreur est survenue. Veuillez réessayer plus tard.",
+        );
+      });
+  }, [huntId]);
+
+  if (error) {
+    return <div style={{ color: "red" }}>Erreur : {error}</div>;
+  }
+
+  if (!feedbacks) {
+    return null;
+  }
+
+  return (
+    <ul className={`feedbacks-list`}>
+      {feedbacks.map((item: Feedback, index: number) => (
+        <FeedbackCard key={index} enrollment={item} />
+      ))}
+    </ul>
+  );
 }
