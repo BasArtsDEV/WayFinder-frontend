@@ -1,9 +1,35 @@
 .feedback__count {
-    margin: 0;
-    padding: 0 2rem;
+    padding: 0;
     font-size: 1.25em;
     font-weight: bold;
 }
+
+.feedback-toggle-btn {
+    display: flex;
+    gap: 1rem;
+
+    padding: 0 0 0 2rem;
+    border: none;
+
+    background: none;
+
+    transition: color 0.2s ease;
+}
+
+.feedback-toggle-btn .bi {
+    --bs-bg-opacity: 1;
+
+    align-content: center;
+    align-self: center;
+
+    width: 32px;
+    height: 32px;
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+    border-radius: 50%;
+
+    background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
+}
+
 
 .feedbacks-list {
     display: flex;
@@ -11,10 +37,23 @@
     gap: 2rem;
 
     width: 100%;
+    max-height: 0;
     padding: 2rem 2rem 0 2rem;
+
+    opacity: 0;
+
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.feedbacks-list.is-open {
+    max-height: 100%;
+    padding: 2rem 2rem 0 2rem;
+    opacity: 1;
 }
 
 .feedback-card {
+    --bs-bg-opacity: 1;
+
     display: flex;
     flex-direction: column;
 
@@ -22,7 +61,8 @@
     padding: 1rem;
     border-radius: 1rem;
 
-    background-color: #fff4f4;
+    background-color: rgba(var(--bs-white-rgb), 1);
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
 }
 
 .feedback-data {
@@ -57,7 +97,11 @@
 }
 
 .feedback__content {
+    --bs-text-opacity: 1;
+
     font-family: 'Lexend', sans-serif;
+    font-weight: 300;
+    color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important;
 }
 
 @media (max-width: 1950px) {
