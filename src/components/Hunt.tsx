@@ -1,6 +1,5 @@
 import { Link } from "wouter";
 import type { TreasureHunt } from "../../types/TreasureHunt.ts";
-import { ROUTES } from "../config.ts";
 import EnrollmentStars from "./EnrollmentStars.tsx";
 
 interface HuntProps {
@@ -9,7 +8,7 @@ interface HuntProps {
 
 export default function Hunt({ hunt }: HuntProps) {
   return (
-    <Link to={`${ROUTES.HUNTS}/${hunt.id.toString()}`}>
+    <Link to={`/${hunt.id.toString()}`}>
       <li className="hunt-card">
         <div className="hunt-card-main">
           <div className="hunt-card-header">

@@ -8,7 +8,7 @@ const API_BASE_URL = "https://localhost:8000/api",
   },
   ROUTES = {
     HOME: "/",
-    HUNTS: "~/hunts",
+    HUNTS: "/hunts",
     LOGIN: "/login",
     REGISTER: "/register",
     TEAMS: "/teams",
