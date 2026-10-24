@@ -13,6 +13,7 @@ const API_BASE_URL = "https://localhost:8000/api",
     REGISTER: "/register",
     TEAMS: "/teams",
     USER_VIEW: "/user/me",
+    VERIFY_EMAIL: "/verify-email",
   };
 
 export { CONFIG, ROUTES };
