@@ -1,7 +1,8 @@
-import type React from "react";
+import React from "react";
 import { Link } from "wouter";
 import { ROUTES } from "../config.ts";
 import FormField from "./FormField.tsx";
+import PasswordField from "./PasswordField.tsx";
 
 interface RegisterFormFieldsProps {
   confirmPassword: string;
@@ -82,9 +83,9 @@ function RegisterFormFields({
           }}
         />
       </div>
-      <FormField
+
+      <PasswordField
         label="Mot de passe"
-        type="password"
         name="password"
         id="password"
         placeholder="Saisissez un mot de passe..."
@@ -93,10 +94,9 @@ function RegisterFormFields({
           setPassword(event.target.value);
         }}
       />
-      {passwordError && <p className="field-error">{passwordError}</p>}
-      <FormField
+
+      <PasswordField
         label="Confirmer le mot de passe"
-        type="password"
         name="confirm-password"
         id="confirm-password"
         placeholder="Récrivez votre mot de passe..."
@@ -105,6 +105,8 @@ function RegisterFormFields({
           setConfirmPassword(event.target.value);
         }}
       />
+
+      {passwordError && <p className="field-error">{passwordError}</p>}
     </>
   );
 }
