@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "wouter";
+import { Link, useParams } from "wouter";
 import type { TreasureHunt } from "../../types/TreasureHunt.ts";
+import { ROUTES } from "../config.ts";
 import { getTreasureHuntById } from "../services/treasure-hunts.ts";
 import formatDate, { copyToClipboard } from "../utils/global.ts";
 import FeedbacksList from "./FeedbacksList.tsx";
@@ -45,7 +46,8 @@ export default function HuntDetail() {
   }
 
   // eslint-disable-next-line one-var
-  const riddlesCount: number = hunt.riddles.length;
+  const riddlesCount: number = hunt.riddles.length,
+    teamId: string = hunt.team["@id"].split("/").pop() ?? "";
 
   return (
     <div className="hunt-detail-container">
@@ -69,7 +71,8 @@ export default function HuntDetail() {
 
         <div className="hunt-detail__footer">
           <p className="hunt-detail__team">
-            Créée par l&apos;équipe <strong>{hunt.team.name}</strong>
+            Créée par l&apos;équipe&nbsp;
+            <Link to={`~${ROUTES.TEAMS}/${teamId}`}>{hunt.team.name}</Link>
           </p>
 
           <div className="hunt-detail__meta">

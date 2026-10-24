@@ -10,5 +10,6 @@ export const CONFIG = {
     HUNTS: "~/hunts",
     LOGIN: "/login",
     REGISTER: "/register",
+    TEAMS: "/teams",
     USER_VIEW: "/user/me",
   } as const;
