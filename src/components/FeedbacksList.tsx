@@ -9,7 +9,8 @@ interface FeedbacksListProps {
 
 export default function FeedbacksList({ huntId }: FeedbacksListProps) {
   const [feedbacks, setFeedbacks] = useState<Feedback[] | null>(null),
-    [error, setError] = useState<string | null>(null);
+    [error, setError] = useState<string | null>(null),
+    [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     getEnrollmentsByTreasureHunt(huntId)
@@ -36,9 +37,24 @@ export default function FeedbacksList({ huntId }: FeedbacksListProps) {
 
   return (
     <>
-      <p className="feedback__count">{feedbacks.length} avis</p>
+      <div>
+        <button
+          className="feedback-toggle-btn"
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          <span className="feedback__count">{feedbacks.length} avis</span>
 
-      <ul className={`feedbacks-list`}>
+          {isOpen ? (
+            <i className="bi bi-arrow-down"></i>
+          ) : (
+            <i className="bi bi-arrow-up"></i>
+          )}
+        </button>
+      </div>
+
+      <ul className={`feedbacks-list${isOpen ? " is-open" : ""}`}>
         {feedbacks.map((item: Feedback, index: number) => (
           <FeedbackCard key={index} enrollment={item} />
         ))}
