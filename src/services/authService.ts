@@ -35,7 +35,7 @@ function storeToken({ token }: LoginResponse): string {
  * Sends login credentials to the API and returns the JWT token.
  */
 export async function login(email: string, password: string): Promise<string> {
-  const response = await fetch(`${CONFIG.BASE_URL}login`, {
+  const response = await fetch(`${CONFIG.BASE_URL}/login`, {
     body: JSON.stringify({ email, password }),
     headers: {
       "Content-Type": "application/json",
@@ -55,7 +55,7 @@ export async function login(email: string, password: string): Promise<string> {
 }
 
 export async function register(data: RegisterData): Promise<void> {
-  const response = await fetch(`${CONFIG.BASE_URL}register`, {
+  const response = await fetch(`${CONFIG.BASE_URL}/register`, {
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
@@ -79,7 +79,7 @@ export async function register(data: RegisterData): Promise<void> {
 
 export async function verifyEmail(queryString: string): Promise<string> {
   const response = await fetch(
-    `${CONFIG.BASE_URL}verify-email?${queryString}`,
+    `${CONFIG.BASE_URL}/verify-email?${queryString}`,
     {
       headers: {
         Accept: "application/json",

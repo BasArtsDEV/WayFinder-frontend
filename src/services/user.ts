@@ -16,7 +16,7 @@ export interface User {
  * Returns the URL of the User's avatar
  */
 export function getUserAvatar(userId: string): string {
-  return `${CONFIG.BASE_URL}users/${userId}/avatar`;
+  return `${CONFIG.BASE_URL}/users/${userId}/avatar`;
 }
 
 /**
