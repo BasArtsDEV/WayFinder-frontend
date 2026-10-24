@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import FormField from "../components/FormField.tsx";
+import PasswordField from "../components/PasswordField.tsx";
 import { ROUTES } from "../config.ts";
 import { useAuth } from "../contexts/AuthContext.ts";
 import { useLogin } from "../hooks/useLogin.ts";
@@ -45,9 +46,9 @@ function LoginView() {
               setEmail(event.target.value);
             }}
           />
-          <FormField
+
+          <PasswordField
             label="Mot de passe"
-            type="password"
             name="password"
             id="password"
             placeholder="Entrez votre mot de passe ..."
@@ -57,7 +58,7 @@ function LoginView() {
             }}
           />
           <p className="mt-4">
-            Vous n&apos;avez pas de compte ?{" "}
+            Vous n&apos;avez pas de compte ?&nbsp;
             <Link href={ROUTES.REGISTER} className="btn-app-hypertext">
               Inscrivez-vous
             </Link>

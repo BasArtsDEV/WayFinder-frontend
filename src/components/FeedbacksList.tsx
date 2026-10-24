@@ -37,21 +37,25 @@ export default function FeedbacksList({ huntId }: FeedbacksListProps) {
 
   return (
     <>
-      <div>
-        <button
-          className="feedback-toggle-btn"
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
-        >
-          <span className="feedback__count">{feedbacks.length} avis</span>
+      <div style={{ paddingLeft: "2rem" }}>
+        {feedbacks.length ? (
+          <button
+            className="feedback-toggle-btn"
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+          >
+            <span className="feedback__count">{feedbacks.length} avis</span>
 
-          {isOpen ? (
-            <i className="bi bi-arrow-down"></i>
-          ) : (
-            <i className="bi bi-arrow-up"></i>
-          )}
-        </button>
+            {isOpen ? (
+              <i className="bi bi-arrow-down"></i>
+            ) : (
+              <i className="bi bi-arrow-up"></i>
+            )}
+          </button>
+        ) : (
+          <span className="feedback__count">Aucun avis</span>
+        )}
       </div>
 
       <ul className={`feedbacks-list${isOpen ? " is-open" : ""}`}>

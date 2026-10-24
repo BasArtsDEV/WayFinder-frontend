@@ -5,6 +5,15 @@ import { useAuth } from "../contexts/AuthContext.ts";
 import { login, register } from "../services/authService.ts";
 import { getMe } from "../services/user.ts";
 
+function isPasswordValid(password: string): boolean {
+  return (
+    password.length >= 8 &&
+    /[A-Z]/u.test(password) &&
+    /[0-9]/u.test(password) &&
+    /[^A-Za-z0-9]/u.test(password)
+  );
+}
+
 export function useRegister() {
   const [username, setUsername] = useState(""),
     [email, setEmail] = useState(""),
@@ -28,6 +37,13 @@ export function useRegister() {
 
     if (password !== confirmPassword) {
       setError("Les mots de passe ne correspondent pas.");
+      return;
+    }
+
+    if (!isPasswordValid(password)) {
+      setPasswordError(
+        "Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.",
+      );
       return;
     }
 
