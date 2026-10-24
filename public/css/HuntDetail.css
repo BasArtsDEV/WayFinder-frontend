@@ -84,7 +84,7 @@
 
 .hunt-detail__team {
     margin: 0;
-    font-weight: 300;
+    font-weight: bold;
     color: var(--hd-muted);
 }
 
