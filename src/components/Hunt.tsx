@@ -14,7 +14,6 @@ export default function Hunt({ hunt }: HuntProps) {
         <div className="hunt-card-main">
           <div className="hunt-card-header">
             <h3 className="hunt-title">{hunt.title}</h3>
-
             <span className={`status-badge published`}>Publiée</span>
           </div>
 
@@ -32,6 +31,11 @@ export default function Hunt({ hunt }: HuntProps) {
               </>
             )}
           </div>
+
+          <span>
+            {hunt.enrollments.length} avis
+            <i className="bi bi-arrow-right-short"></i>
+          </span>
         </div>
       </li>
     </Link>
