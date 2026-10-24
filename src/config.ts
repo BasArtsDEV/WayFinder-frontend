@@ -1,14 +1,19 @@
-export const CONFIG = {
-    BASE_URL: "https://localhost:8000/api/",
-    ENROLLMENTS: "https://localhost:8000/api/enrollments",
-    ME: "https://localhost:8000/api/me",
-    TEAMS: "https://localhost:8000/api/teams",
-    TREASURE_HUNTS: "https://localhost:8000/api/treasure_hunts",
-  } as const,
+const API_BASE_URL = "https://localhost:8000/api",
+  CONFIG = {
+    BASE_URL: API_BASE_URL,
+    ENROLLMENTS: `${API_BASE_URL}/enrollments`,
+    ME: `${API_BASE_URL}/me`,
+    TEAMS: `${API_BASE_URL}/teams`,
+    TREASURE_HUNTS: `${API_BASE_URL}/treasure_hunts`,
+  },
   ROUTES = {
     HOME: "/",
-    HUNTS: "~/hunts",
+    HUNTS: "/hunts",
     LOGIN: "/login",
     REGISTER: "/register",
+    TEAMS: "/teams",
     USER_VIEW: "/user/me",
-  } as const;
+    VERIFY_EMAIL: "/verify-email",
+  };
+
+export { CONFIG, ROUTES };

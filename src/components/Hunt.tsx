@@ -1,6 +1,5 @@
 import { Link } from "wouter";
 import type { TreasureHunt } from "../../types/TreasureHunt.ts";
-import { ROUTES } from "../config.ts";
 import EnrollmentStars from "./EnrollmentStars.tsx";
 
 interface HuntProps {
@@ -9,12 +8,11 @@ interface HuntProps {
 
 export default function Hunt({ hunt }: HuntProps) {
   return (
-    <Link to={`${ROUTES.HUNTS}/${hunt.id.toString()}`}>
+    <Link to={`/${hunt.id.toString()}`}>
       <li className="hunt-card">
         <div className="hunt-card-main">
           <div className="hunt-card-header">
             <h3 className="hunt-title">{hunt.title}</h3>
-
             <span className={`status-badge published`}>Publiée</span>
           </div>
 
@@ -32,6 +30,11 @@ export default function Hunt({ hunt }: HuntProps) {
               </>
             )}
           </div>
+
+          <span>
+            {hunt.enrollments.length} avis
+            <i className="bi bi-arrow-right-short"></i>
+          </span>
         </div>
       </li>
     </Link>

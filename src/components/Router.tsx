@@ -1,4 +1,5 @@
 import { Route, Switch } from "wouter";
+import { ROUTES } from "../config.ts";
 import HuntDetailView from "../views/HuntDetailView.tsx";
 import LoginView from "../views/LoginView.tsx";
 import NotFoundView from "../views/NotFoundView.tsx";
@@ -25,10 +26,10 @@ const todo = () => {
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={WelcomePageView} />
-      <Route path="/hunts" nest>
+      <Route path={ROUTES.HOME} component={WelcomePageView} />
+      <Route path={ROUTES.HUNTS} nest>
         <Route path="/:id" component={HuntDetailView} />
-        <Route path="/" component={TreasureHuntsView} />
+        <Route path={ROUTES.HOME} component={TreasureHuntsView} />
       </Route>
 
       <Route path="/riddle" nest>
@@ -101,10 +102,10 @@ function Router() {
         </Route>
       </Route>
 
-      <Route path="/login" component={LoginView} />
-      <Route path="/register" component={RegisterView} />
-      <Route path="/verify-email" component={VerifyEmailView} />
-      <Route path="/user/me" component={UserProfileView} />
+      <Route path={ROUTES.LOGIN} component={LoginView} />
+      <Route path={ROUTES.REGISTER} component={RegisterView} />
+      <Route path={ROUTES.VERIFY_EMAIL} component={VerifyEmailView} />
+      <Route path={ROUTES.USER_VIEW} component={UserProfileView} />
 
       <Route component={NotFoundView} />
     </Switch>

@@ -1,5 +1,5 @@
 .hunt-detail-container {
-    margin: 3rem auto 0 auto;
+    margin: 2rem 2rem 0 2rem;
 }
 
 .hunt-detail {
@@ -15,13 +15,12 @@
     flex-direction: column;
     gap: 2rem;
 
-    width: 1200px;
     border-radius: 12px;
 
     font-family: "Lexend", system-ui, sans-serif;
     color: var(--hd-text);
 
-    background: #fff;
+    background: rgba(253, 250, 245, 0.92);;
 }
 
 .hunt-detail__main {
@@ -81,13 +80,11 @@
     justify-content: space-between;
 
     padding: 0 2rem;
-
-    background: var(--hd-footer-bg);
 }
 
 .hunt-detail__team {
     margin: 0;
-    font-weight: 300;
+    font-weight: bold;
     color: var(--hd-muted);
 }
 

@@ -1,4 +1,5 @@
 import type { ApiResourceBase } from "./Api";
+import type { CreatorTeam } from "./Team";
 
 /*
   We will give 'Riddle' fields their corresponding type in a future types implementation.
@@ -9,7 +10,7 @@ export type TreasureHunt = ApiResourceBase & {
   description: string;
   published: boolean;
   creationDate: string;
-  team: string;
+  team: CreatorTeam;
   enrollments: string[];
   riddles: object[];
   invitationCode: string;

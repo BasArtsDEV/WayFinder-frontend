@@ -1,40 +1,27 @@
 import { useEffect, useState } from "react";
-import { useParams } from "wouter";
-import type { CreatorTeam } from "../../types/Team.ts";
+import { Link, useParams } from "wouter";
 import type { TreasureHunt } from "../../types/TreasureHunt.ts";
-import {
-  getTeamByTreasureHunt,
-  getTreasureHuntById,
-} from "../services/treasure-hunts.ts";
+import { ROUTES } from "../config.ts";
+import { getTreasureHuntById } from "../services/treasure-hunts.ts";
 import formatDate, { copyToClipboard } from "../utils/global.ts";
+import FeedbacksList from "./FeedbacksList.tsx";
 
-function useHuntDetail(huntIdParam: string | undefined) {
+export default function HuntDetail() {
   const [isLoading, setIsLoading] = useState<boolean>(true),
     [error, setError] = useState<string | null>(null),
     [hunt, setHunt] = useState<TreasureHunt | null>(null),
-    [team, setTeam] = useState<CreatorTeam | null>(null);
+    { id: huntIdParam } = useParams();
 
   useEffect(() => {
     if (!huntIdParam) return;
-    setIsLoading(true);
 
     getTreasureHuntById(Number(huntIdParam))
       .then((data: TreasureHunt) => {
+        setIsLoading(true);
         setHunt(data);
-
-        const teamParam = data.team.split("/").pop();
-        if (teamParam) {
-          return getTeamByTreasureHunt(teamParam);
-        }
-
-        return null;
-      })
-      .then((data: CreatorTeam | null) => {
-        setTeam(data);
       })
       .catch((err: unknown) => {
         setHunt(null);
-        setTeam(null);
         setError(
           err instanceof Error
             ? err.message
@@ -45,13 +32,6 @@ function useHuntDetail(huntIdParam: string | undefined) {
         setIsLoading(false);
       });
   }, [huntIdParam]);
-
-  return { error, hunt, isLoading, team };
-}
-
-export default function HuntDetail() {
-  const { id: huntIdParam } = useParams(),
-    { error, hunt, isLoading, team } = useHuntDetail(huntIdParam);
 
   if (isLoading) {
     return <div>Chargement de la chasse au trésor...</div>;
@@ -66,7 +46,8 @@ export default function HuntDetail() {
   }
 
   // eslint-disable-next-line one-var
-  const riddlesCount: number = hunt.riddles.length;
+  const riddlesCount: number = hunt.riddles.length,
+    teamId: string = hunt.team["@id"].split("/").pop() ?? "";
 
   return (
     <div className="hunt-detail-container">
@@ -90,7 +71,8 @@ export default function HuntDetail() {
 
         <div className="hunt-detail__footer">
           <p className="hunt-detail__team">
-            Créée par l&apos;équipe <strong>{team?.name}</strong>
+            Créée par l&apos;équipe&nbsp;
+            <Link to={`~${ROUTES.TEAMS}/${teamId}`}>{hunt.team.name}</Link>
           </p>
 
           <div className="hunt-detail__meta">
@@ -113,6 +95,8 @@ export default function HuntDetail() {
             </div>
           </div>
         </div>
+
+        <FeedbacksList huntId={hunt.id} />
       </article>
     </div>
   );
