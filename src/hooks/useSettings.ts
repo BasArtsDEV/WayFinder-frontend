@@ -21,7 +21,7 @@ export function useSettings(user: User) {
     [, setLocation] = useLocation();
 
   function getPasswordError(): string | null {
-    if (password === "" && confirmPassword === "") {
+    if (!password && !confirmPassword) {
       return null;
     }
     if (password !== confirmPassword) {
@@ -45,7 +45,7 @@ export function useSettings(user: User) {
       return;
     }
 
-    if (password !== "") {
+    if (password) {
       data.password = password;
     }
 
