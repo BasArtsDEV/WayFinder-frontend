@@ -1,0 +1,49 @@
+import { useGame } from "../hooks/useGame.ts";
+import GameEnd from "./GameEnd.tsx";
+import GameRiddle from "./GameRiddle.tsx";
+
+interface GameProps {
+  enrollmentId: number;
+}
+
+export default function Game({ enrollmentId }: GameProps) {
+  const { answer, error, feedback, game, remainingTime } =
+    useGame(enrollmentId);
+
+  if (error) {
+    return (
+      <div className="game-message alert alert-danger" role="alert">
+        {error}
+      </div>
+    );
+  }
+
+  if (!game) {
+    return <div className="game-message">Chargement de la partie...</div>;
+  }
+
+  if (game.status === "finished" || !game.riddle) {
+    return <GameEnd game={game} />;
+  }
+
+  return (
+    <div className="game">
+      {feedback && (
+        <div className="game-feedback alert alert-warning" role="alert">
+          {feedback}
+        </div>
+      )}
+
+      <GameRiddle
+        key={game.riddle.iri}
+        riddle={game.riddle}
+        onAnswer={answer}
+        rank={game.rank}
+        remainingMinutes={Math.ceil(remainingTime / 60)}
+        score={game.score}
+        step={game.step}
+        totalSteps={game.totalSteps}
+      />
+    </div>
+  );
+}
