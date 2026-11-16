@@ -130,7 +130,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-    margin: 1rem 0;
+    margin: 0;
+    padding: 0 2rem;
 }
 
 .hunt-play-label {
