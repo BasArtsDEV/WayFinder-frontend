@@ -1,0 +1,159 @@
+.gameview {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.game {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.game-message {
+    width: 100%;
+    max-width: 480px;
+    margin: 1rem auto;
+    padding: 1rem;
+
+    font-family: 'Lexend', sans-serif;
+    text-align: center;
+}
+
+.game-feedback {
+    width: calc(100% - 2rem);
+    max-width: 448px;
+    margin: 1rem auto 0;
+    border-radius: 1rem;
+
+    font-family: 'Lexend', sans-serif;
+    text-align: center;
+}
+
+.header-button-exit {
+    padding: 0;
+    border-color: var(--app-header-button-leave-text);
+    color: var(--app-header-button-leave-text);
+    background-color: var(--app-header-button-leave-background);
+}
+
+.header-button-exit .home__icon {
+    color: var(--app-header-button-leave-text);
+}
+
+.header-button-exit:hover {
+    background-color: #ffbdbd;
+}
+
+.header-button-exit:focus-visible {
+    outline: 3px solid var(--app-button-text);
+    outline-offset: 2px;
+}
+
+.game-end {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 1rem;
+
+    font-family: 'Lexend', sans-serif;
+    color: var(--app-text);
+    text-align: center;
+}
+
+.game-end-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+
+    font-size: 3rem;
+    color: var(--app-button-text);
+}
+
+.game-end-badge-success {
+    background-color: var(--app-button-background);
+}
+
+.game-end-badge-failure {
+    background-color: var(--app-button-decline-background);
+}
+
+.game-end-title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.game-end-text {
+    margin: 0;
+    line-height: 1.35;
+}
+
+.game-end-stats {
+    width: 100%;
+    text-align: left;
+}
+
+.game-end-note {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    border-radius: 2rem;
+    background-color: #c8ae7a;
+}
+
+.game-end-note > h2 {
+    margin: 0 0 0.2rem;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.game-end-note > p {
+    margin: 0;
+}
+
+.game-end-home {
+    width: 100%;
+    margin-top: auto;
+}
+
+.hunt-play {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 1rem 0;
+}
+
+.hunt-play-label {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700;
+}
+
+.hunt-play-select {
+    width: 100%;
+    font-family: 'Lexend', sans-serif;
+}
+
+.hunt-play .btn-app-primary:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+@media (min-width: 769px) {
+    .game-end {
+        padding-top: 3rem;
+    }
+
+    .game-end-home {
+        margin-top: 1.5rem;
+    }
+}
