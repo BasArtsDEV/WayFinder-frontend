@@ -1,19 +1,19 @@
 import { Link } from "wouter";
-import type { Enrollment } from "../../types/Enrollment.ts";
+import type { GameStatus } from "../../types/Game.ts";
 import type { TreasureHunt } from "../../types/TreasureHunt.ts";
-import { ROUTES } from "../config.ts";
+import { GAME_STATUS, ROUTES } from "../config.ts";
 import { useHuntPlay } from "../hooks/useHuntPlay.ts";
 
 interface HuntPlayActionsProps {
   hunt: TreasureHunt;
 }
 
-function getEnrollmentLabel(status: Enrollment["status"]): string {
-  if (status === "finished") {
+function getEnrollmentLabel(status: GameStatus): string {
+  if (status === GAME_STATUS.FINISHED) {
     return "Voir mes résultats";
   }
 
-  return status === "not_started"
+  return status === GAME_STATUS.NOT_STARTED
     ? "Commencer la partie"
     : "Reprendre la partie";
 }

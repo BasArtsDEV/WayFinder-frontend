@@ -1,3 +1,4 @@
+import { GAME_STATUS } from "../config.ts";
 import { useGame } from "../hooks/useGame.ts";
 import GameEnd from "./GameEnd.tsx";
 import GameRiddle from "./GameRiddle.tsx";
@@ -22,7 +23,7 @@ export default function Game({ enrollmentId }: GameProps) {
     return <div className="game-message">Chargement de la partie...</div>;
   }
 
-  if (game.status === "finished" || !game.riddle) {
+  if (game.status === GAME_STATUS.FINISHED || !game.riddle) {
     return <GameEnd game={game} />;
   }
 

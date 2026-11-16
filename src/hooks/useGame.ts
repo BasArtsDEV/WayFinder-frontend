@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { GameState } from "../../types/Game.ts";
+import { GAME_STATUS } from "../config.ts";
 import {
   getGameState,
   submitAnswer,
@@ -15,8 +16,11 @@ function getMessage(err: unknown): string {
 async function loadAndStartGame(enrollmentId: number): Promise<GameState> {
   const game = await getGameState(enrollmentId);
 
-  if (game.status === "not_started" || game.status === "paused") {
-    await updateGameStatus(enrollmentId, "in_progress");
+  if (
+    game.status === GAME_STATUS.NOT_STARTED ||
+    game.status === GAME_STATUS.PAUSED
+  ) {
+    await updateGameStatus(enrollmentId, GAME_STATUS.IN_PROGRESS);
     return getGameState(enrollmentId);
   }
 
@@ -46,7 +50,7 @@ export function useGame(enrollmentId: number) {
   }, [enrollmentId, applyGame]);
 
   useEffect(() => {
-    const isRunning = game?.status === "in_progress",
+    const isRunning = game?.status === GAME_STATUS.IN_PROGRESS,
       interval = setInterval(() => {
         if (isRunning) {
           setRemainingTime((current) => Math.max(0, current - 1));
@@ -59,7 +63,7 @@ export function useGame(enrollmentId: number) {
   }, [game]);
 
   useEffect(() => {
-    if (game?.status === "in_progress" && remainingTime === 0) {
+    if (game?.status === GAME_STATUS.IN_PROGRESS && remainingTime === 0) {
       refresh().catch((err: unknown) => {
         setError(getMessage(err));
       });
