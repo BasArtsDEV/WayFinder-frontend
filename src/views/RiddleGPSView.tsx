@@ -1,14 +1,17 @@
 import type { RiddleBaseProps } from "../../types/Riddle.ts";
 import RiddleFrame from "../components/RiddleFrame.tsx";
+import { type Coordinates, useGeolocation } from "../hooks/useGeolocation.ts";
 
 interface RiddleGPSViewProps extends RiddleBaseProps {
-  onValidateLocation: () => void;
+  onValidateLocation: (coordinates: Coordinates) => void;
 }
 
 /**
  * Riddle solved by going to a precise place.
  */
 function RiddleGPSView({ onValidateLocation, ...riddle }: RiddleGPSViewProps) {
+  const { locate } = useGeolocation(onValidateLocation);
+
   return (
     <RiddleFrame {...riddle}>
       <div className="riddle-actions">
@@ -29,7 +32,7 @@ function RiddleGPSView({ onValidateLocation, ...riddle }: RiddleGPSViewProps) {
         <button
           type="button"
           className="btn-app-primary riddle-actions__submit"
-          onClick={onValidateLocation}
+          onClick={locate}
         >
           <span className="btn-icon-wrapper">
             <img src="/icons/check.png" className="btn-action-icon" alt="" />
