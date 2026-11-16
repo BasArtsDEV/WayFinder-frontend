@@ -40,7 +40,7 @@ export default function FeedbacksList({ huntId }: FeedbacksListProps) {
 
       {error && <p className="feedbacks-empty">{error}</p>}
 
-      {!error && feedbacks.length === 0 && (
+      {!error && !feedbacks.length && (
         <p className="feedbacks-empty">Aucun avis pour le moment.</p>
       )}
 
