@@ -8,6 +8,12 @@ const API_BASE_URL = "https://localhost:8000/api",
     TREASURE_HUNTS: `${API_BASE_URL}/treasure_hunts`,
     USERS: `${API_BASE_URL}/users`,
   },
+  GAME_STATUS = {
+    FINISHED: "finished",
+    IN_PROGRESS: "in_progress",
+    NOT_STARTED: "not_started",
+    PAUSED: "paused",
+  } as const,
   ROUTES = {
     GAME: "/game",
     HOME: "/",
@@ -20,4 +26,4 @@ const API_BASE_URL = "https://localhost:8000/api",
     VERIFY_EMAIL: "/verify-email",
   };
 
-export { CONFIG, ROUTES };
+export { CONFIG, GAME_STATUS, ROUTES };
