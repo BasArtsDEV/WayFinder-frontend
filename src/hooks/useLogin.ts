@@ -26,7 +26,7 @@ export function useLogin() {
         setIsLoading(false);
         const userData = await getMe();
         setUser(userData);
-        setLocation(ROUTES.USER_VIEW);
+        setLocation(ROUTES.HOME);
       },
       (err: unknown) => {
         setIsLoading(false);
