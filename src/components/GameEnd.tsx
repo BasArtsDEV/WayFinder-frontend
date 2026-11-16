@@ -80,7 +80,7 @@ export default function GameEnd({ game }: GameEndProps) {
 
       <Link href={ROUTES.HOME} className="btn-app-primary game-end-home">
         <span className="btn-icon-wrapper">
-          <img src="/icons/home.png" className="btn-action-icon" alt="" />
+          <img src="/icons/home_white.png" className="btn-action-icon" alt="" />
         </span>
         <span>Retourner à l&apos;accueil</span>
       </Link>
