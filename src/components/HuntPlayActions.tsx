@@ -34,7 +34,9 @@ export default function HuntPlayActions({ hunt }: HuntPlayActionsProps) {
     return (
       <div className="hunt-play">
         <Link href={`~${ROUTES.LOGIN}`} className="btn-app-primary">
-          <i className="bi bi-box-arrow-in-right" aria-hidden="true"></i>
+          <span className="btn-icon-wrapper">
+            <i className="bi bi-box-arrow-in-right" aria-hidden="true"></i>
+          </span>
           <span>Se connecter pour jouer</span>
         </Link>
       </div>
@@ -48,7 +50,9 @@ export default function HuntPlayActions({ hunt }: HuntPlayActionsProps) {
           href={`~${ROUTES.GAME}/${enrollment.id.toString()}`}
           className="btn-app-primary"
         >
-          <i className="bi bi-play-circle-fill" aria-hidden="true"></i>
+          <span className="btn-icon-wrapper">
+            <i className="bi bi-play-circle-fill" aria-hidden="true"></i>
+          </span>
           <span>{getEnrollmentLabel(enrollment.status)}</span>
         </Link>
       </div>
@@ -88,7 +92,9 @@ export default function HuntPlayActions({ hunt }: HuntPlayActionsProps) {
         onClick={play}
         disabled={isLoading}
       >
-        <i className="bi bi-play-circle-fill" aria-hidden="true"></i>
+        <span className="btn-icon-wrapper">
+          <i className="bi bi-play-circle-fill" aria-hidden="true"></i>
+        </span>
         <span>{isLoading ? "Chargement..." : "Jouer"}</span>
       </button>
     </div>
