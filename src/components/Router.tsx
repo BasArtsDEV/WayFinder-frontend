@@ -10,6 +10,7 @@ import RiddleQRCodeView from "../views/RiddleQRCodeView.tsx";
 import RiddleTextView from "../views/RiddleTextView.tsx";
 import TreasureHuntsView from "../views/TreasureHuntsView.tsx";
 import UserProfileView from "../views/UserProfileView.tsx";
+import UserSettingsView from "../views/UserSettingsView.tsx";
 import VerifyEmailView from "../views/VerifyEmailView.tsx";
 import WelcomePageView from "../views/WelcomePageView.tsx";
 
@@ -106,6 +107,7 @@ function Router() {
       <Route path={ROUTES.REGISTER} component={RegisterView} />
       <Route path={ROUTES.VERIFY_EMAIL} component={VerifyEmailView} />
       <Route path={ROUTES.USER_VIEW} component={UserProfileView} />
+      <Route path={ROUTES.USER_SETTINGS} component={UserSettingsView} />
 
       <Route component={NotFoundView} />
     </Switch>

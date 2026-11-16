@@ -12,6 +12,7 @@ const API_BASE_URL = "https://localhost:8000/api",
     LOGIN: "/login",
     REGISTER: "/register",
     TEAMS: "/teams",
+    USER_SETTINGS: "/user/settings",
     USER_VIEW: "/user/me",
     VERIFY_EMAIL: "/verify-email",
   };
