@@ -1,4 +1,3 @@
-import "../../public/css/Feedbacks.css";
 import type { Feedback } from "../../types/Feedback.ts";
 import { getUserAvatar } from "../services/user.ts";
 import EnrollmentStars from "./EnrollmentStars.tsx";
@@ -12,22 +11,23 @@ export default function FeedbackCard({ enrollment }: FeedbackCardProps) {
 
   return (
     <li className="feedback-card">
-      <div className="feedback-data">
-        <div className="feedback-user">
-          <img
-            className="rounded-circle"
-            src={getUserAvatar(userId)}
-            alt={`Avatar de ${enrollment.user.username}`}
-          />
-          <p className="feedback__username">{enrollment.user.username}</p>
-        </div>
-
-        <div className="feedback-stars">
+      <div className="feedback-card-header">
+        <img
+          className="feedback-card-avatar"
+          src={getUserAvatar(userId)}
+          alt=""
+        />
+        <p className="feedback-card-username">{enrollment.user.username}</p>
+        <span
+          className="feedback-card-stars"
+          role="img"
+          aria-label={`${enrollment.nbStars.toString()} étoiles sur 5`}
+        >
           <EnrollmentStars averageRating={enrollment.nbStars} />
-        </div>
+        </span>
       </div>
 
-      <p className="feedback__content">{enrollment.feedback}</p>
+      <p className="feedback-card-content">{enrollment.feedback}</p>
     </li>
   );
 }

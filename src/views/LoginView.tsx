@@ -21,7 +21,7 @@ function LoginView() {
 
   useEffect(() => {
     if (user) {
-      setLocation(ROUTES.USER_VIEW);
+      setLocation(ROUTES.HOME);
     }
   }, [user]);
 

@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import JoinByCodeForm from "../components/JoinByCodeForm.tsx";
 import { ROUTES } from "../config.ts";
 import { useAuth } from "../contexts/AuthContext.ts";
 
@@ -27,25 +28,7 @@ function WelcomePageView() {
         <div className="home-divider"></div>
 
         {user ? (
-          <div className="button-container">
-            <input
-              id="code"
-              name="code"
-              type="text"
-              placeholder="Entrez un code"
-              className="input"
-            />
-
-            <button className="btn-app-primary">
-              <i className="bi bi-arrow-right-circle"></i>
-              <span>Rejoindre</span>
-            </button>
-
-            <Link to={ROUTES.HUNTS} className="btn-app-secondary">
-              <i className="bi bi-map text-success"></i>
-              <span>Voir les chasses</span>
-            </Link>
-          </div>
+          <JoinByCodeForm />
         ) : (
           <div className="button-container">
             <Link to={ROUTES.LOGIN} className="btn-app-primary">

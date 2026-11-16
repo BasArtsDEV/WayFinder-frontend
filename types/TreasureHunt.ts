@@ -14,6 +14,8 @@ export type TreasureHunt = ApiResourceBase & {
   enrollments: string[];
   riddles: object[];
   invitationCode: string;
+  listed: boolean;
+  duration: number;
   averageStars?: number;
 };
 

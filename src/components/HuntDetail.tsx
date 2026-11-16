@@ -1,103 +1,100 @@
-import { useEffect, useState } from "react";
 import { Link, useParams } from "wouter";
 import type { TreasureHunt } from "../../types/TreasureHunt.ts";
 import { ROUTES } from "../config.ts";
-import { getTreasureHuntById } from "../services/treasure-hunts.ts";
-import formatDate, { copyToClipboard } from "../utils/global.ts";
+import { useTreasureHunt } from "../hooks/useTreasureHunts.ts";
+import formatDate from "../utils/global.ts";
+import {
+  formatHuntDuration,
+  formatHuntRating,
+  formatRiddlesCount,
+} from "../utils/hunt.ts";
 import FeedbacksList from "./FeedbacksList.tsx";
+import HuntInvitationCode from "./HuntInvitationCode.tsx";
+import HuntPlayActions from "./HuntPlayActions.tsx";
+
+interface HuntStatProps {
+  icon: string;
+  label: string;
+  value: string;
+}
+
+function HuntStat({ icon, label, value }: HuntStatProps) {
+  return (
+    <div className="riddle-stat">
+      <i className={`bi ${icon} riddle-stat__icon`} aria-hidden="true"></i>
+      <div>
+        <span className="riddle-stat__label">{label}</span>
+        <span className="riddle-stat__value">{value}</span>
+      </div>
+    </div>
+  );
+}
+
+function HuntStats({ hunt }: { hunt: TreasureHunt }) {
+  return (
+    <div className="riddle-stats hunt-detail-stats">
+      <HuntStat
+        icon="bi-puzzle-fill"
+        label="Énigmes"
+        value={formatRiddlesCount(hunt)}
+      />
+      <HuntStat
+        icon="bi-star-fill"
+        label="Note"
+        value={formatHuntRating(hunt)}
+      />
+      <HuntStat
+        icon="bi-clock-fill"
+        label="Durée"
+        value={formatHuntDuration(hunt)}
+      />
+      <HuntStat
+        icon="bi-calendar-event-fill"
+        label="Créée le"
+        value={formatDate(hunt.creationDate)}
+      />
+    </div>
+  );
+}
 
 export default function HuntDetail() {
-  const [isLoading, setIsLoading] = useState<boolean>(true),
-    [error, setError] = useState<string | null>(null),
-    [hunt, setHunt] = useState<TreasureHunt | null>(null),
-    { id: huntIdParam } = useParams();
-
-  useEffect(() => {
-    if (!huntIdParam) return;
-
-    getTreasureHuntById(Number(huntIdParam))
-      .then((data: TreasureHunt) => {
-        setIsLoading(true);
-        setHunt(data);
-      })
-      .catch((err: unknown) => {
-        setHunt(null);
-        setError(
-          err instanceof Error
-            ? err.message
-            : "Une erreur est survenue. Veuillez réessayer plus tard.",
-        );
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [huntIdParam]);
-
-  if (isLoading) {
-    return <div>Chargement de la chasse au trésor...</div>;
-  }
-
-  if (error) {
-    return <div style={{ color: "red" }}>Erreur : {error}</div>;
-  }
-
-  if (!hunt) {
-    return <p>Pas de chasse trouvée.</p>;
-  }
-
-  // eslint-disable-next-line one-var
-  const riddlesCount: number = hunt.riddles.length,
-    teamId: string = hunt.team["@id"].split("/").pop() ?? "";
+  const { id } = useParams(),
+    { error, hunt, isLoading } = useTreasureHunt(Number(id));
 
   return (
-    <div className="hunt-detail-container">
-      <article className="hunt-detail">
-        <div className="hunt-detail__main">
-          <div className="hunt-detail__badges">
-            <span className="hunt-detail__badge hunt-detail__badge--count">
-              <i className="bi bi-layers-fill text-primary"></i>
-              {riddlesCount} {riddlesCount > 1 ? "énigmes" : "énigme"}
-            </span>
+    <article className="hunt-detail">
+      <Link href={`~${ROUTES.HUNTS}`} className="hunt-detail-back">
+        <i className="bi bi-arrow-left" aria-hidden="true"></i>
+        Toutes les chasses
+      </Link>
 
-            <span className="hunt-detail__badge hunt-detail__badge--count">
-              <i className="bi bi-star-fill text-warning"></i>
-              {hunt.averageStars?.toFixed(1)}
-            </span>
-          </div>
+      {isLoading && (
+        <p className="hunts-message">Chargement de la chasse au trésor...</p>
+      )}
 
-          <h2 className="hunt-detail__title">{hunt.title}</h2>
-          <p className="hunt-detail__description">{hunt.description}</p>
+      {error && (
+        <div className="alert alert-danger" role="alert">
+          {error}
         </div>
+      )}
 
-        <div className="hunt-detail__footer">
-          <p className="hunt-detail__team">
-            Créée par l&apos;équipe&nbsp;
-            <Link to={`~${ROUTES.TEAMS}/${teamId}`}>{hunt.team.name}</Link>
-          </p>
+      {hunt && (
+        <>
+          <header className="hunt-detail-hero">
+            <h1 className="hunt-detail-title">{hunt.title}</h1>
+            <p className="hunt-detail-team">
+              <i className="bi bi-people-fill" aria-hidden="true"></i>
+              Créée par {hunt.team.name}
+            </p>
+            <p className="hunt-detail-description">{hunt.description}</p>
+          </header>
 
-          <div className="hunt-detail__meta">
-            <div className="hunt-detail__meta-item">
-              <span>Création</span>
-              <p>le {formatDate(hunt.creationDate)}</p>
-            </div>
-
-            <div className="hunt-detail__meta-item">
-              <span>Code d&apos;invitation</span>
-              <p
-                onClick={() => {
-                  copyToClipboard(hunt.invitationCode);
-                }}
-                className="hunt-detail__code"
-              >
-                {hunt.invitationCode}
-                <i className="bi bi-clipboard text-success"></i>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <FeedbacksList huntId={hunt.id} />
-      </article>
-    </div>
+          <HuntStats hunt={hunt} />
+          <HuntInvitationCode code={hunt.invitationCode} />
+          <HuntPlayActions hunt={hunt} />
+          <FeedbacksList huntId={hunt.id} />
+        </>
+      )}
+    </article>
   );
 }
