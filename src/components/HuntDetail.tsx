@@ -5,6 +5,7 @@ import { ROUTES } from "../config.ts";
 import { getTreasureHuntById } from "../services/treasure-hunts.ts";
 import formatDate, { copyToClipboard } from "../utils/global.ts";
 import FeedbacksList from "./FeedbacksList.tsx";
+import HuntPlayActions from "./HuntPlayActions.tsx";
 
 export default function HuntDetail() {
   const [isLoading, setIsLoading] = useState<boolean>(true),
@@ -95,6 +96,8 @@ export default function HuntDetail() {
             </div>
           </div>
         </div>
+
+        <HuntPlayActions hunt={hunt} />
 
         <FeedbacksList huntId={hunt.id} />
       </article>
