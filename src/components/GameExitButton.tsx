@@ -1,5 +1,5 @@
 import { useLocation } from "wouter";
-import { ROUTES } from "../config.ts";
+import { GAME_STATUS, ROUTES } from "../config.ts";
 import { updateGameStatus } from "../services/game.ts";
 
 interface GameExitButtonProps {
@@ -8,14 +8,13 @@ interface GameExitButtonProps {
 
 export default function GameExitButton({ enrollmentId }: GameExitButtonProps) {
   const [, setLocation] = useLocation(),
+    goToHunts = () => {
+      setLocation(ROUTES.HUNTS);
+    },
     leaveGame = () => {
-      updateGameStatus(enrollmentId, "paused")
-        .catch(() => {
-          // La partie est déjà terminée ou en pause
-        })
-        .finally(() => {
-          setLocation(ROUTES.HUNTS);
-        });
+      updateGameStatus(enrollmentId, GAME_STATUS.PAUSED)
+        .then(goToHunts)
+        .catch(goToHunts);
     };
 
   return (
