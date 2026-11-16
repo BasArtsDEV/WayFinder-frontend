@@ -71,6 +71,9 @@
     --app-small-info-box-text: #000000;
 
     --app-box-background: #f0dfbb;
+
+    /* layout */
+    --app-content-max-width: 550px;
 }
 
 html,
@@ -96,6 +99,10 @@ body {
     display: flex;
     flex: 1;
     flex-direction: column;
+
+    width: 100%;
+    max-width: var(--app-content-max-width);
+    margin: 0 auto;
 }
 
 a {
