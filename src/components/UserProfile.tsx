@@ -69,7 +69,7 @@ export default function UserProfile({ user }: UserProfileProps) {
       </div>
 
       <div className="button-container">
-        <Link href="#" className="btn-app-primary">
+        <Link href={ROUTES.USER_SETTINGS} className="btn-app-primary">
           <div className="btn-icon-wrapper">
             <img
               src="/icons/pen.svg"
