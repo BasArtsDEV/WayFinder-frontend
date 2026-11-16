@@ -1,5 +1,7 @@
 import type { GameRiddle as GameRiddleData } from "../../types/Game.ts";
 import type { RiddleBaseProps } from "../../types/Riddle.ts";
+import type { Coordinates } from "../hooks/useGeolocation.ts";
+import RiddleGPSView from "../views/RiddleGPSView.tsx";
 import RiddleQCMView from "../views/RiddleQCMView.tsx";
 import RiddleTextView from "../views/RiddleTextView.tsx";
 import RiddleFrame from "./RiddleFrame.tsx";
@@ -50,6 +52,18 @@ export default function GameRiddle({
         }))}
         onSubmit={(choiceIds: string[]) => {
           onAnswer(JSON.stringify(choiceIds.map(Number)));
+        }}
+      />
+    );
+  }
+
+  if (riddle.type === "gps") {
+    return (
+      <RiddleGPSView
+        {...baseProps}
+        isLoading={isLoading}
+        onValidateLocation={({ latitude, longitude }: Coordinates) => {
+          onAnswer(JSON.stringify({ latitude, longitude }));
         }}
       />
     );
