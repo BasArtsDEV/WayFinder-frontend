@@ -10,7 +10,7 @@ interface RiddleGPSViewProps extends RiddleBaseProps {
  * Riddle solved by going to a precise place.
  */
 function RiddleGPSView({ onValidateLocation, ...riddle }: RiddleGPSViewProps) {
-  const { locate } = useGeolocation(onValidateLocation);
+  const { error, locate } = useGeolocation(onValidateLocation);
 
   return (
     <RiddleFrame {...riddle}>
@@ -28,6 +28,12 @@ function RiddleGPSView({ onValidateLocation, ...riddle }: RiddleGPSViewProps) {
             précis grâce aux indices ci-dessus.
           </p>
         </div>
+
+        {error && (
+          <div className="alert alert-danger riddle-error" role="alert">
+            {error}
+          </div>
+        )}
 
         <button
           type="button"
