@@ -59,7 +59,7 @@ interface ConstraintViolationResponse {
 async function getViolationsMessage(response: Response): Promise<string> {
   const body = (await response.json()) as ConstraintViolationResponse;
 
-  if (body.violations && body.violations.length > 0) {
+  if (body.violations?.length) {
     return body.violations.map((violation) => violation.message).join("\n");
   }
 
