@@ -185,3 +185,132 @@ p {
 
     background-color: #fff;
 }
+
+.user-menu {
+    position: relative;
+}
+
+.user-menu-trigger {
+    cursor: pointer;
+
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+
+    background: none;
+
+    transition: transform 0.2s;
+}
+
+.user-menu-trigger:hover {
+    transform: scale(1.05);
+}
+
+.user-menu-trigger:focus-visible {
+    outline: 3px solid var(--app-header-button-border);
+    outline-offset: 2px;
+}
+
+.user-menu-dropdown {
+    position: absolute;
+    z-index: 1000;
+    top: calc(100% + 0.5rem);
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    min-width: 13rem;
+    padding: 0.6rem;
+    border: 3px solid #000;
+    border-radius: 1.2rem;
+
+    background-color: var(--app-box-background);
+    box-shadow: 0 6px 16px rgb(0 0 0 / 20%);
+
+    animation: user-menu-in 0.15s ease-out;
+}
+
+@keyframes user-menu-in {
+    from {
+        transform: translateY(-4px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.user-menu-username {
+    overflow: hidden;
+
+    margin: 0 0 0.2rem;
+    padding: 0.2rem 0.6rem;
+
+    font-weight: 500;
+    color: var(--app-text);
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-menu-item {
+    cursor: pointer;
+
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+
+    width: 100%;
+    padding: 0.55rem 1rem;
+    border: none;
+    border-radius: 50px;
+
+    font-family: 'Lexend', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--app-button-secondary-text);
+
+    background-color: var(--app-button-secondary-background);
+
+    transition: background-color 0.3s;
+}
+
+.user-menu-item:hover,
+.user-menu-item:focus-visible {
+    color: var(--app-button-secondary-text);
+    background-color: var(--app-button-secondary-background-hover);
+}
+
+.user-menu-item-leave,
+.user-menu-item-leave:hover,
+.user-menu-item-leave:focus-visible {
+    color: var(--app-header-button-leave-text);
+}
+
+.user-menu-item-leave {
+    background-color: var(--app-header-button-leave-background);
+}
+
+.user-menu-item-leave:hover,
+.user-menu-item-leave:focus-visible {
+    background-color: #ffbcbc;
+}
+
+.user-menu-icon {
+    font-size: 1.3rem;
+    line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .user-menu-dropdown {
+        animation: none;
+    }
+
+    .user-menu-trigger {
+        transition: none;
+    }
+}

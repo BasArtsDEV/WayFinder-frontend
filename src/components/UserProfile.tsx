@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { ROUTES } from "../config.ts";
 import { getUserAvatar, type User } from "../services/user.ts";
+import LogoutButton from "./LogoutButton.tsx";
 
 interface UserProfileProps {
   user: User;
@@ -90,6 +91,8 @@ export default function UserProfile({ user }: UserProfileProps) {
           </div>
           <p className="btn-text">Retourner à l&apos;accueil</p>
         </Link>
+
+        <LogoutButton />
       </div>
     </div>
   );

@@ -171,6 +171,17 @@
     object-fit: contain;
 }
 
+.btn-logout {
+    width: 100%;
+}
+
+.btn-logout .btn-action-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
 @media (min-width: 769px) {
     .container {
         max-width: 550px;
