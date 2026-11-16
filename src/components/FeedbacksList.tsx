@@ -7,10 +7,15 @@ interface FeedbacksListProps {
   huntId: number;
 }
 
+const PREVIEW_COUNT = 3;
+
 export default function FeedbacksList({ huntId }: FeedbacksListProps) {
-  const [feedbacks, setFeedbacks] = useState<Feedback[] | null>(null),
+  const [feedbacks, setFeedbacks] = useState<Feedback[]>([]),
     [error, setError] = useState<string | null>(null),
-    [isOpen, setIsOpen] = useState<boolean>(false);
+    [isExpanded, setIsExpanded] = useState<boolean>(false),
+    visibleFeedbacks = isExpanded
+      ? feedbacks
+      : feedbacks.slice(0, PREVIEW_COUNT);
 
   useEffect(() => {
     getEnrollmentsByTreasureHunt(huntId)
@@ -18,51 +23,56 @@ export default function FeedbacksList({ huntId }: FeedbacksListProps) {
         setFeedbacks(data.member);
       })
       .catch((err: unknown) => {
-        setFeedbacks(null);
         setError(
           err instanceof Error
             ? err.message
-            : "Une erreur est survenue. Veuillez réessayer plus tard.",
+            : "Impossible de charger les avis pour le moment.",
         );
       });
   }, [huntId]);
 
-  if (error) {
-    return <div style={{ color: "red" }}>Erreur : {error}</div>;
-  }
-
-  if (!feedbacks) {
-    return null;
-  }
-
   return (
-    <>
-      <div style={{ paddingLeft: "2rem" }}>
-        {feedbacks.length ? (
-          <button
-            className="feedback-toggle-btn"
-            onClick={() => {
-              setIsOpen(!isOpen);
-            }}
-          >
-            <span className="feedback__count">{feedbacks.length} avis</span>
+    <section className="feedbacks" aria-labelledby="feedbacks-title">
+      <h2 id="feedbacks-title" className="feedbacks-title">
+        Avis des joueurs
+        <span className="feedbacks-count">{feedbacks.length}</span>
+      </h2>
 
-            {isOpen ? (
-              <i className="bi bi-arrow-down"></i>
-            ) : (
-              <i className="bi bi-arrow-up"></i>
-            )}
-          </button>
-        ) : (
-          <span className="feedback__count">Aucun avis</span>
-        )}
-      </div>
+      {error && <p className="feedbacks-empty">{error}</p>}
 
-      <ul className={`feedbacks-list${isOpen ? " is-open" : ""}`}>
-        {feedbacks.map((item: Feedback, index: number) => (
-          <FeedbackCard key={index} enrollment={item} />
+      {!error && feedbacks.length === 0 && (
+        <p className="feedbacks-empty">Aucun avis pour le moment.</p>
+      )}
+
+      <ul className="feedbacks-list" id="feedbacks-list">
+        {visibleFeedbacks.map((feedback: Feedback) => (
+          <FeedbackCard key={feedback.id} enrollment={feedback} />
         ))}
       </ul>
-    </>
+
+      {feedbacks.length > PREVIEW_COUNT && (
+        <button
+          type="button"
+          className="btn-app-secondary feedbacks-toggle"
+          aria-expanded={isExpanded}
+          aria-controls="feedbacks-list"
+          onClick={() => {
+            setIsExpanded(!isExpanded);
+          }}
+        >
+          <span className="btn-icon-wrapper">
+            <i
+              className={isExpanded ? "bi bi-chevron-up" : "bi bi-chevron-down"}
+              aria-hidden="true"
+            ></i>
+          </span>
+          <span>
+            {isExpanded
+              ? "Voir moins d'avis"
+              : `Voir les ${feedbacks.length.toString()} avis`}
+          </span>
+        </button>
+      )}
+    </section>
   );
 }
