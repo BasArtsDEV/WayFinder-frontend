@@ -25,14 +25,15 @@
     margin: 0;
 
     font-family: 'Lexend', serif;
-    font-size: 5rem;
+    font-size: 3.5rem;
     font-weight: 700;
     line-height: 1;
     color: var(--app-button-background);
 }
 
 .not-found-container > h1 {
-    margin: 0.5rem 0;
+    margin: 0.5rem 0 1rem;
+    font-size: 1.5rem;
     font-weight: 700;
     text-align: center;
 }
@@ -60,6 +61,6 @@
 
 @media (min-width: 769px) {
     .not-found-code {
-        font-size: 7rem;
+        font-size: 4.5rem;
     }
 }
