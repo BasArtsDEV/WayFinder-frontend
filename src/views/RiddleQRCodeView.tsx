@@ -1,15 +1,21 @@
 import type { RiddleBaseProps } from "../../types/Riddle.ts";
+import Loader from "../components/Loader.tsx";
 import RiddleFrame from "../components/RiddleFrame.tsx";
 import { useQRCodeScanner } from "../hooks/useQRCodeScanner.ts";
 
 interface RiddleQRCodeViewProps extends RiddleBaseProps {
+  isLoading: boolean;
   onScan: (value: string) => void;
 }
 
 /**
  * Riddle solved by finding and scanning a QR code.
  */
-function RiddleQRCodeView({ onScan, ...riddle }: RiddleQRCodeViewProps) {
+function RiddleQRCodeView({
+  isLoading,
+  onScan,
+  ...riddle
+}: RiddleQRCodeViewProps) {
   const { error, isScanning, start, stop, videoRef } = useQRCodeScanner(onScan);
 
   return (
@@ -62,8 +68,15 @@ function RiddleQRCodeView({ onScan, ...riddle }: RiddleQRCodeViewProps) {
             type="button"
             className="btn-app-primary riddle-actions__submit"
             onClick={start}
+            disabled={isLoading}
           >
-            <i className="bi bi-camera-fill" aria-hidden="true"></i>
+            <span className="btn-icon-wrapper">
+              {isLoading ? (
+                <Loader isSmall />
+              ) : (
+                <i className="bi bi-camera-fill" aria-hidden="true"></i>
+              )}
+            </span>
             <span>Scanner un QR Code</span>
           </button>
         )}
