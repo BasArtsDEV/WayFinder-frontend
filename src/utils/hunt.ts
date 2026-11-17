@@ -16,7 +16,7 @@ export function formatRiddlesCount(hunt: TreasureHunt): string {
  * Function to format the time limit of a hunt (e.g: 1 heure et 30 minutes)
  */
 export function formatHuntDuration(hunt: TreasureHunt): string {
-  return formatRemainingTime(Math.round(hunt.duration / 60));
+  return formatRemainingTime(hunt.duration);
 }
 
 /**

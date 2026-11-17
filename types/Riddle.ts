@@ -6,7 +6,7 @@ export interface RiddleBaseProps {
   description: string;
   imageUrl?: string;
   rank: number;
-  remainingMinutes: number;
+  remainingSeconds: number;
   score: number;
   step: number;
   title: string;
