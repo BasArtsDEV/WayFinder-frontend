@@ -58,6 +58,8 @@ export interface UserUpdateData {
   firstName: string;
   lastName: string;
   password?: string;
+  timezone: string;
+  username: string;
 }
 
 interface ConstraintViolationResponse {
