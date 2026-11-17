@@ -14,7 +14,7 @@ function RiddleFrame({
   imageUrl,
   question,
   rank,
-  remainingMinutes,
+  remainingSeconds,
   score,
   step,
   title,
@@ -33,7 +33,7 @@ function RiddleFrame({
           <div>
             <span className="riddle-stat__label">Temps restant</span>
             <span className="riddle-stat__value">
-              {formatRemainingTime(remainingMinutes)}
+              {formatRemainingTime(remainingSeconds)}
             </span>
           </div>
         </div>
