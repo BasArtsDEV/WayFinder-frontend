@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "wouter";
 import { ROUTES } from "../config.ts";
 import FormField from "./FormField.tsx";
+import Loader from "./Loader.tsx";
 import PasswordField from "./PasswordField.tsx";
 
 interface RegisterFormFieldsProps {
@@ -124,7 +125,11 @@ function RegisterFormActions({ isLoading }: { isLoading: boolean }) {
       <div className="form-submit">
         <button type="submit" className="btn-app-primary" disabled={isLoading}>
           <span className="btn-icon-wrapper">
-            <img src="/icons/check.png" className="btn-action-icon" alt="" />
+            {isLoading ? (
+              <Loader isSmall />
+            ) : (
+              <img src="/icons/check.png" className="btn-action-icon" alt="" />
+            )}
           </span>
           <span>{isLoading ? "Inscription..." : "Valider"}</span>
         </button>

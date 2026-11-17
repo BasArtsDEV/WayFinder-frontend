@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import FormField from "../components/FormField.tsx";
+import Loader from "../components/Loader.tsx";
 import PasswordField from "../components/PasswordField.tsx";
 import { ROUTES } from "../config.ts";
 import { useAuth } from "../contexts/AuthContext.ts";
@@ -71,11 +72,15 @@ function LoginView() {
               disabled={isLoading}
             >
               <span className="btn-icon-wrapper">
-                <img
-                  src="/icons/check.png"
-                  className="btn-action-icon"
-                  alt="Icône de validation de l'inscription"
-                />
+                {isLoading ? (
+                  <Loader isSmall />
+                ) : (
+                  <img
+                    src="/icons/check.png"
+                    className="btn-action-icon"
+                    alt="Icône de validation de l'inscription"
+                  />
+                )}
               </span>
               <span>{isLoading ? "Connexion..." : "Valider"}</span>
             </button>
