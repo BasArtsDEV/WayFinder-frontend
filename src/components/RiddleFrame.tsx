@@ -1,16 +1,13 @@
 import type { ReactNode } from "react";
 import type { RiddleBaseProps } from "../../types/Riddle.ts";
 import { formatRank, formatRemainingTime } from "../utils/riddle.ts";
+import ProgressBar from "./ProgressBar";
 
 interface RiddleFrameProps extends RiddleBaseProps {
   children: ReactNode;
   question?: string;
 }
 
-/**
- * Common layout of every riddle view: step, time / score / rank, riddle card.
- * The part that changes between views (answer field, scan button...) is given as children.
- */
 function RiddleFrame({
   children,
   description,
@@ -25,9 +22,7 @@ function RiddleFrame({
 }: RiddleFrameProps) {
   return (
     <section className="riddle-view">
-      <p className="riddle-step">
-        Étape {step} sur {totalSteps}
-      </p>
+      <ProgressBar step={step} totalSteps={totalSteps} />
 
       <div className="riddle-stats">
         <div className="riddle-stat riddle-stat--wide">
