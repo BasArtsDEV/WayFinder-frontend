@@ -1,19 +1,35 @@
 import { Link } from "wouter";
 import { ROUTES } from "../config.ts";
 
-/**
- * Displayed view if used route doesn't exist (Erreur 404)
- */
 function NotFoundView() {
   return (
-    <div style={{ padding: "3rem", textAlign: "center" }}>
-      <div style={{ padding: "2rem", textAlign: "center" }}>
-        <h2>Erreur 404 : Page non trouvée</h2>
-      </div>
+    <div className="notfoundview">
+      <div className="not-found-container">
+        <img className="not-found-icon" src="/icons/app-icon.png" alt="" />
 
-      <Link className="link_btn" href={ROUTES.HOME}>
-        Retourner à l&apos;accueil
-      </Link>
+        <p className="not-found-code" aria-hidden="true">
+          404
+        </p>
+        <h1>Page introuvable</h1>
+
+        <div className="not-found-box">
+          <p>
+            Oups, vous vous êtes égaré ! La page que vous cherchez n&apos;existe
+            pas ou a été déplacée.
+          </p>
+
+          <Link href={ROUTES.HOME} className="btn-app-primary">
+            <span className="btn-icon-wrapper">
+              <img
+                className="btn-action-icon"
+                src="/icons/home_white.png"
+                alt=""
+              />
+            </span>
+            <span>Retourner à l&apos;accueil</span>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

@@ -85,7 +85,7 @@
 
     color: var(--app-text);
 
-    background-color: #c8ae7a;
+    background-color: var(--app-box-background);
 
     transition: border-color 0.2s;
 }
