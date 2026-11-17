@@ -10,6 +10,8 @@ export interface User {
   firstName: string;
   lastName: string;
   createdAt: string;
+  isVerified: boolean;
+  timezone: string;
 }
 
 /**
@@ -17,6 +19,13 @@ export interface User {
  */
 export function getUserAvatar(userId: string): string {
   return `${CONFIG.BASE_URL}/users/${userId}/avatar`;
+}
+
+/**
+ * Returns the URL of the User's banner
+ */
+export function getUserBanner(userId: string): string {
+  return `${CONFIG.BASE_URL}/users/${userId}/banner`;
 }
 
 /**
