@@ -173,6 +173,12 @@
 
 .btn-logout {
     width: 100%;
+    color: #fff !important;
+    background-color: #d93636 !important;
+}
+
+.btn-logout:hover {
+    background-color: #b82c2c !important;
 }
 
 .btn-logout .btn-action-icon {
