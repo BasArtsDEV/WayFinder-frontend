@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
+import Loader from "../components/Loader.tsx";
 import UserSettings from "../components/UserSettings.tsx";
 import { ROUTES } from "../config.ts";
 import { useAuth } from "../contexts/AuthContext.ts";
@@ -15,7 +16,7 @@ function UserSettingsView() {
   }, [isLoading, user]);
 
   if (isLoading || !user) {
-    return <div>Chargement de vos paramètres.</div>;
+    return <Loader label="Chargement de vos paramètres..." />;
   }
 
   return (

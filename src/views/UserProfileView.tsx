@@ -1,4 +1,5 @@
 import { useLocation } from "wouter";
+import Loader from "../components/Loader.tsx";
 import UserProfile from "../components/UserProfile.tsx";
 import { ROUTES } from "../config.ts";
 import { useAuth } from "../contexts/AuthContext.ts";
@@ -8,7 +9,7 @@ function UserProfileView() {
     [, setLocation] = useLocation();
 
   if (isLoading) {
-    return <div>Chargement de votre profil.</div>;
+    return <Loader label="Chargement de votre profil..." />;
   }
 
   if (error || !user) {

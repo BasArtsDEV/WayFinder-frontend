@@ -5,6 +5,7 @@ import { useTreasureHunts } from "../hooks/useTreasureHunts.ts";
 import { filterHunts, type HuntSort } from "../utils/hunt.ts";
 import Hunt from "./Hunt.tsx";
 import HuntsToolbar from "./HuntsToolbar.tsx";
+import Loader from "./Loader.tsx";
 
 export default function HuntsList() {
   const { error, hunts, isLoading } = useTreasureHunts(),
@@ -29,9 +30,7 @@ export default function HuntsList() {
         onSortChange={setSort}
       />
 
-      {isLoading && (
-        <p className="hunts-message">Chargement des chasses au trésor...</p>
-      )}
+      {isLoading && <Loader label="Chargement des chasses au trésor..." />}
 
       {error && (
         <div className="alert alert-danger" role="alert">

@@ -4,6 +4,7 @@ import { ROUTES } from "../config.ts";
 import { useSettings } from "../hooks/useSettings.ts";
 import type { User } from "../services/user.ts";
 import FormField from "./FormField.tsx";
+import Loader from "./Loader.tsx";
 import PasswordField from "./PasswordField.tsx";
 
 interface SettingsSectionProps {
@@ -29,11 +30,15 @@ function SettingsActions({ isLoading }: { isLoading: boolean }) {
     <div className="settings-actions">
       <button type="submit" className="btn-app-primary" disabled={isLoading}>
         <span className="btn-icon-wrapper">
-          <img
-            src="/icons/check.png"
-            className="btn-action-icon"
-            alt="Icône de validation"
-          />
+          {isLoading ? (
+            <Loader isSmall />
+          ) : (
+            <img
+              src="/icons/check.png"
+              className="btn-action-icon"
+              alt="Icône de validation"
+            />
+          )}
         </span>
         <span>{isLoading ? "Enregistrement..." : "Valider"}</span>
       </button>

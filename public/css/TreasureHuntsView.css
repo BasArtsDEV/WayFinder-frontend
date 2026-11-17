@@ -63,11 +63,6 @@
 }
 
 .hunts-count,
-.hunts-message {
-    margin: 0;
-    font-weight: 500;
-}
-
 .hunts-list {
     display: flex;
     flex-direction: column;
