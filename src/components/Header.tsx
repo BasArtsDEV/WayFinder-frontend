@@ -2,8 +2,8 @@ import type { ReactNode } from "react";
 import { Link, useRoute } from "wouter";
 import { ROUTES } from "../config.ts";
 import { useAuth } from "../contexts/AuthContext.ts";
-import { getUserAvatar } from "../services/user.ts";
 import GameExitButton from "./GameExitButton.tsx";
+import UserMenu from "./UserMenu.tsx";
 
 /**
  * Application header component
@@ -28,15 +28,7 @@ function Header({ children }: { children: ReactNode }) {
         </div>
 
         {user ? (
-          <Link to={ROUTES.USER_VIEW} className="avatar-section">
-            <div className="header-avatar-circle">
-              <img
-                src={getUserAvatar(user.id.toString())}
-                alt={`Avatar de ${user.username}`}
-                className="avatar-field-icon"
-              />
-            </div>
-          </Link>
+          <UserMenu user={user} />
         ) : (
           <Link to={ROUTES.LOGIN}>
             <div className="header-element">
