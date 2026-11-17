@@ -9,7 +9,7 @@ interface GameProps {
 }
 
 export default function Game({ enrollmentId }: GameProps) {
-  const { answer, error, feedback, game, remainingTime } =
+  const { answer, error, feedback, game, isAnswering, remainingTime } =
     useGame(enrollmentId);
 
   if (error) {
@@ -39,6 +39,7 @@ export default function Game({ enrollmentId }: GameProps) {
       <GameRiddle
         key={game.riddle.iri}
         riddle={game.riddle}
+        isLoading={isAnswering}
         onAnswer={answer}
         rank={game.rank}
         remainingMinutes={Math.ceil(remainingTime / 60)}

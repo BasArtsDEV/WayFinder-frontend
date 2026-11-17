@@ -1,8 +1,10 @@
 import { type SubmitEvent, useState } from "react";
 import type { RiddleBaseProps } from "../../types/Riddle.ts";
+import Loader from "../components/Loader.tsx";
 import RiddleFrame from "../components/RiddleFrame.tsx";
 
 interface RiddleTextViewProps extends RiddleBaseProps {
+  isLoading: boolean;
   onSubmit: (answer: string) => void;
   question: string;
 }
@@ -11,6 +13,7 @@ interface RiddleTextViewProps extends RiddleBaseProps {
  * Riddle answered with free text.
  */
 function RiddleTextView({
+  isLoading,
   onSubmit,
   question,
   ...riddle
@@ -47,10 +50,14 @@ function RiddleTextView({
         <button
           type="submit"
           className="btn-app-primary riddle-actions__submit"
-          disabled={!canSubmit}
+          disabled={!canSubmit || isLoading}
         >
           <span className="btn-icon-wrapper">
-            <img src="/icons/check.png" className="btn-action-icon" alt="" />
+            {isLoading ? (
+              <Loader isSmall />
+            ) : (
+              <img src="/icons/check.png" className="btn-action-icon" alt="" />
+            )}
           </span>
           <span>Valider</span>
         </button>
