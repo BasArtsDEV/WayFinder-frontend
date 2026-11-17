@@ -54,8 +54,6 @@ export default function UserMenu({ user }: { user: User }) {
 
       {isOpen && (
         <div className="user-menu-dropdown" role="menu">
-          <p className="user-menu-username">@{user.username}</p>
-
           <Link
             href={ROUTES.USER_VIEW}
             className="user-menu-item"
@@ -65,7 +63,19 @@ export default function UserMenu({ user }: { user: User }) {
             }}
           >
             <i className="bi bi-person-fill user-menu-icon"></i>
-            Mon profil
+            Profil
+          </Link>
+
+          <Link
+            href={ROUTES.USER_SETTINGS}
+            className="user-menu-item"
+            role="menuitem"
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          >
+            <i className="bi bi-gear-fill user-menu-icon"></i>
+            Paramètres
           </Link>
 
           <button
@@ -78,7 +88,7 @@ export default function UserMenu({ user }: { user: User }) {
             }}
           >
             <i className="bi bi-box-arrow-right user-menu-icon"></i>
-            Se déconnecter
+            Déconnexion
           </button>
         </div>
       )}
