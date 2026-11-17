@@ -10,7 +10,7 @@ interface RiddleQRCodeViewProps extends RiddleBaseProps {
  * Riddle solved by finding and scanning a QR code.
  */
 function RiddleQRCodeView({ onScan, ...riddle }: RiddleQRCodeViewProps) {
-  const { isScanning, start, stop, videoRef } = useQRCodeScanner(onScan);
+  const { error, isScanning, start, stop, videoRef } = useQRCodeScanner(onScan);
 
   return (
     <RiddleFrame {...riddle}>
@@ -39,6 +39,12 @@ function RiddleQRCodeView({ onScan, ...riddle }: RiddleQRCodeViewProps) {
               Afin de continuer votre quête, vous devez chercher un QR Code
               grâce aux indices ci-dessus.
             </p>
+          </div>
+        )}
+
+        {error && (
+          <div className="alert alert-danger riddle-error" role="alert">
+            {error}
           </div>
         )}
 
