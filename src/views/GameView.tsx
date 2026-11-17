@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useParams } from "wouter";
 import Game from "../components/Game.tsx";
+import Loader from "../components/Loader.tsx";
 import { ROUTES } from "../config.ts";
 import { useAuth } from "../contexts/AuthContext.ts";
 
@@ -16,7 +17,7 @@ function GameView() {
   }, [isLoading, user]);
 
   if (isLoading || !user || !id) {
-    return <div className="game-message">Chargement de la partie...</div>;
+    return <Loader label="Chargement de la partie..." />;
   }
 
   return (

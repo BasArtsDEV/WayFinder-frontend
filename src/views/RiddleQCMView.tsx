@@ -1,10 +1,12 @@
 import { type SubmitEvent, useState } from "react";
 import type { RiddleBaseProps, RiddleChoice } from "../../types/Riddle.ts";
+import Loader from "../components/Loader.tsx";
 import RiddleFrame from "../components/RiddleFrame.tsx";
 
 interface RiddleQCMViewProps extends RiddleBaseProps {
   answersCount: number;
   choices: RiddleChoice[];
+  isLoading: boolean;
   onSubmit: (choiceIds: string[]) => void;
   question: string;
 }
@@ -15,6 +17,7 @@ interface RiddleQCMViewProps extends RiddleBaseProps {
 function RiddleQCMView({
   answersCount,
   choices,
+  isLoading,
   onSubmit,
   question,
   ...riddle
@@ -90,10 +93,14 @@ function RiddleQCMView({
         <button
           type="submit"
           className="btn-app-primary riddle-actions__submit"
-          disabled={!canSubmit}
+          disabled={!canSubmit || isLoading}
         >
           <span className="btn-icon-wrapper">
-            <img src="/icons/check.png" className="btn-action-icon" alt="" />
+            {isLoading ? (
+              <Loader isSmall />
+            ) : (
+              <img src="/icons/check.png" className="btn-action-icon" alt="" />
+            )}
           </span>
           <span>Valider</span>
         </button>

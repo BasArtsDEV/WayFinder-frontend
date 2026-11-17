@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
+import Loader from "../components/Loader.tsx";
 import { ROUTES } from "../config.ts";
 import { verifyEmail } from "../services/authService";
 
@@ -47,17 +48,7 @@ function VerifyEmailView() {
             <div className="card-body p-5 text-center">
               <h2 className="mb-4">Vérification de l'email</h2>
 
-              {status === "loading" && (
-                <div className="my-5">
-                  <div
-                    className="spinner-border text-primary mb-3"
-                    role="status"
-                  >
-                    <span className="visually-hidden">Loading...</span>
-                  </div>
-                  <p className="text-muted">{message}</p>
-                </div>
-              )}
+              {status === "loading" && <Loader label={message} />}
 
               {status === "success" && (
                 <div className="alert alert-success mb-4" role="alert">

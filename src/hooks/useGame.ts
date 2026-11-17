@@ -32,6 +32,7 @@ export function useGame(enrollmentId: number) {
     [error, setError] = useState<string | null>(null),
     [feedback, setFeedback] = useState<string | null>(null),
     [remainingTime, setRemainingTime] = useState<number>(0),
+    [isAnswering, setIsAnswering] = useState<boolean>(false),
     isSubmitting = useRef<boolean>(false),
     applyGame = useCallback((state: GameState) => {
       setGame(state);
@@ -76,6 +77,7 @@ export function useGame(enrollmentId: number) {
     }
 
     isSubmitting.current = true;
+    setIsAnswering(true);
     setFeedback(null);
 
     submitAnswer(game.enrollment, game.riddle.iri, value)
@@ -91,11 +93,15 @@ export function useGame(enrollmentId: number) {
       })
       .finally(() => {
         isSubmitting.current = false;
-        refresh().catch((err: unknown) => {
-          setError(getMessage(err));
-        });
+        refresh()
+          .catch((err: unknown) => {
+            setError(getMessage(err));
+          })
+          .finally(() => {
+            setIsAnswering(false);
+          });
       });
   }
 
-  return { answer, error, feedback, game, remainingTime };
+  return { answer, error, feedback, game, isAnswering, remainingTime };
 }
