@@ -10,9 +10,11 @@ import {
 import { isPasswordValid, PASSWORD_RULES_MESSAGE } from "../utils/password.ts";
 
 export function useSettings(user: User) {
-  const [firstName, setFirstName] = useState(user.firstName),
+  const [username, setUsername] = useState(user.username),
+    [firstName, setFirstName] = useState(user.firstName),
     [lastName, setLastName] = useState(user.lastName),
     [email, setEmail] = useState(user.email),
+    [timezone, setTimezone] = useState(user.timezone),
     [password, setPassword] = useState(""),
     [confirmPassword, setConfirmPassword] = useState(""),
     [error, setError] = useState<string | null>(null),
@@ -38,7 +40,13 @@ export function useSettings(user: User) {
     setError(null);
 
     const passwordError = getPasswordError(),
-      data: UserUpdateData = { email, firstName, lastName };
+      data: UserUpdateData = {
+        email,
+        firstName,
+        lastName,
+        timezone,
+        username,
+      };
 
     if (passwordError) {
       setError(passwordError);
@@ -81,6 +89,10 @@ export function useSettings(user: User) {
       setFirstName,
       setLastName,
       setPassword,
+      setTimezone,
+      setUsername,
+      timezone,
+      username,
     },
     handleSubmit,
     isLoading,

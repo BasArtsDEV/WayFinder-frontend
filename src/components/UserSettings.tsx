@@ -53,6 +53,84 @@ function SettingsActions({ isLoading }: { isLoading: boolean }) {
   );
 }
 
+type SettingsFields = ReturnType<typeof useSettings>["fields"];
+
+const TIMEZONES = Intl.supportedValuesOf("timeZone");
+
+function IdentitySection({ fields }: { fields: SettingsFields }) {
+  return (
+    <SettingsSection icon="bi-person-fill" title="Identité">
+      <FormField
+        label="Pseudo"
+        type="text"
+        name="username"
+        id="username"
+        placeholder="Pseudo"
+        value={fields.username}
+        onChange={(event) => {
+          fields.setUsername(event.target.value);
+        }}
+      />
+      <div className="form-field-row">
+        <FormField
+          label="Prénom"
+          type="text"
+          name="firstName"
+          id="firstName"
+          placeholder="Prénom"
+          value={fields.firstName}
+          onChange={(event) => {
+            fields.setFirstName(event.target.value);
+          }}
+        />
+        <FormField
+          label="Nom"
+          type="text"
+          name="lastName"
+          id="lastName"
+          placeholder="Nom"
+          value={fields.lastName}
+          onChange={(event) => {
+            fields.setLastName(event.target.value);
+          }}
+        />
+      </div>
+    </SettingsSection>
+  );
+}
+
+function TimezoneSection({ fields }: { fields: SettingsFields }) {
+  const timezones = TIMEZONES.includes(fields.timezone)
+    ? TIMEZONES
+    : [fields.timezone, ...TIMEZONES];
+
+  return (
+    <SettingsSection icon="bi-globe2" title="Fuseau horaire">
+      <div className="form-field">
+        <label htmlFor="timezone" className="visually-hidden">
+          Fuseau horaire
+        </label>
+        <div className="form-field-input">
+          <select
+            id="timezone"
+            name="timezone"
+            value={fields.timezone}
+            onChange={(event) => {
+              fields.setTimezone(event.target.value);
+            }}
+          >
+            {timezones.map((timezone) => (
+              <option key={timezone} value={timezone}>
+                {timezone.replaceAll("_", " ")}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+    </SettingsSection>
+  );
+}
+
 interface UserSettingsProps {
   user: User;
 }
@@ -71,32 +149,7 @@ export default function UserSettings({ user }: UserSettingsProps) {
           </div>
         )}
 
-        <SettingsSection icon="bi-person-fill" title="Identité">
-          <div className="form-field-row">
-            <FormField
-              label="Prénom"
-              type="text"
-              name="firstName"
-              id="firstName"
-              placeholder="Prénom"
-              value={fields.firstName}
-              onChange={(event) => {
-                fields.setFirstName(event.target.value);
-              }}
-            />
-            <FormField
-              label="Nom"
-              type="text"
-              name="lastName"
-              id="lastName"
-              placeholder="Nom"
-              value={fields.lastName}
-              onChange={(event) => {
-                fields.setLastName(event.target.value);
-              }}
-            />
-          </div>
-        </SettingsSection>
+        <IdentitySection fields={fields} />
 
         <SettingsSection icon="bi-envelope-fill" title="Adresse e-mail">
           <FormField
@@ -136,6 +189,8 @@ export default function UserSettings({ user }: UserSettingsProps) {
             }}
           />
         </SettingsSection>
+
+        <TimezoneSection fields={fields} />
 
         <SettingsActions isLoading={isLoading} />
       </form>

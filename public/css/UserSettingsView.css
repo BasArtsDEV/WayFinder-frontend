@@ -67,9 +67,27 @@
     font-size: 1rem;
 }
 
-.settings-section .form-field-input > input {
+.settings-section .form-field-input > input,
+.settings-section .form-field-input > select {
     width: 100%;
     padding: 0.75rem 1rem;
+}
+
+.settings-section .form-field-input > select {
+    cursor: pointer;
+
+    border: 2px solid var(--app-input-border);
+    border-radius: 50px;
+
+    font-family: 'Lexend', serif;
+    font-weight: 300;
+
+    background-color: var(--app-input-background);
+}
+
+.settings-section .form-field-input > select:focus-visible {
+    outline: 3px solid var(--app-button-background);
+    outline-offset: 2px;
 }
 
 .settings-actions {
