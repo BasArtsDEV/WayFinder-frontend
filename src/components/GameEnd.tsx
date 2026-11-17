@@ -52,7 +52,7 @@ export default function GameEnd({ game }: GameEndProps) {
           <GameEndStat
             icon="bi-clock-fill"
             label="Temps restant"
-            value={formatRemainingTime(Math.floor(game.remainingTime / 60))}
+            value={formatRemainingTime(game.remainingTime)}
             wide
           />
         )}

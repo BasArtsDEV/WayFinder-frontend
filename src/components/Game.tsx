@@ -42,7 +42,7 @@ export default function Game({ enrollmentId }: GameProps) {
         isLoading={isAnswering}
         onAnswer={answer}
         rank={game.rank}
-        remainingMinutes={Math.ceil(remainingTime / 60)}
+        remainingSeconds={Math.ceil(remainingTime)}
         score={game.score}
         step={game.step}
         totalSteps={game.totalSteps}
