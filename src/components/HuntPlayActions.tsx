@@ -3,6 +3,7 @@ import type { GameStatus } from "../../types/Game.ts";
 import type { TreasureHunt } from "../../types/TreasureHunt.ts";
 import { GAME_STATUS, ROUTES } from "../config.ts";
 import { useHuntPlay } from "../hooks/useHuntPlay.ts";
+import Loader from "./Loader.tsx";
 
 interface HuntPlayActionsProps {
   hunt: TreasureHunt;
@@ -93,7 +94,11 @@ export default function HuntPlayActions({ hunt }: HuntPlayActionsProps) {
         disabled={isLoading}
       >
         <span className="btn-icon-wrapper">
-          <i className="bi bi-play-circle-fill" aria-hidden="true"></i>
+          {isLoading ? (
+            <Loader isSmall />
+          ) : (
+            <i className="bi bi-play-circle-fill" aria-hidden="true"></i>
+          )}
         </span>
         <span>{isLoading ? "Chargement..." : "Jouer"}</span>
       </button>

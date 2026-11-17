@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Feedback, FeedbacksCollection } from "../../types/Feedback.ts";
 import getEnrollmentsByTreasureHunt from "../services/enrollments.ts";
 import FeedbackCard from "./FeedbackCard.tsx";
+import Loader from "./Loader.tsx";
 
 interface FeedbacksListProps {
   huntId: number;
@@ -13,6 +14,7 @@ export default function FeedbacksList({ huntId }: FeedbacksListProps) {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]),
     [error, setError] = useState<string | null>(null),
     [isExpanded, setIsExpanded] = useState<boolean>(false),
+    [isLoading, setIsLoading] = useState<boolean>(true),
     visibleFeedbacks = isExpanded
       ? feedbacks
       : feedbacks.slice(0, PREVIEW_COUNT);
@@ -28,6 +30,9 @@ export default function FeedbacksList({ huntId }: FeedbacksListProps) {
             ? err.message
             : "Impossible de charger les avis pour le moment.",
         );
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [huntId]);
 
@@ -38,9 +43,11 @@ export default function FeedbacksList({ huntId }: FeedbacksListProps) {
         <span className="feedbacks-count">{feedbacks.length}</span>
       </h2>
 
+      {isLoading && <Loader label="Chargement des avis..." />}
+
       {error && <p className="feedbacks-empty">{error}</p>}
 
-      {!error && !feedbacks.length && (
+      {!isLoading && !error && !feedbacks.length && (
         <p className="feedbacks-empty">Aucun avis pour le moment.</p>
       )}
 

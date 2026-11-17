@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { ROUTES } from "../config.ts";
 import { useJoinByCode } from "../hooks/useJoinByCode.ts";
+import Loader from "./Loader.tsx";
 
 export default function JoinByCodeForm() {
   const { code, error, handleSubmit, isLoading, setCode } = useJoinByCode();
@@ -32,7 +33,11 @@ export default function JoinByCodeForm() {
 
       <button type="submit" className="btn-app-primary" disabled={isLoading}>
         <span className="btn-icon-wrapper">
-          <img className="btn-action-icon" src="/icons/enter.png" alt="" />
+          {isLoading ? (
+            <Loader isSmall />
+          ) : (
+            <img className="btn-action-icon" src="/icons/enter.png" alt="" />
+          )}
         </span>
         <span>{isLoading ? "Recherche..." : "Rejoindre"}</span>
       </button>

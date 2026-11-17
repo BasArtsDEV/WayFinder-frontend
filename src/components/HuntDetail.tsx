@@ -11,6 +11,7 @@ import {
 import FeedbacksList from "./FeedbacksList.tsx";
 import HuntInvitationCode from "./HuntInvitationCode.tsx";
 import HuntPlayActions from "./HuntPlayActions.tsx";
+import Loader from "./Loader.tsx";
 
 interface HuntStatProps {
   icon: string;
@@ -68,9 +69,7 @@ export default function HuntDetail() {
         Toutes les chasses
       </Link>
 
-      {isLoading && (
-        <p className="hunts-message">Chargement de la chasse au trésor...</p>
-      )}
+      {isLoading && <Loader label="Chargement de la chasse au trésor..." />}
 
       {error && (
         <div className="alert alert-danger" role="alert">

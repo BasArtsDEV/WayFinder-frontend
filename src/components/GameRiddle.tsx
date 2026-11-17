@@ -8,11 +8,13 @@ type GameRiddleProps = Omit<
   RiddleBaseProps,
   "description" | "imageUrl" | "title"
 > & {
+  isLoading: boolean;
   onAnswer: (value: string) => void;
   riddle: GameRiddleData;
 };
 
 export default function GameRiddle({
+  isLoading,
   onAnswer,
   riddle,
   ...stats
@@ -28,6 +30,7 @@ export default function GameRiddle({
     return (
       <RiddleTextView
         {...baseProps}
+        isLoading={isLoading}
         question={riddle.question ?? ""}
         onSubmit={onAnswer}
       />
@@ -38,6 +41,7 @@ export default function GameRiddle({
     return (
       <RiddleQCMView
         {...baseProps}
+        isLoading={isLoading}
         question={riddle.question ?? ""}
         answersCount={riddle.answersCount}
         choices={riddle.choices.map((choice) => ({
