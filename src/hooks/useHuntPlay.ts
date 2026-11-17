@@ -11,7 +11,7 @@ import {
 } from "../services/enrollments.ts";
 import { getUserParticipantTeams } from "../services/teams.ts";
 
-const SOLO_MODE = "";
+export type PlayMode = "solo" | "team";
 
 function getMessage(err: unknown): string {
   return err instanceof Error
@@ -24,7 +24,8 @@ export function useHuntPlay(hunt: TreasureHunt) {
     [, setLocation] = useLocation(),
     [enrollment, setEnrollment] = useState<Enrollment | null>(null),
     [teams, setTeams] = useState<CreatorTeam[]>([]),
-    [teamIri, setTeamIri] = useState<string>(SOLO_MODE),
+    [playMode, setPlayMode] = useState<PlayMode>("solo"),
+    [teamIri, setTeamIri] = useState<string>(""),
     [error, setError] = useState<string | null>(null),
     [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -41,6 +42,9 @@ export function useHuntPlay(hunt: TreasureHunt) {
       .then(([userEnrollment, userTeams]) => {
         setEnrollment(userEnrollment);
         setTeams(userTeams);
+        if (userTeams.length > 0) {
+          setTeamIri(userTeams[0]["@id"]);
+        }
       })
       .catch((err: unknown) => {
         setError(getMessage(err));
@@ -50,11 +54,20 @@ export function useHuntPlay(hunt: TreasureHunt) {
       });
   }, [user, hunt]);
 
+  function handleModeChange(newMode: PlayMode) {
+    setPlayMode(newMode);
+    if (newMode === "team" && teams.length > 0 && !teamIri) {
+      setTeamIri(teams[0]["@id"]);
+    }
+  }
+
   function play() {
     setError(null);
     setIsLoading(true);
 
-    createEnrollment(hunt["@id"], teamIri === SOLO_MODE ? null : teamIri)
+    const selectedTeam = playMode === "solo" ? null : teamIri || null;
+
+    createEnrollment(hunt["@id"], selectedTeam)
       .then((created: Enrollment) => {
         setLocation(`~${ROUTES.GAME}/${created.id.toString()}`);
       })
@@ -67,8 +80,10 @@ export function useHuntPlay(hunt: TreasureHunt) {
   return {
     enrollment,
     error,
+    handleModeChange,
     isLoading,
     play,
+    playMode,
     setTeamIri,
     teamIri,
     teams,
