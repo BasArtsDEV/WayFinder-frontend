@@ -1,8 +1,10 @@
 import type { GameRiddle as GameRiddleData } from "../../types/Game.ts";
 import type { RiddleBaseProps } from "../../types/Riddle.ts";
+import type { Coordinates } from "../hooks/useGeolocation.ts";
+import RiddleGPSView from "../views/RiddleGPSView.tsx";
 import RiddleQCMView from "../views/RiddleQCMView.tsx";
+import RiddleQRCodeView from "../views/RiddleQRCodeView.tsx";
 import RiddleTextView from "../views/RiddleTextView.tsx";
-import RiddleFrame from "./RiddleFrame.tsx";
 
 type GameRiddleProps = Omit<
   RiddleBaseProps,
@@ -55,12 +57,19 @@ export default function GameRiddle({
     );
   }
 
+  if (riddle.type === "gps") {
+    return (
+      <RiddleGPSView
+        {...baseProps}
+        isLoading={isLoading}
+        onValidateLocation={({ latitude, longitude }: Coordinates) => {
+          onAnswer(JSON.stringify({ latitude, longitude }));
+        }}
+      />
+    );
+  }
+
   return (
-    <RiddleFrame {...baseProps}>
-      <p className="riddle-instruction" role="status">
-        Ce type d&apos;énigme n&apos;est pas encore disponible dans
-        l&apos;application.
-      </p>
-    </RiddleFrame>
+    <RiddleQRCodeView {...baseProps} isLoading={isLoading} onScan={onAnswer} />
   );
 }

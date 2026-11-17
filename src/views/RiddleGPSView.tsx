@@ -1,14 +1,24 @@
 import type { RiddleBaseProps } from "../../types/Riddle.ts";
+import Loader from "../components/Loader.tsx";
 import RiddleFrame from "../components/RiddleFrame.tsx";
+import { type Coordinates, useGeolocation } from "../hooks/useGeolocation.ts";
 
 interface RiddleGPSViewProps extends RiddleBaseProps {
-  onValidateLocation: () => void;
+  isLoading: boolean;
+  onValidateLocation: (coordinates: Coordinates) => void;
 }
 
 /**
  * Riddle solved by going to a precise place.
  */
-function RiddleGPSView({ onValidateLocation, ...riddle }: RiddleGPSViewProps) {
+function RiddleGPSView({
+  isLoading,
+  onValidateLocation,
+  ...riddle
+}: RiddleGPSViewProps) {
+  const { error, isLocating, locate } = useGeolocation(onValidateLocation),
+    isBusy = isLocating || isLoading;
+
   return (
     <RiddleFrame {...riddle}>
       <div className="riddle-actions">
@@ -26,15 +36,30 @@ function RiddleGPSView({ onValidateLocation, ...riddle }: RiddleGPSViewProps) {
           </p>
         </div>
 
+        {error && (
+          <div className="alert alert-danger riddle-error" role="alert">
+            {error}
+          </div>
+        )}
+
         <button
           type="button"
           className="btn-app-primary riddle-actions__submit"
-          onClick={onValidateLocation}
+          onClick={locate}
+          disabled={isBusy}
         >
           <span className="btn-icon-wrapper">
-            <img src="/icons/check.png" className="btn-action-icon" alt="" />
+            {isBusy ? (
+              <Loader isSmall />
+            ) : (
+              <img src="/icons/check.png" className="btn-action-icon" alt="" />
+            )}
           </span>
-          <span>Valider ma localisation</span>
+          <span>
+            {isLocating
+              ? "Localisation en cours..."
+              : "Valider ma localisation"}
+          </span>
         </button>
       </div>
     </RiddleFrame>
