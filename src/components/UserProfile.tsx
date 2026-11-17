@@ -1,72 +1,116 @@
+import { type ReactNode, useState } from "react";
 import { Link } from "wouter";
 import { ROUTES } from "../config.ts";
-import { getUserAvatar, type User } from "../services/user.ts";
+import { getUserAvatar, getUserBanner, type User } from "../services/user.ts";
 import LogoutButton from "./LogoutButton.tsx";
 
 interface UserProfileProps {
   user: User;
 }
 
+function ProfileHeader({ user }: UserProfileProps) {
+  const [hasBanner, setHasBanner] = useState(true);
+
+  return (
+    <div className={hasBanner ? "avatar-section has-banner" : "avatar-section"}>
+      {hasBanner && (
+        <img
+          src={getUserBanner(user.id.toString())}
+          alt=""
+          className="profile-banner"
+          onError={() => {
+            setHasBanner(false);
+          }}
+        />
+      )}
+      <div className="avatar-circle">
+        <img
+          src={getUserAvatar(user.id.toString())}
+          alt={`Avatar de ${user.username}`}
+          className="field-icon"
+        />
+      </div>
+      <h1>@{user.username}</h1>
+    </div>
+  );
+}
+
+interface ProfileFieldProps {
+  children: ReactNode;
+  icon: ReactNode;
+  title: string;
+}
+
+function ProfileField({ children, icon, title }: ProfileFieldProps) {
+  return (
+    <div className="field">
+      <div className="field-icon-container" aria-hidden="true">
+        {icon}
+      </div>
+      <div className="field-content">
+        <h4>{title}</h4>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function EmailStatus({ isVerified }: { isVerified: boolean }) {
+  return isVerified ? (
+    <span className="email-status email-status-verified">
+      <i className="bi bi-patch-check-fill" aria-hidden="true"></i>
+      Vérifiée
+    </span>
+  ) : (
+    <span className="email-status email-status-pending">
+      <i className="bi bi-exclamation-circle-fill" aria-hidden="true"></i>
+      Non vérifiée
+    </span>
+  );
+}
+
 export default function UserProfile({ user }: UserProfileProps) {
   return (
     <div className="user-container">
-      <div className="avatar-section">
-        <div className="avatar-circle">
-          <img
-            src={getUserAvatar(user.id.toString())}
-            alt={`Avatar de ${user.username}`}
-            className="field-icon"
-          />
-        </div>
-        <h1>@{user.username}</h1>
-      </div>
+      <ProfileHeader user={user} />
 
       <div className="fields-container">
-        <div className="field">
-          <div className="field-icon-container">
-            <img
-              src="/icons/add-user.png"
-              alt="Identité"
-              className="field-icon"
-            />
-          </div>
-          <div className="field-content">
-            <h4>Identité</h4>
-            <span>
-              {user.firstName} {user.lastName}
-            </span>
-          </div>
-        </div>
+        <ProfileField
+          title="Identité"
+          icon={<img src="/icons/add-user.png" alt="" className="field-icon" />}
+        >
+          <span>
+            {user.firstName} {user.lastName}
+          </span>
+        </ProfileField>
 
-        <div className="field">
-          <div className="field-icon-container">
-            <img src="/icons/mail.svg" alt="Email" className="field-icon" />
-          </div>
-          <div className="field-content">
-            <h4>Adresse e-mail</h4>
-            <span>{user.email}</span>
-          </div>
-        </div>
+        <ProfileField
+          title="Adresse e-mail"
+          icon={<img src="/icons/mail.svg" alt="" className="field-icon" />}
+        >
+          <span className="field-email">{user.email}</span>
+          <EmailStatus isVerified={user.isVerified} />
+        </ProfileField>
 
-        <div className="field">
-          <div className="field-icon-container">
-            <img
-              src="/icons/calendar.svg"
-              alt="Membre depuis"
-              className="field-icon"
-            />
-          </div>
-          <div className="field-content">
-            <h4>Membre depuis</h4>
-            <span>
-              {new Date(user.createdAt).toLocaleString("default", {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-              })}
-            </span>
-          </div>
-        </div>
+        <ProfileField
+          title="Membre depuis"
+          icon={<img src="/icons/calendar.svg" alt="" className="field-icon" />}
+        >
+          <span>
+            {new Date(user.createdAt).toLocaleString("default", {
+              day: "2-digit",
+              month: "long",
+              year: "numeric",
+            })}
+          </span>
+        </ProfileField>
+
+        <ProfileField
+          title="Fuseau horaire"
+          icon={<i className="bi bi-globe2 field-bi-icon"></i>}
+        >
+          <span>{user.timezone.replaceAll("_", " ")}</span>
+        </ProfileField>
       </div>
 
       <div className="button-container">
