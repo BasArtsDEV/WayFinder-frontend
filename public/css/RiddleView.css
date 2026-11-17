@@ -1,5 +1,5 @@
 .riddle-view {
-    --riddle-card-background: #c8ae7a;
+    --riddle-card-background: var(--app-box-background);
     --riddle-media-background: #d8c8aa;
     --riddle-media-icon: #b4b4b4;
 
