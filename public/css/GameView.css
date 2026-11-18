@@ -30,26 +30,6 @@
     text-align: center;
 }
 
-.header-button-exit {
-    padding: 0;
-    border-color: var(--app-header-button-leave-text);
-    color: var(--app-header-button-leave-text);
-    background-color: var(--app-header-button-leave-background);
-}
-
-.header-button-exit .home__icon {
-    color: var(--app-header-button-leave-text);
-}
-
-.header-button-exit:hover {
-    background-color: #ffbdbd;
-}
-
-.header-button-exit:focus-visible {
-    outline: 3px solid var(--app-button-text);
-    outline-offset: 2px;
-}
-
 .game-end {
     display: flex;
     flex: 1;
