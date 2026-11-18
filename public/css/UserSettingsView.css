@@ -164,3 +164,99 @@
         flex: 1;
     }
 }
+
+.image-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.image-field-label {
+    align-self: flex-start;
+    font-family: 'Lexend', serif;
+    font-size: 1rem;
+}
+
+.image-field-preview {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid #000;
+
+    font-size: 2.5rem;
+    color: #555;
+
+    background-color: var(--app-input-background);
+}
+
+.image-field-preview > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-field-avatar > .image-field-preview {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+}
+
+.image-field-banner > .image-field-preview {
+    width: 100%;
+    height: 7rem;
+    border-radius: 30px;
+}
+
+.image-field-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.image-field-button {
+    cursor: pointer;
+
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+
+    padding: 0.45rem 1rem;
+    border: 1px solid #000;
+    border-radius: 50px;
+
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--app-button-secondary-text);
+
+    background-color: var(--app-button-secondary-background);
+
+    transition: background-color 0.4s;
+}
+
+.image-field-button:hover {
+    background-color: var(--app-button-secondary-background-hover);
+}
+
+.image-field-button-danger {
+    color: #c62828;
+}
+
+.image-field-button:focus-visible,
+.image-field-input:focus-visible + .image-field-button {
+    outline: 3px solid var(--app-button-background);
+    outline-offset: 2px;
+}
+
+.image-field-error {
+    margin: 0;
+
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #c62828;
+    text-align: center;
+}
