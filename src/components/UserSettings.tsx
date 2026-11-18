@@ -2,8 +2,9 @@ import type { ReactNode } from "react";
 import { Link } from "wouter";
 import { ROUTES } from "../config.ts";
 import { useSettings } from "../hooks/useSettings.ts";
-import type { User } from "../services/user.ts";
+import { getUserAvatar, getUserBanner, type User } from "../services/user.ts";
 import FormField from "./FormField.tsx";
+import ImageField from "./ImageField.tsx";
 import Loader from "./Loader.tsx";
 import PasswordField from "./PasswordField.tsx";
 
@@ -54,8 +55,41 @@ function SettingsActions({ isLoading }: { isLoading: boolean }) {
 }
 
 type SettingsFields = ReturnType<typeof useSettings>["fields"];
+type SettingsImages = ReturnType<typeof useSettings>["images"];
 
 const TIMEZONES = Intl.supportedValuesOf("timeZone");
+
+interface ImagesSectionProps {
+  images: SettingsImages;
+  user: User;
+}
+
+function ImagesSection({ images, user }: ImagesSectionProps) {
+  const userId = user.id.toString();
+
+  return (
+    <SettingsSection icon="bi-image-fill" title="Photos">
+      <ImageField
+        id="avatar"
+        kind="avatar"
+        label="Avatar"
+        field={images.avatar}
+        currentUrl={
+          user.hasAvatar ? getUserAvatar(userId, user.avatarVersion) : null
+        }
+      />
+      <ImageField
+        id="banner"
+        kind="banner"
+        label="Bannière"
+        field={images.banner}
+        currentUrl={
+          user.hasBanner ? getUserBanner(userId, user.bannerVersion) : null
+        }
+      />
+    </SettingsSection>
+  );
+}
 
 function IdentitySection({ fields }: { fields: SettingsFields }) {
   return (
@@ -136,7 +170,7 @@ interface UserSettingsProps {
 }
 
 export default function UserSettings({ user }: UserSettingsProps) {
-  const { error, fields, handleSubmit, isLoading } = useSettings(user);
+  const { error, fields, handleSubmit, images, isLoading } = useSettings(user);
 
   return (
     <div className="settings-container">
@@ -148,6 +182,8 @@ export default function UserSettings({ user }: UserSettingsProps) {
             {error}
           </div>
         )}
+
+        <ImagesSection images={images} user={user} />
 
         <IdentitySection fields={fields} />
 
