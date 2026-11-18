@@ -6,6 +6,7 @@ import {
   submitAnswer,
   updateGameStatus,
 } from "../services/game.ts";
+import { getTreasureHuntById } from "../services/treasure-hunts.ts";
 
 const DEFAULT_ERROR = "Une erreur est survenue. Veuillez réessayer plus tard.";
 
@@ -15,6 +16,8 @@ function getMessage(err: unknown): string {
 
 async function loadAndStartGame(enrollmentId: number): Promise<GameState> {
   const game = await getGameState(enrollmentId);
+
+  await getTreasureHuntById(game.treasureHuntId);
 
   if (
     game.status === GAME_STATUS.NOT_STARTED ||
