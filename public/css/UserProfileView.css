@@ -151,68 +151,11 @@
     justify-content: end;
 }
 
-.btn-app-primary {
-    cursor: pointer;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    padding: 0.6rem 1rem !important;
-    border: none !important;
-    border-radius: 50px !important;
-
-    font-size: 1.1rem !important;
-    color: var(--app-button-text) !important;
-
-    background-color: var(--app-button-background) !important;
-
-    transition: background-color 0.4s;
-}
-
 .btn-text {
     width: 100%;
     margin: 0;
     font-weight: bold;
     text-align: center;
-}
-
-.btn-app-primary:hover {
-    background-color: var(--app-header-button-background-hover) !important;
-}
-
-.btn-app-secondary:hover {
-    background-color: var(--app-button-secondary-background-hover) !important;
-}
-
-.btn-app-primary > span:not(.btn-icon-wrapper),
-.btn-app-secondary > span:not(.btn-icon-wrapper) {
-    flex: 1;
-    text-align: center;
-}
-
-.btn-icon-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-
-    background-color: transparent;
-}
-
-
-.btn-app-secondary .btn-icon-wrapper {
-    background-color: transparent;
-}
-
-.btn-action-icon {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
 }
 
 .btn-logout {
