@@ -12,20 +12,31 @@ export interface User {
   createdAt: string;
   isVerified: boolean;
   timezone: string;
+  hasAvatar?: boolean;
+  hasBanner?: boolean;
+
+  /** timestamp used to bypass the browser cache after an update */
+  avatarVersion?: number;
+  bannerVersion?: number;
+}
+
+function withVersion(url: string, version?: number): string {
+  // eslint-disable-next-line no-undefined
+  return version === undefined ? url : `${url}?v=${String(version)}`;
 }
 
 /**
  * Returns the URL of the User's avatar
  */
-export function getUserAvatar(userId: string): string {
-  return `${CONFIG.BASE_URL}/users/${userId}/avatar`;
+export function getUserAvatar(userId: string, version?: number): string {
+  return withVersion(`${CONFIG.BASE_URL}/users/${userId}/avatar`, version);
 }
 
 /**
  * Returns the URL of the User's banner
  */
-export function getUserBanner(userId: string): string {
-  return `${CONFIG.BASE_URL}/users/${userId}/banner`;
+export function getUserBanner(userId: string, version?: number): string {
+  return withVersion(`${CONFIG.BASE_URL}/users/${userId}/banner`, version);
 }
 
 /**
@@ -107,4 +118,74 @@ export async function updateUser(
   }
 
   return (await response.json()) as User;
+}
+
+export type UserImageKind = "avatar" | "banner";
+
+const IMAGE_ERRORS: Record<number, string> = {
+  401: "Vous n'êtes pas autorisé à modifier cette image.",
+  403: "Vous n'êtes pas autorisé à modifier cette image.",
+  413: "L'image est trop volumineuse.",
+};
+
+async function getImageErrorMessage(response: Response): Promise<string> {
+  if (response.status === 422) {
+    return getViolationsMessage(response);
+  }
+
+  return (
+    IMAGE_ERRORS[response.status] ??
+    "Une erreur est survenue. Veuillez réessayer plus tard."
+  );
+}
+
+/**
+ * Uploads a new avatar or banner for the authenticated User
+ */
+export async function uploadUserImage(
+  userId: number,
+  kind: UserImageKind,
+  file: File,
+): Promise<User> {
+  const body = new FormData(),
+    token = localStorage.getItem("token") ?? "";
+
+  body.append(kind, file);
+
+  // eslint-disable-next-line one-var
+  const response = await fetch(
+    `${CONFIG.BASE_URL}/users/${String(userId)}/${kind}`,
+    {
+      body,
+      headers: { Authorization: `Bearer ${token}` },
+      method: "POST",
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error(await getImageErrorMessage(response));
+  }
+
+  return (await response.json()) as User;
+}
+
+/**
+ * Removes the avatar or banner of the authenticated User
+ */
+export async function deleteUserImage(
+  userId: number,
+  kind: UserImageKind,
+): Promise<void> {
+  const token = localStorage.getItem("token") ?? "",
+    response = await fetch(
+      `${CONFIG.BASE_URL}/users/${String(userId)}/${kind}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        method: "DELETE",
+      },
+    );
+
+  if (!response.ok) {
+    throw new Error(await getImageErrorMessage(response));
+  }
 }

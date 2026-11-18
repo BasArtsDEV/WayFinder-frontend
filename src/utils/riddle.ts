@@ -27,7 +27,7 @@ export function formatRemainingTime(totalSeconds: number): string {
     parts.push(`${minutes.toString()} ${minutes > 1 ? "minutes" : "minute"}`);
   }
 
-  if (seconds > 0 || totalSeconds === 0) {
+  if ((seconds > 0 || totalSeconds === 0) && hours === 0) {
     parts.push(`${seconds.toString()} ${seconds > 1 ? "secondes" : "seconde"}`);
   }
 
