@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import JoinByCodeForm from "../components/JoinByCodeForm.tsx";
+import Stylesheet from "../components/Stylesheet.tsx";
 import { ROUTES } from "../config.ts";
 import { useAuth } from "../contexts/AuthContext.ts";
 
@@ -8,6 +9,7 @@ function WelcomePageView() {
 
   return (
     <div className="welcomepageview">
+      <Stylesheet href="/css/WelcomePageView.css" />
       <div className="welcome-container">
         <div className="welcome-container-icon">
           <img

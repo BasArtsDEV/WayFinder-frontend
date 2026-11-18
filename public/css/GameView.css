@@ -30,26 +30,6 @@
     text-align: center;
 }
 
-.header-button-exit {
-    padding: 0;
-    border-color: var(--app-header-button-leave-text);
-    color: var(--app-header-button-leave-text);
-    background-color: var(--app-header-button-leave-background);
-}
-
-.header-button-exit .home__icon {
-    color: var(--app-header-button-leave-text);
-}
-
-.header-button-exit:hover {
-    background-color: #ffbdbd;
-}
-
-.header-button-exit:focus-visible {
-    outline: 3px solid var(--app-button-text);
-    outline-offset: 2px;
-}
-
 .game-end {
     display: flex;
     flex: 1;
@@ -124,27 +104,6 @@
 .game-end-home {
     width: 100%;
     margin-top: auto;
-}
-
-.hunt-play {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-}
-
-.hunt-play-label {
-    font-family: 'Lexend', sans-serif;
-    font-weight: 700;
-}
-
-.hunt-play-select {
-    width: 100%;
-    font-family: 'Lexend', sans-serif;
-}
-
-.hunt-play .btn-app-primary:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
 }
 
 @media (min-width: 769px) {

@@ -1,9 +1,11 @@
 import { Link } from "wouter";
+import Stylesheet from "../components/Stylesheet.tsx";
 import { ROUTES } from "../config.ts";
 
 function NotFoundView() {
   return (
     <div className="notfoundview">
+      <Stylesheet href="/css/NotFoundView.css" />
       <div className="not-found-container">
         <img className="not-found-icon" src="/icons/app-icon.png" alt="" />
 

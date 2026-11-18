@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 import RegisterForm from "../components/RegisterForm.tsx";
+import Stylesheet from "../components/Stylesheet.tsx";
 import { ROUTES } from "../config.ts";
 import { useAuth } from "../contexts/AuthContext.ts";
 import { useRegister } from "../hooks/useRegister.ts";
@@ -18,6 +19,7 @@ function RegisterView() {
 
   return (
     <div className="registerview">
+      <Stylesheet href="/css/RegisterView.css" />
       <div className="register-container">
         <h1>Créer mon compte</h1>
         <RegisterForm

@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import FormField from "../components/FormField.tsx";
 import Loader from "../components/Loader.tsx";
 import PasswordField from "../components/PasswordField.tsx";
+import Stylesheet from "../components/Stylesheet.tsx";
 import { ROUTES } from "../config.ts";
 import { useAuth } from "../contexts/AuthContext.ts";
 import { useLogin } from "../hooks/useLogin.ts";
@@ -28,6 +29,7 @@ function LoginView() {
 
   return (
     <div className="loginview">
+      <Stylesheet href="/css/LoginView.css" />
       <div className="login-container">
         <h1>Se connecter</h1>
         <form className="login-form" onSubmit={handleSubmit}>
