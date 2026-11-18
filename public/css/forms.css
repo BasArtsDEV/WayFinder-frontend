@@ -1,0 +1,83 @@
+.form-field > label {
+    font-family: 'Lexend', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.form-field-input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field-input > input {
+    padding: 1rem;
+    border: 2px solid var(--app-input-border);
+    border-radius: 50px;
+    background-color: var(--app-input-background);
+}
+
+.form-field-input > input::placeholder {
+    font-family: 'Lexend', serif;
+    font-weight: 300;
+}
+
+.form-field-toggle {
+    cursor: pointer;
+
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    border: none;
+
+    font-size: 1.2rem;
+    line-height: 1;
+    color: inherit;
+
+    background: none;
+}
+
+.form-field-toggle:focus-visible {
+    border-radius: 4px;
+    outline: 2px solid var(--app-input-border);
+    outline-offset: 2px;
+}
+
+.form-field-input > input:has(+ .form-field-toggle) {
+    padding-right: 3rem;
+}
+
+.form-field-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.form-field-row > .form-field {
+    flex: 1;
+    min-width: 0;
+}
+
+.form-submit {
+    display: flex;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.form-submit > .btn-app-primary {
+    display: flex;
+    flex: 1;
+}
+
+.btn-icon-wrapper.bg-white .btn-action-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

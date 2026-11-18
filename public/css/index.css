@@ -300,3 +300,30 @@ p {
         transition: none;
     }
 }
+
+.avatar-field-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.header-button-exit {
+    padding: 0;
+    border-color: var(--app-header-button-leave-text);
+    color: var(--app-header-button-leave-text);
+    background-color: var(--app-header-button-leave-background);
+}
+
+.header-button-exit .home__icon {
+    color: var(--app-header-button-leave-text);
+}
+
+.header-button-exit:hover {
+    background-color: #ffbdbd;
+}
+
+.header-button-exit:focus-visible {
+    outline: 3px solid var(--app-button-text);
+    outline-offset: 2px;
+}
