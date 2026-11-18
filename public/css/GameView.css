@@ -106,27 +106,6 @@
     margin-top: auto;
 }
 
-.hunt-play {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-}
-
-.hunt-play-label {
-    font-family: 'Lexend', sans-serif;
-    font-weight: 700;
-}
-
-.hunt-play-select {
-    width: 100%;
-    font-family: 'Lexend', sans-serif;
-}
-
-.hunt-play .btn-app-primary:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
 @media (min-width: 769px) {
     .game-end {
         padding-top: 3rem;
