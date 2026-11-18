@@ -40,7 +40,14 @@ export async function getTreasureHuntById(id: number): Promise<TreasureHunt> {
     throw new Error("Une erreur est survenue. Veuillez réessayer plus tard.");
   }
 
-  return (await response.json()) as TreasureHunt;
+  // eslint-disable-next-line one-var
+  const hunt = (await response.json()) as TreasureHunt;
+
+  if (!hunt.published) {
+    throw new Error("Cette chasse au trésor n'est pas disponible.");
+  }
+
+  return hunt;
 }
 
 /**
