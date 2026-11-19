@@ -3,6 +3,7 @@ import type { GameStatus } from "../../types/Game.ts";
 import type { TreasureHunt } from "../../types/TreasureHunt.ts";
 import { GAME_STATUS, ROUTES } from "../config.ts";
 import { type PlayMode, useHuntPlay } from "../hooks/useHuntPlay.ts";
+import LeaderboardLink from "./LeaderboardLink.tsx";
 import Loader from "./Loader.tsx";
 
 interface HuntPlayActionsProps {
@@ -10,10 +11,6 @@ interface HuntPlayActionsProps {
 }
 
 function getEnrollmentLabel(status: GameStatus): string {
-  if (status === GAME_STATUS.FINISHED) {
-    return "Voir mes résultats";
-  }
-
   return status === GAME_STATUS.NOT_STARTED
     ? "Commencer la partie"
     : "Reprendre la partie";
@@ -43,6 +40,19 @@ export default function HuntPlayActions({ hunt }: HuntPlayActionsProps) {
           </span>
           <span>Se connecter pour jouer</span>
         </Link>
+        <LeaderboardLink huntId={hunt.id} />
+      </div>
+    );
+  }
+
+  if (enrollment?.status === GAME_STATUS.FINISHED) {
+    return (
+      <div className="hunt-play">
+        <p className="hunt-play-done">
+          <i className="bi bi-check-circle-fill" aria-hidden="true"></i>
+          Vous avez déjà participé à cette chasse au trésor.
+        </p>
+        <LeaderboardLink huntId={hunt.id} />
       </div>
     );
   }
@@ -59,6 +69,7 @@ export default function HuntPlayActions({ hunt }: HuntPlayActionsProps) {
           </span>
           <span>{getEnrollmentLabel(enrollment.status)}</span>
         </Link>
+        <LeaderboardLink huntId={hunt.id} />
       </div>
     );
   }
@@ -145,6 +156,8 @@ export default function HuntPlayActions({ hunt }: HuntPlayActionsProps) {
           <span>{isLoading ? "Chargement..." : "Jouer"}</span>
         </button>
       )}
+
+      <LeaderboardLink huntId={hunt.id} />
     </div>
   );
 }
