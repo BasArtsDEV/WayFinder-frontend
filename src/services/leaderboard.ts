@@ -8,10 +8,14 @@ import { getAuthHeaders, getErrorMessage } from "./api.ts";
 export default async function getLeaderboard(
   huntId: number,
 ): Promise<Leaderboard> {
-  const response = await fetch(
-    `${CONFIG.TREASURE_HUNTS}/${huntId.toString()}/leaderboard`,
-    { headers: getAuthHeaders() },
-  );
+  const url = `${CONFIG.TREASURE_HUNTS}/${huntId.toString()}/leaderboard`;
+  let response = await fetch(url, { headers: getAuthHeaders() });
+
+  if (response.status === 401) {
+    response = await fetch(url, {
+      headers: { "Content-Type": "application/ld+json" },
+    });
+  }
 
   if (response.status === 404) {
     throw new Error("Cette chasse au trésor n'est pas disponible.");
