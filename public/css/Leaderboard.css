@@ -1,0 +1,196 @@
+.leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+
+    width: 100%;
+    padding: 1rem;
+
+    font-family: 'Lexend', sans-serif;
+    color: var(--app-text);
+}
+
+.leaderboard-back {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+    align-self: flex-start;
+
+    padding: 0.3rem 0;
+
+    font-weight: 500;
+    color: var(--app-text);
+}
+
+.leaderboard-back:hover {
+    text-decoration: underline !important;
+}
+
+.leaderboard-back:focus-visible {
+    border-radius: 4px;
+    outline: 3px solid var(--app-button-background);
+    outline-offset: 2px;
+}
+
+.leaderboard-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: center;
+
+    padding: 1.2rem;
+    border-radius: 2rem;
+
+    text-align: center;
+
+    background-color: var(--app-box-background);
+}
+
+.leaderboard-hero-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.leaderboard-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.leaderboard-subtitle {
+    margin: 0;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+.leaderboard-empty {
+    margin: 0;
+    text-align: center;
+}
+
+.leaderboard-me {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.leaderboard-section-title {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    margin: 0;
+
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.leaderboard-count {
+    padding: 0.1rem 0.6rem;
+    border-radius: 50px;
+
+    font-size: 0.9rem;
+    color: var(--app-button-text);
+
+    background-color: var(--app-button-background);
+}
+
+.leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.leaderboard-row {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+
+    padding: 0.5rem 1.2rem 0.5rem 0.6rem;
+    border-radius: 50px;
+
+    color: var(--app-small-info-box-text);
+
+    background-color: var(--app-small-info-box-background);
+}
+
+.leaderboard-row-me {
+    color: var(--app-button-text);
+    background-color: var(--app-button-background);
+}
+
+.leaderboard-rank {
+    flex-shrink: 0;
+
+    min-width: 2rem;
+
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.leaderboard-avatar {
+    flex-shrink: 0;
+
+    width: 2.6rem;
+    height: 2.6rem;
+    border: 2px solid currentcolor;
+    border-radius: 50%;
+
+    object-fit: cover;
+}
+
+.leaderboard-team-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.leaderboard-name {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.4rem;
+    align-items: center;
+
+    min-width: 0;
+
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.leaderboard-tag {
+    padding: 0 0.5rem;
+    border: 1px solid currentcolor;
+    border-radius: 50px;
+
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.leaderboard-score {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.leaderboard-score-unit {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+@media (min-width: 769px) {
+    .leaderboard {
+        padding: 2rem 1rem;
+    }
+
+    .leaderboard-row {
+        padding-right: 1.5rem;
+    }
+}
