@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import type { GameState } from "../../types/Game.ts";
 import { ROUTES } from "../config.ts";
 import { formatRank, formatRemainingTime } from "../utils/riddle.ts";
+import LeaderboardLink from "./LeaderboardLink.tsx";
 
 interface GameEndProps {
   game: GameState;
@@ -78,12 +79,19 @@ export default function GameEnd({ game }: GameEndProps) {
         </p>
       </div>
 
-      <Link href={ROUTES.HOME} className="btn-app-primary game-end-home">
-        <span className="btn-icon-wrapper">
-          <img src="/icons/home_white.png" className="btn-action-icon" alt="" />
-        </span>
-        <span>Retourner à l&apos;accueil</span>
-      </Link>
+      <div className="game-end-actions">
+        <LeaderboardLink huntId={game.treasureHuntId} />
+        <Link href={ROUTES.HOME} className="btn-app-primary">
+          <span className="btn-icon-wrapper">
+            <img
+              src="/icons/home_white.png"
+              className="btn-action-icon"
+              alt=""
+            />
+          </span>
+          <span>Retourner à l&apos;accueil</span>
+        </Link>
+      </div>
     </section>
   );
 }

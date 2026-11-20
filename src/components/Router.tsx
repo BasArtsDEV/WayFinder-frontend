@@ -2,6 +2,7 @@ import { Route, Switch } from "wouter";
 import { ROUTES } from "../config.ts";
 import GameView from "../views/GameView.tsx";
 import HuntDetailView from "../views/HuntDetailView.tsx";
+import LeaderboardView from "../views/LeaderboardView.tsx";
 import LoginView from "../views/LoginView.tsx";
 import NotFoundView from "../views/NotFoundView.tsx";
 import RegisterView from "../views/RegisterView.tsx";
@@ -19,6 +20,7 @@ function Router() {
     <Switch>
       <Route path={ROUTES.HOME} component={WelcomePageView} />
       <Route path={ROUTES.HUNTS} nest>
+        <Route path={`/:id${ROUTES.LEADERBOARD}`} component={LeaderboardView} />
         <Route path="/:id" component={HuntDetailView} />
         <Route path={ROUTES.HOME} component={TreasureHuntsView} />
       </Route>
