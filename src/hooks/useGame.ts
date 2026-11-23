@@ -14,11 +14,10 @@ function getMessage(err: unknown): string {
   return err instanceof Error ? err.message : DEFAULT_ERROR;
 }
 
-async function loadAndStartGame(enrollmentId: number): Promise<GameState> {
-  const game = await getGameState(enrollmentId);
-
-  await getTreasureHuntById(game.treasureHuntId);
-
+async function startGame(
+  enrollmentId: number,
+  game: GameState,
+): Promise<GameState> {
   if (
     game.status === GAME_STATUS.NOT_STARTED ||
     game.status === GAME_STATUS.PAUSED
@@ -28,6 +27,14 @@ async function loadAndStartGame(enrollmentId: number): Promise<GameState> {
   }
 
   return game;
+}
+
+async function loadAndStartGame(enrollmentId: number): Promise<GameState> {
+  const game = await getGameState(enrollmentId);
+
+  await getTreasureHuntById(game.treasureHuntId);
+
+  return startGame(enrollmentId, game);
 }
 
 export function useGame(enrollmentId: number) {
@@ -42,7 +49,15 @@ export function useGame(enrollmentId: number) {
       setRemainingTime(state.remainingTime);
     }, []),
     refresh = useCallback(async () => {
-      applyGame(await getGameState(enrollmentId));
+      const state = await getGameState(enrollmentId);
+
+      if (state.status === GAME_STATUS.NOT_STARTED) {
+        setFeedback(
+          "Votre partie a été réinitialisée par l'organisateur de la chasse.",
+        );
+      }
+
+      applyGame(await startGame(enrollmentId, state));
     }, [enrollmentId, applyGame]);
 
   useEffect(() => {
