@@ -91,7 +91,7 @@ export default function HuntDetail() {
           <HuntStats hunt={hunt} />
           <HuntInvitationCode code={hunt.invitationCode} />
           <HuntPlayActions hunt={hunt} />
-          <FeedbacksList huntId={hunt.id} />
+          <FeedbacksList huntId={hunt.id} huntIri={hunt["@id"]} />
         </>
       )}
     </article>
