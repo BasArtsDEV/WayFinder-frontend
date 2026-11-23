@@ -62,6 +62,32 @@ export async function createEnrollment(
   return (await response.json()) as Enrollment;
 }
 
+export async function submitReview(
+  enrollmentId: number,
+  nbStars: number,
+  feedback: string,
+): Promise<Enrollment> {
+  const response = await fetch(
+    `${CONFIG.ENROLLMENTS}/${enrollmentId.toString()}`,
+    {
+      body: JSON.stringify({
+        feedback: feedback.trim(),
+        nbStars,
+      }),
+      headers: getAuthHeaders("application/merge-patch+json"),
+      method: "PATCH",
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      await getErrorMessage(response, "Impossible d'enregistrer votre avis."),
+    );
+  }
+
+  return (await response.json()) as Enrollment;
+}
+
 /**
  * Returns a Collection of TreasureHunt[]
  * @param huntId The TreasureHunt identifier

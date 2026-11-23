@@ -1,40 +1,25 @@
-import { useEffect, useState } from "react";
-import type { Feedback, FeedbacksCollection } from "../../types/Feedback.ts";
-import getEnrollmentsByTreasureHunt from "../services/enrollments.ts";
+import { useState } from "react";
+import type { Feedback } from "../../types/Feedback.ts";
+import { GAME_STATUS } from "../config.ts";
+import { useFeedbacks } from "../hooks/useFeedbacks.ts";
 import FeedbackCard from "./FeedbackCard.tsx";
 import Loader from "./Loader.tsx";
+import ReviewForm from "./ReviewForm.tsx";
 
 interface FeedbacksListProps {
   huntId: number;
+  huntIri?: string;
 }
 
 const PREVIEW_COUNT = 3;
 
-export default function FeedbacksList({ huntId }: FeedbacksListProps) {
-  const [feedbacks, setFeedbacks] = useState<Feedback[]>([]),
-    [error, setError] = useState<string | null>(null),
+export default function FeedbacksList({ huntId, huntIri }: FeedbacksListProps) {
+  const { error, feedbacks, handleReviewSubmitted, isLoading, userEnrollment } =
+      useFeedbacks(huntId, huntIri),
     [isExpanded, setIsExpanded] = useState<boolean>(false),
-    [isLoading, setIsLoading] = useState<boolean>(true),
     visibleFeedbacks = isExpanded
       ? feedbacks
       : feedbacks.slice(0, PREVIEW_COUNT);
-
-  useEffect(() => {
-    getEnrollmentsByTreasureHunt(huntId)
-      .then((data: FeedbacksCollection) => {
-        setFeedbacks(data.member);
-      })
-      .catch((err: unknown) => {
-        setError(
-          err instanceof Error
-            ? err.message
-            : "Impossible de charger les avis pour le moment.",
-        );
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [huntId]);
 
   return (
     <section className="feedbacks" aria-labelledby="feedbacks-title">
@@ -42,6 +27,15 @@ export default function FeedbacksList({ huntId }: FeedbacksListProps) {
         Avis des joueurs
         <span className="feedbacks-count">{feedbacks.length}</span>
       </h2>
+
+      {userEnrollment?.status === GAME_STATUS.FINISHED && (
+        <ReviewForm
+          enrollmentId={userEnrollment.id}
+          initialStars={userEnrollment.nbStars}
+          initialFeedback={userEnrollment.feedback}
+          onSubmitted={handleReviewSubmitted}
+        />
+      )}
 
       {isLoading && <Loader label="Chargement des avis..." />}
 
