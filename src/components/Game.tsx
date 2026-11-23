@@ -25,7 +25,7 @@ export default function Game({ enrollmentId }: GameProps) {
   }
 
   if (game.status === GAME_STATUS.FINISHED || !game.riddle) {
-    return <GameEnd game={game} />;
+    return <GameEnd enrollmentId={enrollmentId} game={game} />;
   }
 
   return (

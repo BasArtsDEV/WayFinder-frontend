@@ -24,6 +24,7 @@ function GameView() {
   return (
     <div className="gameview">
       <Stylesheet href="/css/GameView.css" />
+      <Stylesheet href="/css/Feedbacks.css" />
       <Stylesheet href="/css/RiddleView.css" />
       <Game enrollmentId={Number(id)} />
     </div>

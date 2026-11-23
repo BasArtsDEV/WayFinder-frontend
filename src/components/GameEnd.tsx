@@ -3,8 +3,10 @@ import type { GameState } from "../../types/Game.ts";
 import { ROUTES } from "../config.ts";
 import { formatRank, formatRemainingTime } from "../utils/riddle.ts";
 import LeaderboardLink from "./LeaderboardLink.tsx";
+import ReviewForm from "./ReviewForm.tsx";
 
 interface GameEndProps {
+  enrollmentId: number;
   game: GameState;
 }
 
@@ -27,7 +29,7 @@ function GameEndStat({ icon, label, value, wide = false }: GameEndStatProps) {
   );
 }
 
-export default function GameEnd({ game }: GameEndProps) {
+export default function GameEnd({ enrollmentId, game }: GameEndProps) {
   const isSuccess = !game.timedOut;
 
   return (
@@ -78,6 +80,8 @@ export default function GameEnd({ game }: GameEndProps) {
           n&apos;ont pas encore terminé !
         </p>
       </div>
+
+      <ReviewForm enrollmentId={enrollmentId} />
 
       <div className="game-end-actions">
         <LeaderboardLink huntId={game.treasureHuntId} />
