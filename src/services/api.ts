@@ -1,3 +1,5 @@
+import { CONFIG } from "../config.ts";
+
 interface ApiErrorResponse {
   detail?: string;
   description?: string;
@@ -34,4 +36,13 @@ export async function getErrorMessage(
   }
 
   return body.detail ?? body.description ?? fallback;
+}
+
+export async function isApiReachable(): Promise<boolean> {
+  try {
+    await fetch(CONFIG.TREASURE_HUNTS, { method: "HEAD" });
+    return true;
+  } catch {
+    return false;
+  }
 }

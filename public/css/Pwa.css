@@ -1,0 +1,40 @@
+.pwa-banner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.6rem 1rem;
+
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--app-text);
+
+    background-color: var(--app-box-background);
+}
+
+.pwa-banner-offline {
+    color: var(--app-header-button-leave-text);
+    background-color: var(--app-header-button-leave-background);
+}
+
+.pwa-banner-button {
+    cursor: pointer;
+
+    padding: 0.35rem 0.9rem;
+    border: none;
+    border-radius: 50px;
+
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--app-button-text);
+
+    background-color: var(--app-button-background);
+}
+
+.pwa-banner-button:hover {
+    background-color: var(--app-button-background-hover);
+}
